@@ -1,0 +1,246 @@
+.services-page {
+    background-color: var(--bg-primary);
+    min-height: calc(100vh - 200px);
+    transition: background-color 0.3s ease;
+    animation: fadeIn 0.6s ease-out;
+    padding: clamp(1rem, 3vw, 2rem);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.services-section,
+.training-section,
+.videos-section {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    transition: margin-bottom 0.4s ease;
+}
+
+.subsection-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--text-primary);
+    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.services-grid,
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 40vw, 350px), 1fr));
+    gap: clamp(1.5rem, 3vw, 2rem);
+    transition: gap 0.4s ease;
+}
+
+.service-card,
+.training-card {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, padding 0.4s ease;
+}
+
+.service-card.revealed,
+.training-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.services-section,
+.training-section,
+.videos-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.services-section.revealed,
+.training-section.revealed,
+.videos-section.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.subsection-title {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.subsection-title.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-card:hover,
+.training-card:hover {
+    transform: translateY(clamp(-4px, -1vw, -8px));
+}
+
+.service-image,
+.training-thumbnail {
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+    border-radius: clamp(6px, 1vw, 8px);
+    overflow: hidden;
+    transition: border-radius 0.3s ease;
+}
+
+.service-image img,
+.training-thumbnail img {
+    width: 100%;
+    height: clamp(150px, 25vw, 200px);
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-image img,
+.training-card:hover .training-thumbnail img {
+    transform: scale(1.08);
+}
+
+.service-card h3,
+.training-card h3 {
+    color: var(--text-primary);
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.service-card p,
+.training-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+    transition: color 0.3s ease, font-size 0.3s ease;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+}
+
+.videos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 35vw, 400px), 1fr));
+    gap: clamp(1rem, 2.5vw, 2rem);
+    transition: gap 0.4s ease;
+}
+
+.video-card {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.video-card.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.video-card:hover {
+    transform: translateY(clamp(-3px, -0.8vw, -6px));
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: clamp(0.5rem, 1.2vw, 1rem);
+    border-radius: clamp(6px, 1.2vw, 10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease, margin-bottom 0.3s ease;
+    will-change: box-shadow;
+}
+
+.video-card:hover .video-container {
+    box-shadow: 0 clamp(8px, 1.5vw, 12px) clamp(20px, 2.5vw, 32px) var(--shadow-medium);
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-card h3 {
+    color: var(--text-primary);
+    margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+.video-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    transition: color 0.3s ease, font-size 0.3s ease;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+}
+
+.loading,
+.no-data {
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3rem);
+    color: var(--text-secondary);
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    transition: color 0.3s ease, font-size 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+    .services-grid,
+    .training-grid {
+        grid-template-columns: repeat(auto-fill, minmax(clamp(240px, 35vw, 320px), 1fr));
+    }
+
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(clamp(260px, 40vw, 350px), 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid,
+    .training-grid,
+    .videos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 40vw, 280px), 1fr));
+        gap: clamp(1rem, 2vw, 1.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .services-section,
+    .training-section,
+    .videos-section {
+        margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    }
+
+    .services-grid,
+    .training-grid,
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: clamp(1rem, 2vw, 1.25rem);
+    }
+
+    .service-image img,
+    .training-thumbnail img {
+        height: clamp(120px, 20vw, 150px);
+    }
+}

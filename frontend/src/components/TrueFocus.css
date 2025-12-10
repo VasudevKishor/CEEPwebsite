@@ -1,0 +1,57 @@
+.focus-container{
+    position:relative;
+    display:inline-flex;
+    flex-wrap:wrap;
+    gap:0.4rem;
+    padding:0.4rem;
+}
+
+.focus-word{
+    font-size:1.4rem;
+    font-weight:600;
+    color:var(--text-primary);
+}
+
+.focus-frame{
+    position:absolute;
+    border:1px solid var(--border-color, #22c55e);
+    border-radius:8px;
+    box-shadow:0 0 20px var(--glow-color, rgba(34,197,94,0.4));
+    pointer-events:none;
+}
+
+.focus-frame .corner{
+    position:absolute;
+    width:12px;
+    height:12px;
+    border:2px solid var(--border-color, #22c55e);
+}
+
+.corner.top-left{
+    top:-6px;
+    left:-6px;
+    border-right:none;
+    border-bottom:none;
+}
+
+.corner.top-right{
+    top:-6px;
+    right:-6px;
+    border-left:none;
+    border-bottom:none;
+}
+
+.corner.bottom-left{
+    bottom:-6px;
+    left:-6px;
+    border-right:none;
+    border-top:none;
+}
+
+.corner.bottom-right{
+    bottom:-6px;
+    right:-6px;
+    border-left:none;
+    border-top:none;
+}
+

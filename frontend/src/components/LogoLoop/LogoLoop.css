@@ -1,0 +1,85 @@
+.logo-loop-wrapper {
+  width: 100%;
+  overflow: hidden;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.logo-loop {
+  display: flex;
+  align-items: center;
+  gap: var(--logo-gap, 2rem);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  /* ensure the scrolling track is at least twice the container width so translateX(-50%) moves a full viewport */
+  min-width: 200%;
+}
+
+.logo-loop.horizontal {
+  flex-direction: row;
+  animation-name: logo-scroll-x;
+}
+
+.logo-loop.vertical {
+  flex-direction: column;
+  animation-name: logo-scroll-y;
+}
+
+.logo-item img {
+  height: var(--logo-height, 64px);
+  width: auto;
+  object-fit: contain;
+  opacity: 0.95;
+  filter: grayscale(10%);
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.logo-item a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Prevent wrapping and ensure each item keeps its width so translateX(-50%) is seamless */
+.logo-loop {
+  white-space: nowrap;
+}
+
+.logo-loop > .logo-item {
+  flex: 0 0 auto;
+}
+
+/* Pause-on-hover when configured */
+/* Handled via animationPlayState inline style in LogoLoop.js */
+
+/* Subtle hover scale handled by class */
+.scale-on-hover .logo-item:hover img,
+.scale-on-hover .logo-item:hover > * {
+  transform: scale(1.03);
+  filter: grayscale(0%);
+}
+
+.scale-on-hover.hovered .logo-item img,
+.scale-on-hover.hovered .logo-item > * {
+  transform: scale(1.03);
+  filter: grayscale(0%);
+}
+
+/* Fade overlays */
+/* Removed fade overlays to avoid visible edge artifacts */
+
+@keyframes logo-scroll-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes logo-scroll-y {
+  from { transform: translateY(0); }
+  to { transform: translateY(-50%); }
+}
