@@ -162,7 +162,12 @@ const Services = () => {
                             videos.map((video, idx) => (
                                 <div key={video._id} className="video-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.1}s` }}>
                                     <div className="video-container">
-                                        <video controls width="560" height="315" src={video.videoUrl}>
+                                        <video
+                                            className="video-media"
+                                            controls
+                                            playsInline
+                                            src={video.videoUrl}
+                                        >
                                             Your browser does not support the video tag.
                                         </video>
                                     </div>
