@@ -103,40 +103,35 @@ const Contact = () => {
                 </p>
             </div>
 
-            {/* Google Maps Section */}
+            {/* Map Image Section */}
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-                <div className="map-background-section" data-scroll-reveal>
-                    <GoogleMap 
-                        latitude={13.1939}
-                        longitude={80.2109}
-                        zoom={15}
-                        markerTitle="CEEP - Centre for Energy, Environment & Productivity"
-                    />
-                    <div className="map-content-overlay">
-                        <div className="map-address-card" data-scroll-reveal>
-                            <div className="address-icon">
-                                <FaMapMarkerAlt />
-                            </div>
-                            <div className="address-content">
-                                <h3 data-heading-animate>Our Location</h3>
-                                <div className="address-details">
-                                    <p>1039, 26th St</p>
-                                    <p>H Block, Ponni Colony</p>
-                                    <p>Anna Nagar, Chennai 600040</p>
-                                    <p>INDIA</p>
+                <a
+                    href="https://www.google.com/maps/search/?api=1&query=1039+26th+St+H+Block+Ponni+Colony+Anna+Nagar+Chennai+600040"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="map-link-wrapper"
+                    aria-label="Open location in Google Maps"
+                >
+                    <div className="map-background-section" data-scroll-reveal>
+                        <GoogleMap />
+                        <div className="map-content-overlay">
+                            <div className="map-address-card" data-scroll-reveal>
+                                <div className="address-icon">
+                                    <FaMapMarkerAlt />
                                 </div>
-                                <a
-                                    href="https://www.google.com/maps/search/?api=1&query=1039+26th+St+H+Block+Ponni+Colony+Anna+Nagar+Chennai+600040"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="map-link"
-                                >
-                                    View on Google Maps →
-                                </a>
+                                <div className="address-content">
+                                    <h3 data-heading-animate>Our Location</h3>
+                                    <div className="address-details">
+                                        <p>1039, 26th St</p>
+                                        <p>H Block, Ponni Colony</p>
+                                        <p>Anna Nagar, Chennai 600040</p>
+                                        <p>INDIA</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
 
             <div className="container" style={{ position: 'relative', zIndex: 1 }}>

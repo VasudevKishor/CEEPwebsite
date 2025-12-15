@@ -206,7 +206,6 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url('../pages/map.jpeg');
     background-color: var(--bg-secondary);
     transition: filter 0.5s ease;
 }
@@ -857,6 +856,16 @@
         padding: 1.5rem;
     }
 
+.map-link-wrapper {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.map-link-wrapper:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+}
     .container {
         max-width: 100%;
         padding: 0 1rem;

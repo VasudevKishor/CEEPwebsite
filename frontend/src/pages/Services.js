@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 // Data for services stored in frontend now
 import './Services.css';
 
@@ -7,7 +7,6 @@ const Services = () => {
     const [trainingPrograms, setTrainingPrograms] = useState([]);
     const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
-    const sectionRefs = useRef([]);
 
     useEffect(() => {
         const localServices = [
@@ -75,10 +74,6 @@ const Services = () => {
         return () => {
             elements.forEach((el) => observer.unobserve(el));
             headings.forEach((heading) => headingObserver.unobserve(heading));
-        };
-
-        return () => {
-            elements.forEach((el) => observer.unobserve(el));
         };
     }, [services, trainingPrograms, videos]);
 

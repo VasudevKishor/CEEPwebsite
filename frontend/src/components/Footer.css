@@ -14,7 +14,7 @@
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30vw, 280px), 1fr));
+     grid-template-columns: 1fr 1fr;
     gap: clamp(1.5rem, 4vw, 3rem);
     margin-bottom: clamp(1rem, 2vw, 1.5rem);
     transition: gap 0.4s ease;
@@ -26,9 +26,15 @@
 
 .footer-section-right {
     order: 2;
-    text-align: left;
-    padding-left: clamp(0, 5vw, 15rem);
-    transition: padding-left 0.4s ease;
+    text-align: right;
+    padding-left: 0;
+    justify-self: end;
+    transition: padding-left 0.4s ease, text-align 0.3s ease;
+}
+
+/* Right-align social icons when in the right section */
+.footer-section-right .footer-social {
+    justify-content: flex-end;
 }
 
 .footer-section h3 {
@@ -108,7 +114,7 @@
 
 @media (max-width: 1024px) {
     .footer-section-right {
-        padding-left: clamp(0, 3vw, 8rem);
+        padding-left: 0;
     }
 }
 
@@ -122,6 +128,10 @@
         text-align: left;
         order: 2;
         padding-left: 0;
+    }
+
+    .footer-section-right .footer-social {
+        justify-content: flex-start;
     }
 
     .footer-section-left {
