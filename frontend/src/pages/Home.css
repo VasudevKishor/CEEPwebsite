@@ -48,7 +48,7 @@ body {
 .video-hero-container {
   position: relative;
   width: 100%;
-  min-height: clamp(300px, 90vh, 95vh);
+  min-height: clamp(360px, 95vh, 105vh);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,7 +68,7 @@ body {
   width: clamp(90%, 98%, 100%);
   max-width: 1900px;
   aspect-ratio: 16 / 9;
-  max-height: clamp(300px, 90vh, 97vh);
+  max-height: clamp(360px, 95vh, 105vh);
   display: block;
   overflow: hidden;
   background: #0a0e27;
