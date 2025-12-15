@@ -85,6 +85,22 @@ body {
   transform: translateY(clamp(-2px, -0.5vw, -4px));
 }
 
+/* Mobile/portrait: make hero taller and more vertical */
+@media (max-width: 768px) {
+  .video-hero-container {
+    min-height: clamp(520px, 95vh, 110vh);
+    padding: clamp(0.5rem, 2vw, 1rem) clamp(0.5rem, 3vw, 1.5rem);
+  }
+
+  .video-hero {
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    max-height: 95vh;
+    margin: clamp(0.5rem, 2vw, 1rem) 0 0 0;
+    border-radius: clamp(14px, 2vw, 20px);
+  }
+}
+
 @keyframes scaleIn {
   from {
     opacity: 0;

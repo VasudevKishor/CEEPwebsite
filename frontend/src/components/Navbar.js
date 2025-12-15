@@ -24,6 +24,12 @@ const Navbar = () => {
 
     const closeOverlay = () => setIsOverlayOpen(false);
 
+    const handleLinkClick = () => {
+        closeOverlay();
+        // Scroll to top when navigating
+        window.scrollTo(0, 0);
+    };
+
     const isActive = (path) => (location.pathname === path ? 'active' : '');
 
     return (
@@ -51,7 +57,7 @@ const Navbar = () => {
                                 data-hovered={hoveredLink === link.to ? "true" : "false"}
                                 data-has-hover={hoveredLink !== null && hoveredLink !== link.to ? "true" : "false"}
                             >
-                                <Link to={link.to} onClick={closeOverlay} className={isActive(link.to)}>
+                                <Link to={link.to} onClick={handleLinkClick} className={isActive(link.to)}>
                                     {link.label}
                                 </Link>
                             </li>

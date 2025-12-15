@@ -38,6 +38,8 @@ const FixedNav = () => {
   const handleMenuLinkClick = (path) => {
     navigate(path);
     closeMenu();
+    // Scroll to top when navigating
+    window.scrollTo(0, 0);
   };
 
   return (
