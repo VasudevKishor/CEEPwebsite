@@ -20,7 +20,7 @@ const getStoredMotionPreference = () => {
 export const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState(() => {
         const savedTheme = typeof window !== 'undefined' ? localStorage.getItem('theme') : null;
-        const initialTheme = savedTheme || 'light';
+        const initialTheme = savedTheme || 'dark';
         if (typeof document !== 'undefined') {
             document.documentElement.setAttribute('data-theme', initialTheme);
         }
