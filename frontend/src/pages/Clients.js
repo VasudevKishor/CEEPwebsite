@@ -87,7 +87,7 @@ const Clients = () => {
                             <div key={client._id} className="client-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.08}s` }}>
                                 {client.logo && (
                                     <div className="client-logo">
-                                        <img src={client.logo} alt={client.name} />
+                                        <img src={client.logo} alt={client.name} loading="lazy" />
                                     </div>
                                 )}
                                 <div className="client-info">
