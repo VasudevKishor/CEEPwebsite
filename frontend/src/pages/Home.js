@@ -131,7 +131,7 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // initialize first layer on mount
+  // initialize first layer on mount - aggressive preload for instant playback
   useEffect(() => {
     const v0 = videoRefs[0].current;
     if (v0) {
@@ -140,7 +140,12 @@ const Home = () => {
       v0.muted = true;
       v0.playsInline = true;
       v0.loop = true;
+      v0.autoplay = true;
       v0.currentTime = 0;
+      
+      // Force immediate load
+      v0.load();
+      
       // Preload next video immediately
       const v1 = videoRefs[1].current;
       if (v1 && VIDEO_LIST.length > 1) {
@@ -149,9 +154,25 @@ const Home = () => {
         v1.muted = true;
         v1.playsInline = true;
         v1.loop = true;
+        v1.load();
       }
-      const p = v0.play();
-      if (p && p.catch) p.catch(() => {});
+      
+      // Play as soon as possible
+      const attemptPlay = () => {
+        const p = v0.play();
+        if (p && p.catch) {
+          p.catch(() => {
+            // If autoplay fails, retry on user interaction
+            document.addEventListener('click', () => v0.play(), { once: true });
+          });
+        }
+      };
+      
+      if (v0.readyState >= 2) {
+        attemptPlay();
+      } else {
+        v0.addEventListener('loadeddata', attemptPlay, { once: true });
+      }
     }
   }, [videoRefs]);
 
@@ -249,6 +270,7 @@ const Home = () => {
             className={`video-bg layer ${activeLayer === 0 ? 'active' : ''}`}
             muted
             playsInline
+            autoPlay
             preload="auto"
           />
 
@@ -257,6 +279,7 @@ const Home = () => {
             className={`video-bg layer ${activeLayer === 1 ? 'active' : ''}`}
             muted
             playsInline
+            autoPlay
             preload="auto"
           />
 
