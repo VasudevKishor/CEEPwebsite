@@ -341,7 +341,7 @@ body {
   justify-content: space-between;
   gap: clamp(24px, 4vw, 48px);
   padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 120px);
-  min-height: 200px;
+  min-height: auto;
   width: 100%;
   margin: 0 auto;
   max-width: 1600px;

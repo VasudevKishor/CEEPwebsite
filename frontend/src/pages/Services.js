@@ -104,7 +104,7 @@ const Services = () => {
                                 <div key={service._id} className="service-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.1}s` }}>
                                     {service.image && (
                                         <div className="service-image">
-                                            <img src={service.image} alt={service.title} />
+                                            <img src={service.image} alt={service.title} loading="lazy" />
                                         </div>
                                     )}
                                     <h3>{service.title}</h3>
@@ -126,7 +126,7 @@ const Services = () => {
                                 <div key={program._id} className="training-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.1}s` }}>
                                     {program.thumbnail && (
                                         <div className="training-thumbnail">
-                                            <img src={program.thumbnail} alt={program.title} />
+                                            <img src={program.thumbnail} alt={program.title} loading="lazy" />
                                         </div>
                                     )}
                                     <h3>{program.title}</h3>

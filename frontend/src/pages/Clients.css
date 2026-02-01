@@ -19,7 +19,7 @@
 
 .clients-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(clamp(250px, 40vw, 350px), 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: clamp(1.5rem, 3vw, 2rem);
     margin-top: clamp(1.5rem, 3vw, 2rem);
     transition: gap 0.4s ease;
@@ -128,13 +128,13 @@
 
 @media (max-width: 1024px) {
     .clients-grid {
-        grid-template-columns: repeat(auto-fill, minmax(clamp(240px, 35vw, 320px), 1fr));
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .clients-grid {
-        grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 40vw, 280px), 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: clamp(1rem, 2vw, 1.5rem);
     }
 
