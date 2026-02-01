@@ -5,7 +5,6 @@ import './Services.css';
 const Services = () => {
     const [services, setServices] = useState([]);
     const [trainingPrograms, setTrainingPrograms] = useState([]);
-    const [videos, setVideos] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -21,15 +20,8 @@ const Services = () => {
             { _id: 't3', title: 'Productivity Improvement Program', description: 'Lean manufacturing and productivity methods', pdfLink: '/videos/demo.pdf' }
         ];
 
-        const localVideos = [
-            { _id: 'v1', title: 'Service Video 1', videoUrl: '/videos/video1.mp4' },
-            { _id: 'v2', title: 'Service Video 2', videoUrl: '/videos/video2.mp4' },
-            { _id: 'v3', title: 'Service Video 3', videoUrl: '/videos/video3.mp4' }
-        ];
-
         setServices(localServices);
         setTrainingPrograms(localTraining);
-        setVideos(localVideos);
         setLoading(false);
     }, []);
 
@@ -75,7 +67,7 @@ const Services = () => {
             elements.forEach((el) => observer.unobserve(el));
             headings.forEach((heading) => headingObserver.unobserve(heading));
         };
-    }, [services, trainingPrograms, videos]);
+    }, [services, trainingPrograms]);
 
     if (loading) {
         return (
@@ -145,33 +137,6 @@ const Services = () => {
                             ))
                         ) : (
                             <div className="no-data">No training programs available at the moment.</div>
-                        )}
-                    </div>
-                </section>
-
-                {/* Service Videos */}
-                <section className="videos-section" data-scroll-reveal>
-                    <h2 className="subsection-title" data-heading-animate>Service Videos</h2>
-                    <div className="videos-grid">
-                        {videos.length > 0 ? (
-                            videos.map((video, idx) => (
-                                <div key={video._id} className="video-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.1}s` }}>
-                                    <div className="video-container">
-                                        <video
-                                            className="video-media"
-                                            controls
-                                            playsInline
-                                            src={video.videoUrl}
-                                        >
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-                                    <h3>{video.title}</h3>
-                                    {video.description && <p>{video.description}</p>}
-                                </div>
-                            ))
-                        ) : (
-                            <div className="no-data">No videos available at the moment.</div>
                         )}
                     </div>
                 </section>
