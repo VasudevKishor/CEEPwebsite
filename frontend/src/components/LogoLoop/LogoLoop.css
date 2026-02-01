@@ -1,8 +1,10 @@
 .logo-loop-wrapper {
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   overflow: hidden;
   margin: 2rem 0;
   position: relative;
+  padding: 0;
 }
 
 .logo-loop {
@@ -76,10 +78,10 @@
 
 @keyframes logo-scroll-x {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-25%); }
 }
 
 @keyframes logo-scroll-y {
   from { transform: translateY(0); }
-  to { transform: translateY(-50%); }
+  to { transform: translateY(-25%); }
 }
