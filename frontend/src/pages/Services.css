@@ -41,10 +41,12 @@
 
 .service-card,
 .training-card {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     opacity: 0;
     transform: translateY(40px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out, padding 0.4s ease;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out, padding 0.2s ease;
 }
 
 .service-card.revealed,
@@ -129,6 +131,7 @@
     margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
     transition: color 0.3s ease, font-size 0.3s ease;
     font-size: clamp(0.85rem, 1.5vw, 1rem);
+    flex-grow: 1;
 }
 
 .loading,
@@ -171,4 +174,33 @@
     .training-thumbnail img {
         height: clamp(120px, 20vw, 150px);
     }
+}
+
+.custom-course-section {
+    background-color: var(--bg-secondary);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: clamp(8px, 1.5vw, 12px);
+    margin-top: clamp(2rem, 4vw, 3rem);
+}
+
+.custom-course-content p {
+    margin-bottom: 1.5rem;
+}
+
+.custom-course-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.custom-course-content ul li {
+    background-color: var(--bg-primary);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.custom-course-content ul li strong {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
 }

@@ -148,6 +148,21 @@ const Services = () => {
                         )}
                     </div>
                 </section>
+
+                {/* Custom Training Program */}
+                <section className="custom-course-section" data-scroll-reveal>
+                    <h2 className="subsection-title" data-heading-animate>Custom Five-Day Course</h2>
+                    <div className="custom-course-content">
+                        <p>CEEP also offers a custom-based FIVE DAY course focusing on not only absorption of knowledge but also identification of implementable energy saving measures by participants through team work. The scheme is as follows:</p>
+                        <ul>
+                            <li><strong>DAY 1:</strong> Walk through of the plant by CEEP experts</li>
+                            <li><strong>DAY 2:</strong> Conduct of training program</li>
+                            <li><strong>DAY 3:</strong> Conduct of training program</li>
+                            <li><strong>DAY 4:</strong> Discussions, brain storming and site visit to identify energy saving measures</li>
+                            <li><strong>DAY 5:</strong> Finalizing methodology and approach to implementation</li>
+                        </ul>
+                    </div>
+                </section>
             </div>
         </div>
     );
