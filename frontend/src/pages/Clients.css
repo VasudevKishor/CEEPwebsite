@@ -98,7 +98,7 @@
     color: var(--text-secondary);
     line-height: 1.6;
     margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
-    text-align: left;
+    text-align: center;
     transition: color 0.3s ease, font-size 0.3s ease;
     font-size: clamp(0.85rem, 1.5vw, 1rem);
 }
