@@ -19,13 +19,14 @@
 
 /* Global Styles */
 .container {
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 clamp(16px, 4vw, 48px);
 }
 
 .section {
-    padding: 60px 0;
+    padding: clamp(40px, 6vw, 60px) 0;
 }
 
 .section-title {
