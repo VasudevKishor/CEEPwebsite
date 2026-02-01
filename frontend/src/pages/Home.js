@@ -9,9 +9,9 @@ import "./Home.css";
   Example paths below assume that (so they are served from /videos/...)
 */
 const VIDEO_LIST = [
-  "/videos/video1.mp4",
-  "/videos/video2.mp4",
-  "/videos/video3.mp4"
+  { webm: "/videos/video1.webm", mp4: "/videos/video1.mp4" },
+  { webm: "/videos/video2.webm", mp4: "/videos/video2.mp4" },
+  { webm: "/videos/video3.webm", mp4: "/videos/video3.mp4" }
 ];
 
 const SWITCH_INTERVAL = 5000; // ms per slide (5 seconds)
@@ -55,9 +55,12 @@ const Home = () => {
     const nextVid = videoRefs[nextLayer].current;
     if (!nextVid) return;
 
-    // prepare next video immediately
-    if (nextVid.src !== VIDEO_LIST[current]) {
-      nextVid.src = VIDEO_LIST[current];
+    // prepare next video immediately with both WebM and MP4 sources
+    const videoSources = nextVid.querySelectorAll('source');
+    if (videoSources.length >= 2) {
+      videoSources[0].src = VIDEO_LIST[current].webm;
+      videoSources[1].src = VIDEO_LIST[current].mp4;
+      nextVid.load(); // Reload with new sources
     }
     nextVid.preload = 'auto';
     nextVid.muted = true;
@@ -135,7 +138,12 @@ const Home = () => {
   useEffect(() => {
     const v0 = videoRefs[0].current;
     if (v0) {
-      v0.src = VIDEO_LIST[0];
+      // Set both WebM and MP4 sources for first video
+      const sources0 = v0.querySelectorAll('source');
+      if (sources0.length >= 2) {
+        sources0[0].src = VIDEO_LIST[0].webm;
+        sources0[1].src = VIDEO_LIST[0].mp4;
+      }
       v0.preload = 'auto';
       v0.muted = true;
       v0.playsInline = true;
@@ -149,7 +157,11 @@ const Home = () => {
       // Preload next video immediately
       const v1 = videoRefs[1].current;
       if (v1 && VIDEO_LIST.length > 1) {
-        v1.src = VIDEO_LIST[1];
+        const sources1 = v1.querySelectorAll('source');
+        if (sources1.length >= 2) {
+          sources1[0].src = VIDEO_LIST[1].webm;
+          sources1[1].src = VIDEO_LIST[1].mp4;
+        }
         v1.preload = 'auto';
         v1.muted = true;
         v1.playsInline = true;
@@ -287,7 +299,10 @@ const Home = () => {
             playsInline
             autoPlay
             preload="auto"
-          />
+          >
+            <source src="" type="video/webm" />
+            <source src="" type="video/mp4" />
+          </video>
 
           <video
             ref={videoRefs[1]}
@@ -296,7 +311,10 @@ const Home = () => {
             playsInline
             autoPlay
             preload="auto"
-          />
+          >
+            <source src="" type="video/webm" />
+            <source src="" type="video/mp4" />
+          </video>
 
           <div className="video-overlay" />
 

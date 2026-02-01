@@ -99,7 +99,7 @@ const OurTeam = () => {
                                 <div className="team-card-inner">
                                     <div className="team-image">
                                         {member.image ? (
-                                            <img src={member.image} alt={member.name} />
+                                            <img src={member.image} alt={member.name} loading="lazy" />
                                         ) : (
                                             <div className="team-placeholder">
                                                 <span>{member.name.charAt(0)}</span>

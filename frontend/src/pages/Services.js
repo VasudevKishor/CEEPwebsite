@@ -15,9 +15,17 @@ const Services = () => {
         ];
 
         const localTraining = [
-            { _id: 't1', title: 'Energy Management Training', description: 'Best practices for energy management', pdfLink: '/videos/demo.pdf' },
-            { _id: 't2', title: 'Water Conservation Workshop', description: 'Techniques for industrial water conservation', pdfLink: '/videos/demo.pdf' },
-            { _id: 't3', title: 'Productivity Improvement Program', description: 'Lean manufacturing and productivity methods', pdfLink: '/videos/demo.pdf' }
+            { _id: 't1', title: 'Energy management and audit', description: 'In-depth training on energy management principles and auditing techniques.', pdfLink: '/pdfs/EnergyManagementAudit.pdf' },
+            { _id: 't2', title: 'Boilers and efficient use of steam', description: 'A course on boiler operations and maximizing steam efficiency.', pdfLink: '/pdfs/Boilers.pdf' },
+            { _id: 't3', title: 'Furnaces and heat recovery', description: 'Learn about furnace efficiency and waste heat recovery methods.', pdfLink: '/pdfs/Furnace.pdf' },
+            { _id: 't4', title: 'Steam distribution and utilization', description: 'Best practices for efficient steam distribution and utilization in industrial plants.', pdfLink: '/pdfs/steam.pdf' },
+            { _id: 't5', title: 'Energy conservation in electrical systems', description: 'Strategies for reducing energy consumption in electrical systems.', pdfLink: '/pdfs/EnergyConservation.pdf' },
+            { _id: 't6', title: 'Energy efficiency in compressed air systems', description: 'A program on optimizing compressed air systems for energy savings.', pdfLink: '/pdfs/CompressedAirSystems.pdf' },
+            { _id: 't7', title: 'Energy efficiency in pumps and pumping systems', description: 'Learn to improve the energy efficiency of pumps and pumping systems.', pdfLink: '/pdfs/PumpingSystem.pdf' },
+            { _id: 't8', title: 'Energy conservation in fans and blowers', description: 'Techniques for energy conservation in fans and blower systems.', pdfLink: '/pdfs/FansBlowers.pdf' },
+            { _id: 't9', title: 'Energy conservation in refrigeration and air conditioning systems', description: 'A course on improving the energy efficiency of refrigeration and AC systems.', pdfLink: '/pdfs/ACFridge.pdf' },
+            { _id: 't10', title: 'Energy efficiency practices for buildings', description: 'Best practices for designing and maintaining energy-efficient buildings.', pdfLink: '/pdfs/EnergyEfficiencyPractices.pdf' },
+            { _id: 't11', title: 'ISO 50001: Energy Management Systems', description: 'A comprehensive guide to implementing ISO 50001 Energy Management Systems.', pdfLink: '/pdfs/ISO50001.pdf' }
         ];
 
         setServices(localServices);
@@ -96,7 +104,7 @@ const Services = () => {
                                 <div key={service._id} className="service-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.1}s` }}>
                                     {service.image && (
                                         <div className="service-image">
-                                            <img src={service.image} alt={service.title} />
+                                            <img src={service.image} alt={service.title} loading="lazy" />
                                         </div>
                                     )}
                                     <h3>{service.title}</h3>
@@ -118,7 +126,7 @@ const Services = () => {
                                 <div key={program._id} className="training-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.1}s` }}>
                                     {program.thumbnail && (
                                         <div className="training-thumbnail">
-                                            <img src={program.thumbnail} alt={program.title} />
+                                            <img src={program.thumbnail} alt={program.title} loading="lazy" />
                                         </div>
                                     )}
                                     <h3>{program.title}</h3>
@@ -138,6 +146,21 @@ const Services = () => {
                         ) : (
                             <div className="no-data">No training programs available at the moment.</div>
                         )}
+                    </div>
+                </section>
+
+                {/* Custom Training Program */}
+                <section className="custom-course-section" data-scroll-reveal>
+                    <h2 className="subsection-title" data-heading-animate>Custom Five-Day Course</h2>
+                    <div className="custom-course-content">
+                        <p>CEEP also offers a custom-based FIVE DAY course focusing on not only absorption of knowledge but also identification of implementable energy saving measures by participants through team work. The scheme is as follows:</p>
+                        <ul>
+                            <li><strong>DAY 1:</strong> Walk through of the plant by CEEP experts</li>
+                            <li><strong>DAY 2:</strong> Conduct of training program</li>
+                            <li><strong>DAY 3:</strong> Conduct of training program</li>
+                            <li><strong>DAY 4:</strong> Discussions, brain storming and site visit to identify energy saving measures</li>
+                            <li><strong>DAY 5:</strong> Finalizing methodology and approach to implementation</li>
+                        </ul>
                     </div>
                 </section>
             </div>

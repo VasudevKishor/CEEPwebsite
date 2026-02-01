@@ -55,6 +55,17 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+img,
+video,
+iframe {
+    max-width: 100%;
+}
+
+iframe {
+    display: block;
 }
 
 /* Custom scrollbar for webkit browsers */
