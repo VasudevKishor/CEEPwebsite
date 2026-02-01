@@ -48,12 +48,12 @@ body {
 .video-hero-container {
   position: relative;
   width: 100%;
-  min-height: clamp(360px, 95vh, 105vh);
+  min-height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(0, 2vw, 20px) clamp(0.5rem, 1vw, 10px);
-  margin: 0 0 clamp(0.5rem, 1.5vw, 10px) 0;
+  padding: clamp(0, 1vw, 10px) clamp(0.5rem, 1vw, 10px);
+  margin: 0 0 clamp(8px, 1vw, 16px) 0;
   background: var(--bg-primary);
   transition: background-color 0.3s ease, padding 0.4s ease, min-height 0.4s ease;
 }
@@ -339,16 +339,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(24px, 4vw, 48px);
-  padding: clamp(32px, 6vw, 72px) clamp(20px, 6vw, 120px);
-  min-height: auto;
+
   width: 100%;
   margin: 0 auto;
   max-width: 1600px;
 }
 
 .welcome-text {
-  position: relative;
+  position: relative; 
   z-index: 5;
   flex: 1 1 0;
   width: 100%;
@@ -388,7 +386,7 @@ body {
   .welcome-content-wrapper {
     flex-direction: column;
     gap: 40px;
-    padding: 40px 30px;
+    padding: 0 30px;
     min-height: auto;
   }
 
@@ -413,7 +411,7 @@ body {
   .welcome-content-wrapper {
     flex-direction: column;
     gap: 30px;
-    padding: 30px 20px;
+    padding: 0 20px;
   }
 
   .welcome-text {
@@ -435,7 +433,7 @@ body {
   .welcome-content-wrapper {
     flex-direction: column;
     gap: 25px;
-    padding: 25px 16px;
+    padding: 0 16px;
   }
 
   .welcome-text {
@@ -694,7 +692,7 @@ body {
    GALLERY - 3 x 2 layout
    ========================= */
 .gallery-section {
-  padding: clamp(40px, 6vw, 60px) 0 clamp(32px, 5vw, 50px);
+  padding: clamp(12px, 2vw, 20px) 0 clamp(12px, 2vw, 20px);
   background: var(--bg);
   position: relative;
   margin-bottom: 0;
