@@ -245,20 +245,35 @@ const Home = () => {
     };
   }, []);
 
-  const clientLogoSrcs = [
-    '/images/clients/client1.svg',
-    '/images/clients/client2.svg',
-    '/images/clients/client3.svg',
-    '/images/clients/client4.svg',
-    '/images/clients/client5.svg',
-    '/images/clients/client6.svg',
+  const clientLogoFiles = [
+    'BharatPetroleum.png',
+    'Concorde Textiles.jpg',
+    'Godrejconsumerproducts.jpg',
+    'ICF.jpg',
+    'IFC.png',
+    'KG fabrics.jpg',
+    'NLC.jpg',
+    'Raymond.png',
+    'ReliancePower.jpg',
+    'UNIDO.png',
+    'Varroc polymers.jpg',
+    'arvindmills.png',
+    'dalmia.jpg',
+    'giz.png',
+    'jktyre.jpg',
+    'mahindra.png',
+    'volvo.png'
   ];
 
-  const clientNodes = clientLogoSrcs.map((src, i) => ({
-    src,
-    alt: `Client ${i + 1}`,
-    href: '/clients'
-  }));
+  const clientNodes = clientLogoFiles.map((file, i) => {
+    const path = `/images/clients/${file}`;
+    const resolved = `${process.env.PUBLIC_URL}${path}`;
+    return {
+      src: encodeURI(resolved),
+      alt: file.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
+      href: '/clients'
+    };
+  });
 
   return (
     <div className="home-page">

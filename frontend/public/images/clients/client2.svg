@@ -1,7 +1,0 @@
-<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
-  <rect x="10" y="10" width="180" height="60" rx="8" fill="#27ae60" opacity="0.1"/>
-  <circle cx="40" cy="40" r="18" fill="#27ae60"/>
-  <path d="M 35 40 L 38 43 L 45 36" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-  <text x="70" y="40" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#27ae60">Green Industries</text>
-  <text x="70" y="55" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">Sustainability</text>
-</svg>
