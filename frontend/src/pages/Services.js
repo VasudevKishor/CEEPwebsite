@@ -15,9 +15,17 @@ const Services = () => {
         ];
 
         const localTraining = [
-            { _id: 't1', title: 'Energy Management Training', description: 'Best practices for energy management', pdfLink: '/videos/demo.pdf' },
-            { _id: 't2', title: 'Water Conservation Workshop', description: 'Techniques for industrial water conservation', pdfLink: '/videos/demo.pdf' },
-            { _id: 't3', title: 'Productivity Improvement Program', description: 'Lean manufacturing and productivity methods', pdfLink: '/videos/demo.pdf' }
+            { _id: 't1', title: 'Energy management and audit', description: 'In-depth training on energy management principles and auditing techniques.', pdfLink: '/pdfs/EnergyManagementAudit.pdf' },
+            { _id: 't2', title: 'Boilers and efficient use of steam', description: 'A course on boiler operations and maximizing steam efficiency.', pdfLink: '/pdfs/Boilers.pdf' },
+            { _id: 't3', title: 'Furnaces and heat recovery', description: 'Learn about furnace efficiency and waste heat recovery methods.', pdfLink: '/pdfs/Furnace.pdf' },
+            { _id: 't4', title: 'Steam distribution and utilization', description: 'Best practices for efficient steam distribution and utilization in industrial plants.', pdfLink: '/pdfs/steam.pdf' },
+            { _id: 't5', title: 'Energy conservation in electrical systems', description: 'Strategies for reducing energy consumption in electrical systems.', pdfLink: '/pdfs/EnergyConservation.pdf' },
+            { _id: 't6', title: 'Energy efficiency in compressed air systems', description: 'A program on optimizing compressed air systems for energy savings.', pdfLink: '/pdfs/CompressedAirSystems.pdf' },
+            { _id: 't7', title: 'Energy efficiency in pumps and pumping systems', description: 'Learn to improve the energy efficiency of pumps and pumping systems.', pdfLink: '/pdfs/PumpingSystem.pdf' },
+            { _id: 't8', title: 'Energy conservation in fans and blowers', description: 'Techniques for energy conservation in fans and blower systems.', pdfLink: '/pdfs/FansBlowers.pdf' },
+            { _id: 't9', title: 'Energy conservation in refrigeration and air conditioning systems', description: 'A course on improving the energy efficiency of refrigeration and AC systems.', pdfLink: '/pdfs/ACFridge.pdf' },
+            { _id: 't10', title: 'Energy efficiency practices for buildings', description: 'Best practices for designing and maintaining energy-efficient buildings.', pdfLink: '/pdfs/EnergyEfficiencyPractices.pdf' },
+            { _id: 't11', title: 'ISO 50001: Energy Management Systems', description: 'A comprehensive guide to implementing ISO 50001 Energy Management Systems.', pdfLink: '/pdfs/ISO50001.pdf' }
         ];
 
         setServices(localServices);
