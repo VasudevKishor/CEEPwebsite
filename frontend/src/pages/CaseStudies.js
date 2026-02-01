@@ -10,27 +10,87 @@ const CaseStudies = () => {
         const localStudies = [
             {
                 _id: 'cs1',
-                title: 'Energy Project 1',
-                description: 'Improving energy efficiency in a plant',
-                videoUrl: '/videos/video1.mp4',
-                client: 'Sample Client A',
-                category: 'Energy'
+                title: 'Energy Audit at Processing Industry',
+                description: 'An in-depth energy audit conducted at a major processing industry to identify energy-saving opportunities.',
+                videoUrl: 'https://www.youtube.com/embed/CixGqEiB64c',
+                category: 'Energy Audit'
             },
             {
                 _id: 'cs2',
-                title: 'Water Conservation Case',
-                description: 'Water-saving initiatives in a large facility',
-                videoUrl: '/videos/video2.mp4',
-                client: 'Sample Client B',
-                category: 'Water'
+                title: 'Water Audit at International Airport',
+                description: 'A comprehensive water audit at a busy international airport, leading to significant water conservation measures.',
+                videoUrl: 'https://www.youtube.com/embed/69aFw956eKM',
+                category: 'Water Audit'
             },
             {
                 _id: 'cs3',
-                title: 'Productivity Improvement',
-                description: 'Lean transformation and productivity uplift',
-                videoUrl: '/videos/video3.mp4',
-                client: 'Sample Client C',
-                category: 'Productivity'
+                title: 'Energy Audit at Engineering Industry',
+                description: 'Identifying and implementing energy efficiency solutions in a large-scale engineering facility.',
+                videoUrl: 'https://www.youtube.com/embed/gH9V2rnso3o',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs4',
+                title: 'Energy Audit at a Textile Industry',
+                description: 'A detailed energy audit in the textile sector, focusing on reducing energy consumption in production processes.',
+                videoUrl: 'https://www.youtube.com/embed/NfzBn1MrGqw',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs5',
+                title: 'Energy Audit at IT Building, Bangalore',
+                description: 'Improving energy performance and reducing operational costs for a major IT building in Bangalore.',
+                videoUrl: 'https://www.youtube.com/embed/SSrRerV7Vj4',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs6',
+                title: 'Cleaner Production Audit at Printing Unit',
+                description: 'A cleaner production audit aimed at minimizing waste and emissions in a printing unit.',
+                videoUrl: 'https://www.youtube.com/embed/KU08ir0uaTM',
+                category: 'Cleaner Production'
+            },
+            {
+                _id: 'cs7',
+                title: 'Successful Case Studies on Energy Conservation',
+                description: 'A compilation of successful energy conservation projects across various industries.',
+                videoUrl: 'https://www.youtube.com/embed/N_kOQVSFMqk',
+                category: 'Energy Conservation'
+            },
+            {
+                _id: 'cs8',
+                title: 'Energy Audit at Coach Factory',
+                description: 'A comprehensive energy audit at a coach factory, leading to substantial energy savings.',
+                videoUrl: 'https://www.youtube.com/embed/y7HxHrLDw_o',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs9',
+                title: 'Energy Audit at IT Building',
+                description: 'Optimizing energy usage and implementing saving measures at a large IT facility.',
+                videoUrl: 'https://www.youtube.com/embed/cB5mzi9IDOo',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs10',
+                title: 'Energy Audit at Common Effluent Treatment Plant',
+                description: 'A specialized energy audit for a common effluent treatment plant to enhance energy efficiency.',
+                videoUrl: 'https://www.youtube.com/embed/Y-K_TIZVfIk',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs11',
+                title: 'Energy Audit at Muzn Mall',
+                description: 'Improving energy performance and sustainability at Muzn Mall through a detailed energy audit.',
+                videoUrl: 'https://www.youtube.com/embed/sVdjkpWeKX8',
+                category: 'Energy Audit'
+            },
+            {
+                _id: 'cs12',
+                title: 'Energy Audit at Container Terminal',
+                description: 'An energy audit focused on reducing energy consumption at a busy container terminal.',
+                videoUrl: 'https://www.youtube.com/embed/QfmdfPO6HqI',
+                category: 'Energy Audit'
             }
         ];
         setCaseStudies(localStudies);
@@ -102,38 +162,47 @@ const CaseStudies = () => {
                     Explore our successful projects and the impact we've made for our clients
                 </p>
 
-                {selectedCase ? (
-                    <div className="case-spotlight" data-scroll-reveal>
-                        <div className="spotlight-video">
-                            <video key={selectedCase._id} controls src={selectedCase.videoUrl}>
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div className="spotlight-details">
-                            <span className="spotlight-pill">{selectedCase.category}</span>
-                            <h2 data-heading-animate>{selectedCase.title}</h2>
-                            <p className="spotlight-client">Client: {selectedCase.client}</p>
-                            <p>{selectedCase.description}</p>
-                        </div>
+                <div className="case-studies-layout" data-scroll-reveal>
+                    {/* Left sidebar with case study list */}
+                    <div className="case-studies-sidebar">
+                        {caseStudies.map((study, idx) => (
+                            <button
+                                key={study._id}
+                                className={`sidebar-item ${study._id === selectedId ? 'active' : ''}`}
+                                onClick={() => setSelectedId(study._id)}
+                                style={{ transitionDelay: `${idx * 0.05}s` }}
+                            >
+                                <span className="item-category">{study.category}</span>
+                                <strong className="item-title">{study.title}</strong>
+                                <p className="item-description">{study.description}</p>
+                            </button>
+                        ))}
                     </div>
-                ) : null}
 
-                <div className="case-deck">
-                    {caseStudies.map((study, idx) => (
-                        <button
-                            key={study._id}
-                            className={`deck-card ${study._id === selectedId ? 'active' : ''}`}
-                            onClick={() => setSelectedId(study._id)}
-                            data-scroll-reveal
-                            style={{ transitionDelay: `${idx * 0.1}s` }}
-                        >
-                            <div>
-                                <span>{study.category}</span>
-                                <strong>{study.title}</strong>
-                                <p>{study.description}</p>
-                            </div>
-                        </button>
-                    ))}
+                    {/* Right video panel */}
+                    <div className="case-video-panel">
+                        {selectedCase ? (
+                            <>
+                                <div className="video-wrapper">
+                                    <div className="video-container">
+                                        <iframe
+                                            key={selectedCase._id}
+                                            src={selectedCase.videoUrl}
+                                            title={selectedCase.title}
+                                            frameBorder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                            allowFullScreen
+                                        ></iframe>
+                                    </div>
+                                </div>
+                                <div className="video-details">
+                                    <span className="video-pill">{selectedCase.category}</span>
+                                    <h2>{selectedCase.title}</h2>
+                                    <p>{selectedCase.description}</p>
+                                </div>
+                            </>
+                        ) : null}
+                    </div>
                 </div>
             </div>
         </div>

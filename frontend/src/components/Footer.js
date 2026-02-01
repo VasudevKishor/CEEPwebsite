@@ -18,8 +18,7 @@ const Footer = () => {
                     <div className="footer-section footer-section-right">
                         <h4>Contact Information</h4>
                         <p>1039, 26th St</p>
-                        <p>H Block, Ponni Colony, Anna Nagar , Chennai 600040</p>
-                        <p>INDIA</p>
+                        <p>H Block, Ponni Colony,Anna Nagar , Chennai 600040</p>
                         <p>Mobile: 9444882553, 8668115663</p>
                         <p>Email: tallkumar@gmail.com</p>
                         <div className="footer-social" aria-label="Social media links">

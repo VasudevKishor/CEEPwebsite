@@ -11,19 +11,19 @@ const OurTeam = () => {
         const members = [
             {
                 _id: 'team-1',
-                name: 'Mr. Nagesh Kumar',
+                name: 'Dr. Nagesh Kumar',
                 position: 'Founder & Director',
                 bio: 'Expert in energy management, environmental consulting, and productivity improvement with decades of industry experience.',
-                image: '/images/team/tall-kumar.jpg',
-                email: 'tallkumar@gmail.com'
+                image: '/images/team/nagesh.jpg',
+                email: 'ceepnagesh@gmail.com'
             },
             {
                 _id: 'team-2',
-                name: 'Mr. John Doe',
+                name: 'Mr. Sakthi Adarsh Azhagar',
                 position: 'Senior Consultant',
                 bio: 'Specialized in resource optimization, process improvement, and organizational efficiency with extensive experience in industrial consulting.',
-                image: '/images/team/priya-n.jpg',
-                email: 'johndoe@ceep.com'
+                image: '/images/team/sakthi.jpg',
+                email: 'sakthiadarsh@ceep.com'
             }
         ];
         setTeamMembers(members);

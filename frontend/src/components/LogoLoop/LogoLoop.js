@@ -19,8 +19,13 @@ const LogoLoop = ({
     // call navigation hook unconditionally (must be before any early returns)
     const navigate = useNavigate();
 
-    // Duplicate logos for a continuous loop
-    const loopLogos = useMemo(() => (logos && logos.length > 0 ? [...logos, ...logos] : []), [logos]);
+    // Duplicate logos multiple times for a truly infinite continuous loop
+    // More duplicates ensure seamless infinite scrolling
+    const loopLogos = useMemo(() => {
+        if (!logos || logos.length === 0) return [];
+        // Duplicate 4 times to ensure smooth infinite loop
+        return [...logos, ...logos, ...logos, ...logos];
+    }, [logos]);
 
     if (!loopLogos || loopLogos.length === 0) return null;
 
