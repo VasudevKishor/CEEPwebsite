@@ -19,8 +19,8 @@ const OurTeam = () => {
             },
             {
                 _id: 'team-2',
-                name: 'Mr. Sakthi Adarsh Azhagar',
-                position: 'Senior Consultant',
+                name: 'Mr. Sakthi Aadharsh Azhagar',
+                position: 'Senior Energy Analyst',
                 bio: 'Specialized in resource optimization, process improvement, and organizational efficiency with extensive experience in industrial consulting.',
                 image: '/images/team/sakthi.jpg',
                 email: 'sakthiadarsh@ceep.com'
@@ -47,7 +47,7 @@ const OurTeam = () => {
 
         const elements = document.querySelectorAll('[data-scroll-reveal]');
         elements.forEach((el) => observer.observe(el));
-        
+
         // Heading animations
         const headingObserver = new IntersectionObserver(
             (entries) => {
@@ -64,7 +64,7 @@ const OurTeam = () => {
             },
             { threshold: 0.2, rootMargin: '0px 0px -80px 0px' }
         );
-        
+
         const headings = document.querySelectorAll('[data-heading-animate]');
         headings.forEach((heading) => headingObserver.observe(heading));
 
