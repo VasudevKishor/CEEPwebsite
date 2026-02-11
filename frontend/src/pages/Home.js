@@ -267,8 +267,7 @@ const Home = () => {
 
   const clientNodes = clientLogoSrcs.map((src, i) => ({
     src,
-    alt: `Client ${i + 1}`,
-    href: '/clients'
+    alt: `Client ${i + 1}`
   }));
 
   return (
