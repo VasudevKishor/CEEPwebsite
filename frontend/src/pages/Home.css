@@ -177,7 +177,8 @@ body {
   animation: hero-zoom 50s ease-in-out infinite;
   will-change: transform, opacity;
   filter: brightness(0.75);
-  background: #0a0e27; /* Fallback background color */
+  background: #0a0e27;
+  /* Fallback background color */
 }
 
 /* Two-layer crossfade helper. Each video sits under the overlay; the active
@@ -346,7 +347,7 @@ body {
 }
 
 .welcome-text {
-  position: relative; 
+  position: relative;
   z-index: 5;
   flex: 1 1 0;
   width: 100%;
@@ -359,7 +360,7 @@ body {
 }
 
 .welcome-text .section-lead {
-    max-width: none;
+  max-width: none;
 }
 
 .welcome-text p {
@@ -693,7 +694,7 @@ body {
    ========================= */
 .gallery-section {
   padding: clamp(12px, 2vw, 20px) 0 clamp(12px, 2vw, 20px);
-  background: var(--bg);
+  background: #f5f5f5;
   position: relative;
   margin-bottom: 0;
   width: 100%;
@@ -706,6 +707,11 @@ body {
   opacity: 1;
   transform: translateY(0);
 }
+
+[data-theme="dark"] .gallery-section {
+  background: #2a2a2a;
+}
+
 
 .gallery-section .container {
   max-width: 100% !important;
