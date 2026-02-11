@@ -265,15 +265,10 @@ const Home = () => {
     '/images/clients/Varroc polymers.jpg',
   ];
 
-  const clientNodes = clientLogoFiles.map((file, i) => {
-    const path = `/images/clients/${file}`;
-    const resolved = `${process.env.PUBLIC_URL}${path}`;
-    return {
-      src: encodeURI(resolved),
-      alt: file.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
-      href: '/clients'
-    };
-  });
+  const clientNodes = clientLogoSrcs.map((src, i) => ({
+    src,
+    alt: `Client ${i + 1}`
+  }));
 
   return (
     <div className="home-page">
