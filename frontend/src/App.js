@@ -7,9 +7,7 @@ import FixedNav from './components/FixedNav';
 import Home from './pages/Home';
 import OurTeam from './pages/OurTeam';
 import Services from './pages/Services';
-import Clients from './pages/Clients';
 import CaseStudies from './pages/CaseStudies';
-import Contact from './pages/Contact';
 import './App.css';
 
 function AppContent() {
@@ -22,9 +20,7 @@ function AppContent() {
                     <Route path="/" element={<Home />} />
                     <Route path="/our-team" element={<OurTeam />} />
                     <Route path="/services" element={<Services />} />
-                    <Route path="/clients" element={<Clients />} />
                     <Route path="/case-studies" element={<CaseStudies />} />
-                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </main>
             <Footer />
