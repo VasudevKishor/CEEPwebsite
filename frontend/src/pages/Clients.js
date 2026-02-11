@@ -8,12 +8,18 @@ const Clients = () => {
 
     useEffect(() => {
         const localClients = [
-            { _id: 'c1', name: 'Sample Client 1', description: 'Leading manufacturing company in Chennai', industry: 'Manufacturing', logo: '/images/clients/client1.svg' },
-            { _id: 'c2', name: 'Green Industries', description: 'Partner in sustainability projects', industry: 'Environment', logo: '/images/clients/client2.svg' },
-            { _id: 'c3', name: 'Metro Water', description: 'Water management and consultancy', industry: 'Utilities', logo: '/images/clients/client3.svg' },
-            { _id: 'c4', name: 'SolarTech Pvt Ltd', description: 'Renewable energy solutions provider', industry: 'Energy', logo: '/images/clients/client4.svg' },
-            { _id: 'c5', name: 'Precision Manufacturing', description: 'Industrial efficiency projects', industry: 'Manufacturing', logo: '/images/clients/client5.svg' },
-            { _id: 'c6', name: 'Urban Planning Co', description: 'Consulting on urban sustainability and energy', industry: 'Consulting', logo: '/images/clients/client6.svg' }
+            { _id: 'bharat', name: 'Bharat Petroleum', description: 'Energy and petroleum company', industry: 'Energy', logo: '/images/clients/BharatPetroleum.png' },
+            { _id: 'concorde', name: 'Concorde Textiles', description: 'Textile manufacturing and exports', industry: 'Textiles', logo: '/images/clients/Concorde Textiles.jpg' },
+            { _id: 'godrej', name: 'Godrej Consumer Products', description: 'Consumer goods and household products', industry: 'Consumer Goods', logo: '/images/clients/Godrejconsumerproducts.jpg' },
+            { _id: 'icf', name: 'ICF', description: 'Rail coach manufacturing', industry: 'Manufacturing', logo: '/images/clients/ICF.jpg' },
+            { _id: 'ifc', name: 'IFC', description: 'International finance corporation', industry: 'Finance', logo: '/images/clients/IFC.png' },
+            { _id: 'kg', name: 'KG Fabrics', description: 'Textile and fabric solutions', industry: 'Textiles', logo: '/images/clients/KG fabrics.jpg' },
+            { _id: 'nlc', name: 'NLC', description: 'Energy and mining company', industry: 'Energy', logo: '/images/clients/NLC.jpg' },
+            { _id: 'raymond', name: 'Raymond', description: 'Textiles and apparel', industry: 'Textiles', logo: '/images/clients/Raymond.png' },
+            { _id: 'reliance', name: 'Reliance Power', description: 'Power generation and infrastructure', industry: 'Energy', logo: '/images/clients/ReliancePower.jpg' },
+            { _id: 'unido', name: 'UNIDO', description: 'United Nations Industrial Development Organization', industry: 'NGO', logo: '/images/clients/UNIDO.png' },
+            { _id: 'varroc', name: 'Varroc Polymers', description: 'Polymer and materials supplier', industry: 'Manufacturing', logo: '/images/clients/Varroc polymers.jpg' },
+            { _id: 'arvind', name: 'Arvind Mills', description: 'Large textile manufacturer', industry: 'Textiles', logo: '/images/clients/arvindmills.png' }
         ];
         setClients(localClients);
         setLoading(false);
@@ -83,32 +89,43 @@ const Clients = () => {
 
                 <div className="clients-grid">
                     {clients.length > 0 ? (
-                        clients.map((client, idx) => (
-                            <div key={client._id} className="client-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.08}s` }}>
-                                {client.logo && (
-                                    <div className="client-logo">
-                                        <img src={client.logo} alt={client.name} loading="lazy" />
+                        clients.map((client, idx) => {
+                            const resolvedLogo = client.logo
+                                ? (client.logo.startsWith('/') ? `${process.env.PUBLIC_URL}${client.logo}` : client.logo)
+                                : null;
+                            const safeLogo = resolvedLogo ? encodeURI(resolvedLogo) : null;
+
+                            return (
+                                <div key={client._id} className="client-card card" data-scroll-reveal style={{ transitionDelay: `${idx * 0.08}s` }}>
+                                    {safeLogo && (
+                                        <div className="client-logo">
+                                            <img
+                                                src={safeLogo}
+                                                alt={client.name}
+                                                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                            />
+                                        </div>
+                                    )}
+                                    <div className="client-info">
+                                        <h3>{client.name}</h3>
+                                        {client.industry && (
+                                            <p className="client-industry">{client.industry}</p>
+                                        )}
+                                        <p className="client-description">{client.description}</p>
+                                        {client.website && (
+                                            <a
+                                                href={client.website}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="client-website"
+                                            >
+                                                Visit Website →
+                                            </a>
+                                        )}
                                     </div>
-                                )}
-                                <div className="client-info">
-                                    <h3>{client.name}</h3>
-                                    {client.industry && (
-                                        <p className="client-industry">{client.industry}</p>
-                                    )}
-                                    <p className="client-description">{client.description}</p>
-                                    {client.website && (
-                                        <a
-                                            href={client.website}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="client-website"
-                                        >
-                                            Visit Website →
-                                        </a>
-                                    )}
                                 </div>
-                            </div>
-                        ))
+                            );
+                        })
                     ) : (
                         <div className="no-data">
                             <p>No clients listed at the moment.</p>
