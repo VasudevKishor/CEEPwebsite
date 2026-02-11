@@ -46,14 +46,14 @@
     margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
     color: var(--color-blue);
     transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
 }
 
 .footer-section h4 {
     margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
     color: var(--color-blue);
     transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.95rem, 1.5vw, 1rem);
+    font-size: clamp(1.1rem, 2vw, 1.25rem);
 }
 
 .footer-quote {
@@ -61,13 +61,13 @@
     margin-bottom: clamp(0.2rem, 1vw, 0.3rem);
     color: var(--text-primary);
     transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
     line-height: 1.5;
 }
 
 .footer-author {
     text-align: right;
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
     color: var(--text-secondary);
     transition: color 0.3s ease, font-size 0.3s ease;
     margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
@@ -78,7 +78,7 @@
     line-height: 1.6;
     color: var(--text-primary);
     transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    font-size: clamp(0.95rem, 1.8vw, 1.1rem);
 }
 
 .footer-social {
@@ -89,15 +89,15 @@
 }
 
 .footer-social a {
-    width: clamp(32px, 7vw, 40px);
-    height: clamp(32px, 7vw, 40px);
+    width: clamp(36px, 8vw, 44px);
+    height: clamp(36px, 8vw, 44px);
     border-radius: 50%;
     border: 1px solid var(--bg-placeholder);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-primary);
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
     transition: all 0.3s ease;
 }
 
@@ -114,7 +114,7 @@
     border-top: 1px solid var(--bg-placeholder);
     color: var(--text-secondary);
     transition: color 0.3s ease, border-color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
 }
 
 @media (max-width: 1024px) {
