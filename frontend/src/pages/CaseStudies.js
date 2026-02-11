@@ -158,9 +158,6 @@ const CaseStudies = () => {
         <div className="case-studies-page section">
             <div className="container">
                 <h1 className="section-title" data-heading-animate>Case Studies</h1>
-                <p className="section-subtitle" data-heading-animate data-delay="1">
-                    Explore our successful projects and the impact we've made for our clients
-                </p>
 
                 <div className="case-studies-layout" data-scroll-reveal>
                     {/* Left sidebar with case study list */}
@@ -183,6 +180,9 @@ const CaseStudies = () => {
                     <div className="case-video-panel">
                         {selectedCase ? (
                             <>
+                                <div className="video-details">
+                                    <span className="video-pill">{selectedCase.category}</span>
+                                </div>
                                 <div className="video-wrapper">
                                     <div className="video-container">
                                         <iframe
@@ -194,11 +194,6 @@ const CaseStudies = () => {
                                             allowFullScreen
                                         ></iframe>
                                     </div>
-                                </div>
-                                <div className="video-details">
-                                    <span className="video-pill">{selectedCase.category}</span>
-                                    <h2>{selectedCase.title}</h2>
-                                    <p>{selectedCase.description}</p>
                                 </div>
                             </>
                         ) : null}
