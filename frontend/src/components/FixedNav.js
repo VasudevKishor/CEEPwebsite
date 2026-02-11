@@ -7,10 +7,8 @@ import './FixedNav.css';
 const menuLinks = [
   { to: '/', label: 'Home' },
   { to: '/our-team', label: 'Our Team' },
-  { to: '/clients', label: 'Clients' },
   { to: '/case-studies', label: 'Case Studies' },
-  { to: '/services', label: 'Services' },
-  { to: '/contact', label: 'Contact' }
+  { to: '/services', label: 'Services' }
 ];
 
 const FixedNav = () => {
@@ -46,14 +44,14 @@ const FixedNav = () => {
     <>
       {/* Fixed Control Buttons - Top Right */}
       <div className="fixed-nav-controls">
-        <button 
-          className="fixed-nav-btn theme-toggle" 
+        <button
+          className="fixed-nav-btn theme-toggle"
           onClick={toggleTheme}
           aria-label="Toggle theme"
         >
           {theme === 'light' ? <FaMoon /> : <FaSun />}
         </button>
-        <button 
+        <button
           className={`fixed-nav-btn menu-toggle ${isMenuOpen ? 'active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
@@ -63,14 +61,14 @@ const FixedNav = () => {
       </div>
 
       {/* Menu Overlay */}
-      <div 
+      <div
         className={`menu-overlay ${isMenuOpen ? 'open' : ''}`}
         onClick={closeMenu}
         role="dialog"
         aria-modal="true"
         aria-hidden={!isMenuOpen}
       >
-        <div 
+        <div
           className="menu-overlay-content"
           onClick={(e) => e.stopPropagation()}
         >
