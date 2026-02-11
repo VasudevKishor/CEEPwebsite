@@ -20,7 +20,7 @@ const Footer = () => {
                         <p>1039, 26th St, H Block,</p>
                         <p>Ponni Colony,Anna Nagar , Chennai 600040</p>
                         <p>Mobile: 9444882553, 8668115663</p>
-                        <p>Email: tallkumar@gmail.com</p>
+                        <p>Email: <a href="mailto:info@ceepenergy.com" style={{ color: 'inherit', textDecoration: 'underline' }}>info@ceepenergy.com</a></p>
                         <div className="footer-social" aria-label="Social media links">
                             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <FaLinkedin />
