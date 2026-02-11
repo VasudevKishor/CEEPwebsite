@@ -67,7 +67,7 @@ const Home = () => {
     nextVid.playsInline = true;
     nextVid.loop = true;
     nextVid.currentTime = 0; // Reset to start
-    
+
     if (activeVid) {
       activeVid.loop = true;
     }
@@ -88,7 +88,7 @@ const Home = () => {
         if (activeVid && !activeVid.paused) {
           activeVid.pause();
         }
-      } catch (e) {}
+      } catch (e) { }
     };
 
     const onPlaying = () => {
@@ -118,8 +118,8 @@ const Home = () => {
       nextVid.removeEventListener('playing', onPlaying);
       clearTimeout(fallback);
     };
-  // intentionally excluding activeLayer from deps so switching is driven by `current`
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // intentionally excluding activeLayer from deps so switching is driven by `current`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current]);
 
   // Manual navigation removed: carousel auto-advances only
@@ -150,10 +150,10 @@ const Home = () => {
       v0.loop = true;
       v0.autoplay = true;
       v0.currentTime = 0;
-      
+
       // Force immediate load
       v0.load();
-      
+
       // Preload next video immediately
       const v1 = videoRefs[1].current;
       if (v1 && VIDEO_LIST.length > 1) {
@@ -168,7 +168,7 @@ const Home = () => {
         v1.loop = true;
         v1.load();
       }
-      
+
       // Play as soon as possible
       const attemptPlay = () => {
         const p = v0.play();
@@ -179,7 +179,7 @@ const Home = () => {
           });
         }
       };
-      
+
       if (v0.readyState >= 2) {
         attemptPlay();
       } else {
@@ -245,24 +245,24 @@ const Home = () => {
     };
   }, []);
 
-  const clientLogoFiles = [
-    'BharatPetroleum.png',
-    'Concorde Textiles.jpg',
-    'Godrejconsumerproducts.jpg',
-    'ICF.jpg',
-    'IFC.png',
-    'KG fabrics.jpg',
-    'NLC.jpg',
-    'Raymond.png',
-    'ReliancePower.jpg',
-    'UNIDO.png',
-    'Varroc polymers.jpg',
-    'arvindmills.png',
-    'dalmia.jpg',
-    'giz.png',
-    'jktyre.jpg',
-    'mahindra.png',
-    'volvo.png'
+  const clientLogoSrcs = [
+    '/images/clients/Godrejconsumerproducts.jpg',
+    '/images/clients/BharatPetroleum.png',
+    '/images/clients/dalmia.jpg',
+    '/images/clients/jktyre.jpg',
+    '/images/clients/arvindmills.png',
+    '/images/clients/Raymond.png',
+    '/images/clients/ReliancePower.jpg',
+    '/images/clients/mahindra.png',
+    '/images/clients/volvo.png',
+    '/images/clients/NLC.jpg',
+    '/images/clients/ICF.jpg',
+    '/images/clients/IFC.png',
+    '/images/clients/UNIDO.png',
+    '/images/clients/giz.png',
+    '/images/clients/Concorde Textiles.jpg',
+    '/images/clients/KG fabrics.jpg',
+    '/images/clients/Varroc polymers.jpg',
   ];
 
   const clientNodes = clientLogoFiles.map((file, i) => {
@@ -321,7 +321,7 @@ const Home = () => {
           <div className="hero-content-wrap" ref={heroContentRef}>
             {/* Left large headline */}
             <div className="hero-left-headline">
-              <h1 className="hero-main-title">Centre for Energy<br/> Environment & Productivity</h1>
+              <h1 className="hero-main-title">Centre for Energy<br /> Environment & Productivity</h1>
             </div>
           </div>
 
@@ -354,8 +354,8 @@ const Home = () => {
             logos={clientNodes}
             speed={logoSpeed}
             direction="left"
-            logoHeight={64}
-            gap={40}
+            logoHeight={90}
+            gap={50}
             hoverSpeed={0}
             scaleOnHover
             fadeOut
