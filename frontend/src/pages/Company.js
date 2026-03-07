@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // Team data is stored in the frontend now
-import './OurTeam.css';
+import './Company.css';
 
-const OurTeam = () => {
+const Company = () => {
     const [teamMembers, setTeamMembers] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -76,18 +76,18 @@ const OurTeam = () => {
 
     if (loading) {
         return (
-            <div className="team-page section">
+            <div className="company-page section">
                 <div className="container">
-                    <div className="loading">Loading team members...</div>
+                    <div className="loading">Loading company information...</div>
                 </div>
             </div>
         );
     }
 
     return (
-        <div className="team-page section">
+        <div className="company-page section">
             <div className="container">
-                <h1 className="section-title" data-heading-animate>Our Team</h1>
+                <h1 className="section-title" data-heading-animate>Company</h1>
                 <p className="section-subtitle" data-heading-animate data-delay="1">
                     Meet the experts who drive our mission to improve energy, environment, and productivity
                 </p>
@@ -130,7 +130,7 @@ const OurTeam = () => {
                         ))
                     ) : (
                         <div className="no-data">
-                            <p>No team members found. Please add team members through the admin panel.</p>
+                            <p>No company members found. Please add members through the admin panel.</p>
                         </div>
                     )}
                 </div>
@@ -139,6 +139,4 @@ const OurTeam = () => {
     );
 };
 
-export default OurTeam;
-
-
+export default Company;

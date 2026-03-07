@@ -5,7 +5,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import Footer from './components/Footer';
 import FixedNav from './components/FixedNav';
 import Home from './pages/Home';
-import OurTeam from './pages/OurTeam';
+import Company from './pages/Company';
 import Services from './pages/Services';
 import CaseStudies from './pages/CaseStudies';
 import './App.css';
@@ -18,7 +18,7 @@ function AppContent() {
             <main className={`main-content ${location.pathname === '/' ? 'home-main' : ''}`}>
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/our-team" element={<OurTeam />} />
+                    <Route path="/company" element={<Company />} />
                     <Route path="/services" element={<Services />} />
                     <Route path="/case-studies" element={<CaseStudies />} />
                 </Routes>

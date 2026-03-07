@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState, useMemo } from "react";
 import LogoLoop from '../components/LogoLoop/LogoLoop';
 import { useTheme } from '../contexts/ThemeContext';
-import Windmill from '../components/Windmill/Windmill';
+
+
 import "./Home.css";
 
 /*
@@ -285,9 +286,11 @@ const Home = () => {
           className="video-hero"
           ref={heroSectionRef}
         >
-          {/* Company Logo - Top Left */}
-          <div className="hero-logo">
-            <img src="/videos/logo.png" alt="CEEP Logo" />
+          {/* Company Name Branding - Top Left (Alignment with Fixed Logo) */}
+          <div className="hero-brand-area">
+            <div className="hero-logo-text">
+              <span className="company-name-sub">Centre for Energy, Environment and Productivity</span>
+            </div>
           </div>
 
           {/* Two layered videos: one visible, one preloads the next clip */}
@@ -348,12 +351,10 @@ const Home = () => {
                 Our consulting and training services leverage our deep industry expertise and use analytical rigor to help organisations unveil improvement opportunities, make informed decisions rapidly and solve their critical business problems.
               </p>
               <div className="section-cta-left" data-heading-animate data-delay="3">
-                <a href="/our-team" className="btn btn-primary">Meet the team</a>
+                <a href="/company" className="btn btn-primary">Meet the team</a>
               </div>
             </div>
-            <div className="who-we-are-windmill">
-              <Windmill width="100%" height="100%" />
-            </div>
+
           </div>
         </div>
       </section>
@@ -365,7 +366,7 @@ const Home = () => {
           <p className="section-content-center" data-heading-animate data-delay="1">
             Energy and resource performance now directly influence profitability, compliance, and long-term competitiveness. Organisations must manage cost pressures and sustainability expectations without disrupting operations or compromising user experience.
           </p>
-          
+
           <div className="key-drivers">
             <h3 className="key-drivers-title" data-heading-animate data-delay="2">Key Drivers:</h3>
             <div className="drivers-grid">
@@ -408,7 +409,7 @@ const Home = () => {
                 <p className="faq-answer">We support manufacturing facilities, commercial buildings, institutions, and infrastructure operators seeking structured improvements in operational performance and resource management.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 1 ? 'active' : ''}`} onClick={() => toggleFaq(1)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">How do your engagements typically begin?</h4>
@@ -418,7 +419,7 @@ const Home = () => {
                 <p className="faq-answer">Engagements usually start with a diagnostic assessment to understand system performance, operational constraints, and financial priorities. From there, we define a structured improvement roadmap.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 2 ? 'active' : ''}`} onClick={() => toggleFaq(2)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">Do you focus only on energy reduction?</h4>
@@ -428,7 +429,7 @@ const Home = () => {
                 <p className="faq-answer">No. Our work considers financial outcomes, operational reliability, regulatory alignment, and occupant or process requirements. Energy performance is evaluated within the broader business context.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 3 ? 'active' : ''}`} onClick={() => toggleFaq(3)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">Will recommended measures disrupt ongoing operations?</h4>
@@ -438,7 +439,7 @@ const Home = () => {
                 <p className="faq-answer">Our approach prioritizes practical implementation. Recommendations are phased and aligned with operational continuity to minimize disruption.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 4 ? 'active' : ''}`} onClick={() => toggleFaq(4)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">How are results measured?</h4>
@@ -448,7 +449,7 @@ const Home = () => {
                 <p className="faq-answer">Outcomes are tracked through defined performance indicators such as consumption patterns, operational metrics, financial impact, and system stability.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 5 ? 'active' : ''}`} onClick={() => toggleFaq(5)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">Do you provide implementation support?</h4>
@@ -458,7 +459,7 @@ const Home = () => {
                 <p className="faq-answer">Yes. We support both advisory-level guidance and hands-on coordination during execution, depending on client requirements.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 6 ? 'active' : ''}`} onClick={() => toggleFaq(6)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">Can you assist with compliance and sustainability reporting?</h4>
@@ -468,7 +469,7 @@ const Home = () => {
                 <p className="faq-answer">We help align technical improvements with relevant regulatory and reporting frameworks to support governance and disclosure requirements.</p>
               </div>
             </div>
-            
+
             <div className={`faq-item ${openFaqIndex === 7 ? 'active' : ''}`} onClick={() => toggleFaq(7)}>
               <div className="faq-question-wrapper">
                 <h4 className="faq-question">What is the average period for the Return on Investment?</h4>
@@ -486,7 +487,7 @@ const Home = () => {
       <section className="clients-section" data-scroll-reveal>
         <div className="section-container">
           <h2 className="section-slogan" data-heading-animate>Engineered Solutions. Enduring Relationships.</h2>
-          
+
           <div className="clients-content">
             <div className="client-highlights">
               <div className="highlight-card" data-heading-animate data-delay="1">
@@ -498,7 +499,7 @@ const Home = () => {
                   CEEP conducted a comprehensive energy audit for <strong>Al Muzn Mall, Muscat</strong>, where practical and innovative measures were implemented, resulting in a 20% reduction in air-conditioning energy consumption.
                 </p>
               </div>
-              
+
               <div className="highlight-card" data-heading-animate data-delay="2">
                 <div className="highlight-header">
                   <span className="highlight-number">25%</span>
@@ -509,33 +510,33 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            
+
             <p className="clients-paragraph" data-heading-animate data-delay="3">
               CEEP has also served as a professional trainer and consultant to leading corporates including <strong>Gujarat Alkalies and Chemicals Limited, Manali Petrochemicals Limited, JK Tyre, Dalmia Cement, Arvind Mills, Raymonds</strong> and many more, supporting multiple facilities across India in strengthening energy performance.
             </p>
-            
+
             <div className="sectors-grid" data-heading-animate data-delay="4">
               <h3 className="sectors-title">Our experience spans diverse sectors:</h3>
               <div className="sectors-cards">
                 <div className="sector-card">
-                  <div className="sector-icon">⚡</div>
+                  <div className="sector-icon"></div>
                   <h4>Power and Utilities</h4>
                 </div>
                 <div className="sector-card">
-                  <div className="sector-icon">🏢</div>
+                  <div className="sector-icon"></div>
                   <h4>Civil and Commercial Infrastructures</h4>
                 </div>
                 <div className="sector-card">
-                  <div className="sector-icon">🏭</div>
+                  <div className="sector-icon"></div>
                   <h4>Manufacturing and Process Industries</h4>
                 </div>
                 <div className="sector-card">
-                  <div className="sector-icon">🛢️</div>
+                  <div className="sector-icon"></div>
                   <h4>Oil, Gas and Energy Sector</h4>
                 </div>
               </div>
             </div>
-            
+
             <p className="clients-paragraph" data-heading-animate data-delay="5">
               We have also conducted energy audits for Government institutions, reinforcing our credibility across both public and private domains.
             </p>
