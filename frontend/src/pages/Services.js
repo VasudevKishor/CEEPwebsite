@@ -50,7 +50,7 @@ const Services = () => {
 
         const elements = document.querySelectorAll('[data-scroll-reveal]');
         elements.forEach((el) => observer.observe(el));
-        
+
         // Separate observer for headings with different threshold
         const headingObserver = new IntersectionObserver(
             (entries) => {
@@ -67,10 +67,10 @@ const Services = () => {
             },
             { threshold: 0.2, rootMargin: '0px 0px -80px 0px' }
         );
-        
+
         const headings = document.querySelectorAll('[data-heading-animate]');
         headings.forEach((heading) => headingObserver.observe(heading));
-        
+
         return () => {
             elements.forEach((el) => observer.unobserve(el));
             headings.forEach((heading) => headingObserver.unobserve(heading));

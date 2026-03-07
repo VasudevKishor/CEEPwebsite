@@ -95,7 +95,7 @@ const Company = () => {
                 <div className="team-grid">
                     {teamMembers.length > 0 ? (
                         teamMembers.slice(0, 2).map((member, index) => (
-                            <div key={member._id} className={`team-card ${index % 2 === 0 ? 'image-left' : 'image-right'}`} data-scroll-reveal style={{ transitionDelay: `${index * 0.2}s` }}>
+                            <div key={member._id} className="team-card" data-scroll-reveal style={{ transitionDelay: `${index * 0.2}s` }}>
                                 <div className="team-card-inner">
                                     <div className="team-image">
                                         {member.image ? (
