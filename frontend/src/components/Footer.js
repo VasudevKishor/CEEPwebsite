@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
     return (
-        <footer className="footer">
+        <footer id="contact" className="footer">
             <div className="footer-container">
                 <div className="footer-content">
                     <div className="footer-section footer-section-left">
@@ -20,7 +20,7 @@ const Footer = () => {
                         <p>1039, 26th St, H Block,</p>
                         <p>Ponni Colony,Anna Nagar , Chennai 600040</p>
                         <p>Mobile: 9444882553, 8668115663</p>
-                        <p>Email: <a href="mailto:info@ceepenergy.com" style={{ color: 'inherit', textDecoration: 'underline' }}>info@ceepenergy.com</a></p>
+                        <p>Email: <a href="mailto:info@ceepenergy.com" className="footer-email-link">info@ceepenergy.com</a></p>
                         <div className="footer-social" aria-label="Social media links">
                             <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <FaLinkedin />
@@ -47,5 +47,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
