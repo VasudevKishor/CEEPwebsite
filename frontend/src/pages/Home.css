@@ -113,38 +113,36 @@ body {
   }
 }
 
-/* Company Logo - white rounded rectangle in top left (like the image) */
-.hero-logo {
+.hero-brand-area {
   position: absolute;
   top: 0;
-  left: 0;
+  /* Shifted even further left for tightest alignment */
+  left: clamp(80px, 11vw, 110px);
   z-index: 10;
-  background: #ffffff !important;
-  border-radius: 0 0 clamp(12px, 1.5vw, 22px) 0;
-  padding: clamp(0.75rem, 1.5vw, 1.5rem) clamp(1rem, 2vw, 1.75rem);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 clamp(2px, 0.5vw, 4px) clamp(10px, 1.5vw, 16px) rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: clamp(0.75rem, 1.5vw, 1.5rem) 0;
   animation: slideInFromLeft 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
 }
 
+.hero-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.company-name-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  white-space: normal;
+  max-width: clamp(280px, 40vw, 500px);
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
 /* Logo background stays white regardless of theme */
-[data-theme="dark"] .hero-logo {
-  background: #ffffff !important;
-  box-shadow: 0 clamp(2px, 0.5vw, 4px) clamp(10px, 1.5vw, 16px) rgba(0, 0, 0, 0.3);
-}
-
-.hero-logo:hover {
-  box-shadow: 0 clamp(4px, 0.8vw, 6px) clamp(15px, 2vw, 24px) rgba(0, 0, 0, 0.2);
-  transform: translateY(clamp(-1px, -0.3vw, -2px));
-}
-
-[data-theme="dark"] .hero-logo:hover {
-  box-shadow: 0 clamp(4px, 0.8vw, 6px) clamp(15px, 2vw, 24px) rgba(0, 0, 0, 0.5);
-}
-
 @keyframes slideInFromLeft {
   from {
     opacity: 0;
@@ -220,6 +218,8 @@ body {
   align-items: center;
   justify-content: center;
   padding: clamp(20px, 4vw, 60px);
+  padding-top: clamp(100px, 20vw, 200px);
+  /* Move text further down */
 }
 
 .hero-content {
@@ -743,6 +743,13 @@ body {
    ========================= */
 
 /* Common Section Container */
+.case-studies-page .container {
+  max-width: 1800px;
+  width: 100%;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
+  margin: 0 auto;
+}
+
 .section-container {
   max-width: 100%;
   width: 100%;
@@ -750,8 +757,14 @@ body {
   padding: 0 clamp(20px, 4vw, 80px);
 }
 
-.section-container > * {
-  max-width: 1400px;
+.testimonials-slider {
+  max-width: none;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-container>* {
+  max-width: none;
   margin-left: auto;
   margin-right: auto;
 }
@@ -764,6 +777,14 @@ body {
   text-align: center;
   letter-spacing: -0.02em;
   line-height: 1.2;
+}
+
+.services-intro p {
+  color: var(--text-secondary);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  max-width: none;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
 .section-content {
@@ -782,7 +803,7 @@ body {
   font-weight: 400;
   margin-bottom: 32px;
   text-align: center;
-  max-width: 900px;
+  max-width: none;
   margin-left: auto;
   margin-right: auto;
 }
@@ -819,7 +840,7 @@ body {
 }
 
 .section-container-full {
-  max-width: 100%;
+  max-width: none;
   width: 100%;
   margin: 0 auto;
   padding: 0 clamp(20px, 4vw, 80px);
@@ -827,79 +848,37 @@ body {
 
 .who-we-are-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+  justify-content: center;
+  text-align: center;
   width: 100%;
-  max-width: 1600px;
+  max-width: none;
   margin: 0 auto;
 }
 
 .who-we-are-content {
-  flex: 1;
-  max-width: 900px;
+  width: 100%;
+  max-width: 1200px;
+  /* Cap text width for readability while section is wide */
+  margin: 0 auto;
 }
 
 .section-content-wide {
   color: var(--text-secondary);
-  line-height: 1.6;
-  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  line-height: 1.7;
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
   font-weight: 400;
-  margin-bottom: 16px;
-  text-align: justify;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .section-cta-left {
-  margin-top: 24px;
-  text-align: left;
+  margin-top: 32px;
+  text-align: center;
 }
 
-.who-we-are-windmill {
-  flex: 0 0 auto;
-  width: clamp(250px, 28vw, 420px);
-  height: clamp(250px, 28vw, 420px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-}
 
-@media (max-width: 1200px) {
-  .who-we-are-wrapper {
-    flex-direction: column;
-    gap: 35px;
-  }
-
-  .who-we-are-content {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .section-content-wide {
-    text-align: center;
-  }
-
-  .section-cta-left {
-    text-align: center;
-  }
-
-  .who-we-are-windmill {
-    width: clamp(240px, 50vw, 360px);
-    height: clamp(240px, 50vw, 360px);
-  }
-}
-
-@media (max-width: 768px) {
-  .who-we-are-section {
-    padding: 40px 0;
-  }
-
-  .who-we-are-windmill {
-    width: 100%;
-    max-width: 320px;
-    height: 320px;
-  }
-}
 
 /* Why It Matters Section */
 .why-matters-section {
@@ -933,7 +912,14 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;
-  max-width: 1200px;
+  max-width: none;
+  margin: 0 auto;
+}
+
+.about-intro {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -1020,7 +1006,7 @@ body {
 }
 
 .faq-list {
-  max-width: 900px;
+  max-width: none;
   margin: 0 auto;
 }
 
@@ -1118,6 +1104,14 @@ body {
 .clients-section.revealed {
   opacity: 1;
   transform: translateY(0);
+}
+
+.footer-content {
+  max-width: none;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
+  gap: 60px;
 }
 
 .clients-content {
@@ -1219,24 +1213,22 @@ body {
 
 .sector-card {
   background: var(--bg-secondary);
-  padding: 28px 20px;
+  padding: 32px 24px;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 2px 10px var(--shadow-light);
-  transition: all 0.3s var(--easing);
-  border-top: 3px solid transparent;
+  box-shadow: 0 4px 15px var(--shadow-light);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--border-color);
+  border-top: 4px solid var(--color-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sector-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 8px 30px var(--shadow-medium);
-  border-top-color: var(--color-blue);
-}
-
-.sector-icon {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
-  display: block;
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px var(--shadow-medium);
+  background: var(--bg-primary);
 }
 
 .sector-card h4 {
@@ -1309,6 +1301,7 @@ body {
 
 /* Mobile responsive adjustments for new sections */
 @media (max-width: 768px) {
+
   .who-we-are-section,
   .why-matters-section,
   .faq-section,
