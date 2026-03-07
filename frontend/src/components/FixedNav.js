@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 import { FaSun, FaMoon, FaBars, FaTimes } from 'react-icons/fa';
 import './FixedNav.css';
 
 const menuLinks = [
   { to: '/', label: 'Home' },
-  { to: '/our-team', label: 'Our Team' },
-  { to: '/clients', label: 'Clients' },
+  { to: '/company', label: 'Company' },
   { to: '/case-studies', label: 'Case Studies' },
-  { to: '/services', label: 'Services' },
-  { to: '/contact', label: 'Contact' }
+  { to: '/services', label: 'Services' }
 ];
 
 const FixedNav = () => {
@@ -44,33 +42,42 @@ const FixedNav = () => {
 
   return (
     <>
-      {/* Fixed Control Buttons - Top Right */}
+      {/* Fixed Control Buttons */}
       <div className="fixed-nav-controls">
-        <button 
-          className="fixed-nav-btn theme-toggle" 
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-        >
-          {theme === 'light' ? <FaMoon /> : <FaSun />}
-        </button>
-        <button 
-          className={`fixed-nav-btn menu-toggle ${isMenuOpen ? 'active' : ''}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+        <div className="logo-wrapper-outer">
+          <div className="logo-wrapper-inner">
+            <Link to="/" className="persistent-logo">
+              <img src="/videos/logo.png" alt="CEEP Logo" />
+            </Link>
+          </div>
+        </div>
+        <div className="nav-buttons-right">
+          <button
+            className="fixed-nav-btn theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+          >
+            {theme === 'light' ? <FaMoon /> : <FaSun />}
+          </button>
+          <button
+            className={`fixed-nav-btn menu-toggle ${isMenuOpen ? 'active' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </div>
 
       {/* Menu Overlay */}
-      <div 
+      <div
         className={`menu-overlay ${isMenuOpen ? 'open' : ''}`}
         onClick={closeMenu}
         role="dialog"
         aria-modal="true"
         aria-hidden={!isMenuOpen}
       >
-        <div 
+        <div
           className="menu-overlay-content"
           onClick={(e) => e.stopPropagation()}
         >

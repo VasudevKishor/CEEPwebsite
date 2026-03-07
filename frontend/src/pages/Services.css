@@ -11,10 +11,17 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+.services-page .container {
+    max-width: none;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .services-section,
@@ -84,6 +91,7 @@
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -144,6 +152,7 @@
 }
 
 @media (max-width: 1024px) {
+
     .services-grid,
     .training-grid {
         grid-template-columns: repeat(auto-fill, minmax(clamp(240px, 35vw, 320px), 1fr));
@@ -151,6 +160,7 @@
 }
 
 @media (max-width: 768px) {
+
     .services-grid,
     .training-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -159,6 +169,7 @@
 }
 
 @media (max-width: 480px) {
+
     .services-section,
     .training-section {
         margin-bottom: clamp(1.5rem, 3vw, 2.5rem);

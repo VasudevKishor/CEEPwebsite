@@ -1,0 +1,326 @@
+/* ═══════════════════════════════════════════════════════
+   Hero Scroll Sequence — Cinematic Award-Winning Hero
+   ═══════════════════════════════════════════════════════ */
+
+/* ─── Section: tall enough for scroll distance ─── */
+.hero-scroll-section {
+    position: relative;
+    width: 100%;
+    height: 800vh;
+    background: #0a0e1a;
+}
+
+/* ─── Sticky wrapper: pins canvas to viewport ─── */
+.hero-scroll-sticky {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ─── Canvas ─── */
+.hero-scroll-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ─── Cinematic overlay — dramatic gradient for depth ─── */
+.hero-scroll-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(180deg,
+            rgba(8, 12, 28, 0.5) 0%,
+            rgba(8, 12, 28, 0.1) 25%,
+            transparent 45%,
+            rgba(8, 12, 28, 0.15) 65%,
+            rgba(8, 12, 28, 0.7) 100%),
+        linear-gradient(90deg,
+            rgba(8, 12, 28, 0.35) 0%,
+            transparent 30%,
+            transparent 70%,
+            rgba(8, 12, 28, 0.2) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* ─── Company branding — top left ─── */
+.hero-scroll-brand {
+    position: absolute;
+    top: clamp(15px, 3vh, 40px);
+    left: clamp(80px, 8vw, 160px);
+    z-index: 4;
+    pointer-events: none;
+    max-width: 300px;
+}
+
+.hero-scroll-brand-name {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(0.72rem, 1.1vw, 0.95rem);
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.55;
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.7),
+        0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ─── Hero content — slogan, description, CTAs ─── */
+.hero-scroll-content {
+    position: absolute;
+    bottom: clamp(80px, 14vh, 180px);
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 100;
+    padding: 0 clamp(20px, 6vw, 120px);
+    opacity: 1;
+    will-change: opacity, transform;
+    pointer-events: auto;
+}
+
+.hero-scroll-slogan {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin: 0 auto clamp(16px, 2.5vw, 28px);
+    max-width: 850px;
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.6),
+        0 8px 40px rgba(0, 0, 0, 0.25);
+}
+
+.hero-scroll-description {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    margin: 0 auto clamp(24px, 3vw, 40px);
+    max-width: 620px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* ─── CTA buttons — glassmorphism style ─── */
+.hero-scroll-ctas {
+    display: flex;
+    gap: clamp(14px, 2vw, 24px);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 101;
+}
+
+.hero-scroll-ctas .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+    font-weight: 600;
+    padding: clamp(12px, 1.5vw, 16px) clamp(28px, 3.5vw, 44px);
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    pointer-events: auto;
+    display: inline-block;
+}
+
+.hero-scroll-ctas .btn-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow:
+        0 4px 16px rgba(37, 99, 235, 0.4),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero-scroll-ctas .btn-primary:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 32px rgba(59, 130, 246, 0.5),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hero-scroll-ctas .btn-ghost {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.hero-scroll-ctas .btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
+
+/* ─── About / Who We Are overlay ─── */
+.hero-scroll-about {
+    position: absolute;
+    bottom: clamp(24px, 3.5vh, 50px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    text-align: center;
+    padding: 0 clamp(20px, 4vw, 60px);
+    width: 90vw;
+    max-width: 90vw;
+    opacity: 0;
+    will-change: opacity, transform;
+    pointer-events: auto;
+}
+
+.hero-scroll-about-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin: 0 0 clamp(24px, 3.5vw, 44px);
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8),
+        0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.hero-scroll-about-text {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.8;
+    margin: 0 auto clamp(16px, 2vw, 26px);
+    max-width: 90%;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+}
+
+.hero-scroll-about-cta {
+    margin-top: clamp(20px, 3vw, 32px);
+}
+
+.hero-scroll-about-cta .btn {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+    font-weight: 600;
+    padding: clamp(12px, 1.5vw, 16px) clamp(28px, 3.5vw, 44px);
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow:
+        0 4px 16px rgba(37, 99, 235, 0.4),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero-scroll-about-cta .btn:hover {
+    background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+    transform: translateY(-3px);
+    box-shadow:
+        0 8px 32px rgba(59, 130, 246, 0.5),
+        0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ─── Loading screen ─── */
+.hero-scroll-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a0e1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-scroll-loader-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: clamp(200px, 35vw, 320px);
+}
+
+.hero-scroll-loader-bar {
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.hero-scroll-loader-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+    border-radius: 4px;
+    transition: width 0.2s ease-out;
+}
+
+.hero-scroll-loader-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .hero-scroll-section {
+        height: 300vh;
+    }
+
+    .hero-scroll-content {
+        bottom: clamp(50px, 10vh, 120px);
+    }
+
+    .hero-scroll-brand {
+        top: clamp(60px, 8vh, 80px);
+        left: clamp(60px, 6vw, 100px);
+    }
+
+    .hero-scroll-slogan {
+        font-size: clamp(1.6rem, 6vw, 2.4rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-scroll-section {
+        height: 250vh;
+    }
+
+    .hero-scroll-slogan {
+        font-size: clamp(1.4rem, 7vw, 2rem);
+    }
+
+    .hero-scroll-ctas .btn {
+        padding: 11px 24px;
+        font-size: 0.85rem;
+    }
+}

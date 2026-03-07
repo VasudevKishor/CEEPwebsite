@@ -1,104 +1,96 @@
 .footer {
     background-color: var(--bg-secondary);
     color: var(--text-primary);
-    padding: clamp(2rem, 4vw, 3rem) 0 clamp(1rem, 2vw, 1.5rem);
+    padding: clamp(2.5rem, 4vw, 3.25rem) 0 clamp(1rem, 2vw, 1.5rem);
     margin-top: auto;
-    transition: background-color 0.3s ease, color 0.3s ease, padding 0.4s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
 }
 
 .footer-container {
-    max-width: 1400px;
+    width: 100%;
+    max-width: none;
+    padding: 0 clamp(24px, 4vw, 80px);
     margin: 0 auto;
-    padding: 0 clamp(1rem, 3vw, 2rem);
 }
 
 .footer-content {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: clamp(1.5rem, 4vw, 3rem);
-    margin-bottom: clamp(1rem, 2vw, 1.5rem);
-    transition: gap 0.4s ease;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+    margin-bottom: clamp(1.25rem, 2vw, 1.75rem);
 }
 
+.footer-section-left,
+.footer-section-right {
+    min-width: 0;
+}
 
 .footer-section-left {
-    order: 1;
-    flex: 1 1 50%;
+    text-align: left;
 }
 
 .footer-section-right {
-    order: 2;
     text-align: right;
-    padding-left: 0;
-    justify-self: end;
-    flex: 1 1 50%;
-    transition: padding-left 0.4s ease, text-align 0.3s ease;
-}
-
-/* Right-align social icons when in the right section */
-.footer-section-right .footer-social {
-    justify-content: flex-end;
+    margin-left: auto;
 }
 
 .footer-section h3 {
-    margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
+    margin: 0 0 0.6rem;
     color: var(--color-blue);
-    transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    line-height: 1.3;
 }
 
 .footer-section h4 {
-    margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
+    margin: 0 0 0.6rem;
     color: var(--color-blue);
-    transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.95rem, 1.5vw, 1rem);
+    font-size: clamp(1.1rem, 1.8vw, 1.3rem);
+    line-height: 1.3;
 }
 
 .footer-quote {
+    margin: 0 0 0.35rem;
     font-style: italic;
-    margin-bottom: clamp(0.2rem, 1vw, 0.3rem);
     color: var(--text-primary);
-    transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
-    line-height: 1.5;
+    font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+    line-height: 1.65;
 }
 
 .footer-author {
+    margin: 0;
     text-align: right;
-    font-size: clamp(0.7rem, 1.2vw, 0.8rem);
     color: var(--text-secondary);
-    transition: color 0.3s ease, font-size 0.3s ease;
-    margin-bottom: clamp(0.3rem, 1vw, 0.5rem);
+    font-size: clamp(0.9rem, 1.3vw, 1rem);
 }
 
 .footer-section p {
-    margin-bottom: clamp(0.2rem, 1vw, 0.3rem);
-    line-height: 1.6;
+    margin: 0 0 0.25rem;
+    line-height: 1.65;
     color: var(--text-primary);
-    transition: color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+    font-size: clamp(0.95rem, 1.4vw, 1.08rem);
 }
 
 .footer-social {
     display: flex;
-    gap: clamp(0.5rem, 1.5vw, 0.75rem);
-    margin-top: clamp(0.5rem, 1.5vw, 0.75rem);
+    justify-content: flex-end;
+    gap: 0.65rem;
+    margin-top: 0.65rem;
     flex-wrap: wrap;
 }
 
 .footer-social a {
-    width: clamp(32px, 7vw, 40px);
-    height: clamp(32px, 7vw, 40px);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    border: 1px solid var(--bg-placeholder);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-primary);
-    font-size: clamp(0.9rem, 1.5vw, 1rem);
-    transition: all 0.3s ease;
+    font-size: 1.05rem;
+    background: rgba(255, 255, 255, 0.03);
+    transition: all 0.25s ease;
 }
 
 .footer-social a:hover {
@@ -108,77 +100,74 @@
     transform: translateY(-2px);
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: clamp(0.75rem, 1.5vw, 1rem);
-    border-top: 1px solid var(--bg-placeholder);
-    color: var(--text-secondary);
-    transition: color 0.3s ease, border-color 0.3s ease, font-size 0.3s ease;
-    font-size: clamp(0.75rem, 1.2vw, 0.85rem);
+.footer-email-link {
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.25s ease;
+    font-weight: 500;
 }
 
-@media (max-width: 1024px) {
-    .footer-section-right {
-        padding-left: 0;
-    }
+.footer-email-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-blue);
+    transition: width 0.25s ease;
+}
+
+.footer-email-link:hover {
+    color: var(--color-blue);
+}
+
+.footer-email-link:hover::after {
+    width: 100%;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary);
+    font-size: clamp(0.85rem, 1.2vw, 0.98rem);
+}
+
+.footer-bottom p {
+    margin: 0;
 }
 
 @media (max-width: 768px) {
+    .footer {
+        padding-top: clamp(2rem, 5vw, 2.5rem);
+    }
+
     .footer-content {
         flex-direction: column;
-        align-items: flex-start;
-        gap: clamp(1.5rem, 3vw, 2rem);
+        gap: 1.5rem;
     }
 
     .footer-section-right {
         text-align: left;
-        order: 2;
-        padding-left: 0;
-        width: 100%;
+        margin-left: 0;
     }
 
     .footer-section-right .footer-social {
         justify-content: flex-start;
     }
 
-    .footer-section-left {
-        order: 1;
-        width: 100%;
-    }
-
-    .footer-container {
-        padding: 0 clamp(0.75rem, 2vw, 1.5rem);
+    .footer-author {
+        text-align: left;
     }
 }
 
 @media (max-width: 480px) {
-    .footer {
-        padding: clamp(1.5rem, 3vw, 2rem) 0 clamp(0.75rem, 1.5vw, 1rem);
-    }
-
-    .footer-content {
-        gap: clamp(1rem, 2vw, 1.5rem);
-    }
-
-    .footer-section-right {
-        padding-left: 0;
-    }
-
-    .footer-section h3 {
-        font-size: clamp(0.95rem, 1.8vw, 1rem);
-    }
-
-    .footer-section h4 {
-        font-size: clamp(0.85rem, 1.5vw, 0.95rem);
-    }
-
-    .footer-social {
-        gap: clamp(0.4rem, 1.2vw, 0.6rem);
-    }
-
     .footer-social a {
-        width: clamp(28px, 6vw, 36px);
-        height: clamp(28px, 6vw, 36px);
-        font-size: clamp(0.8rem, 1.3vw, 0.9rem);
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
     }
 }
