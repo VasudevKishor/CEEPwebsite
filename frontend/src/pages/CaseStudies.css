@@ -46,9 +46,18 @@
     display: flex;
     flex-direction: column;
     gap: clamp(0.75rem, 1.5vw, 1rem);
-    max-height: 700px;
+    position: sticky;
+    /* ANCHOR TO VIEWPORT */
+    top: 100px;
+    /* Align with header */
+    max-height: calc(100vh - 180px);
+    /* RESPONSIVE height for independent scroll */
     overflow-y: auto;
+    overscroll-behavior: contain;
+    /* PREVENT PAGE SCROLL CHAINING */
     padding-right: clamp(0.5rem, 1vw, 0.75rem);
+    padding-bottom: 2rem;
+    /* Buffer for last card */
     scrollbar-width: thin;
     scrollbar-color: var(--color-blue) var(--bg-secondary);
 }
@@ -79,6 +88,8 @@
     background: var(--bg-secondary);
     cursor: pointer;
     transition: all 0.3s ease;
+    will-change: transform, opacity;
+    /* HARDWARE ACCELERATION */
     opacity: 1;
     transform: translateX(0);
 }

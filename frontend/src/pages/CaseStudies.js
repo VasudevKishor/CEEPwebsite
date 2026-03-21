@@ -101,44 +101,39 @@ const CaseStudies = () => {
     useEffect(() => {
         if (typeof IntersectionObserver === 'undefined') return;
 
+        // Unified observer for all revealed elements
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        observer.unobserve(entry.target);
+                        const target = entry.target;
+
+                        // Handle standard scroll reveal
+                        if (target.hasAttribute('data-scroll-reveal')) {
+                            target.classList.add('revealed');
+                        }
+
+                        // Handle heading animations with delay
+                        if (target.hasAttribute('data-heading-animate')) {
+                            const delay = target.getAttribute('data-delay') || '0';
+                            const delayMs = parseFloat(delay) * 100;
+                            setTimeout(() => {
+                                target.classList.add('heading-animated');
+                            }, delayMs);
+                        }
+
+                        observer.unobserve(target);
                     }
                 });
             },
-            { threshold: 0.1, rootMargin: '0px 0px -100px 0px' }
+            { threshold: 0.15, rootMargin: '0px 0px -50px 0px' }
         );
 
-        const elements = document.querySelectorAll('[data-scroll-reveal]');
+        const elements = document.querySelectorAll('[data-scroll-reveal], [data-heading-animate]');
         elements.forEach((el) => observer.observe(el));
-
-        // Heading animations
-        const headingObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        const delay = entry.target.getAttribute('data-delay') || '0';
-                        const delayMs = parseFloat(delay) * 100;
-                        setTimeout(() => {
-                            entry.target.classList.add('heading-animated');
-                        }, delayMs);
-                        headingObserver.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.2, rootMargin: '0px 0px -80px 0px' }
-        );
-
-        const headings = document.querySelectorAll('[data-heading-animate]');
-        headings.forEach((heading) => headingObserver.observe(heading));
 
         return () => {
             elements.forEach((el) => observer.unobserve(el));
-            headings.forEach((heading) => headingObserver.unobserve(heading));
         };
     }, [caseStudies, selectedId]);
 
@@ -192,6 +187,7 @@ const CaseStudies = () => {
                                             frameBorder="0"
                                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                             allowFullScreen
+                                            loading="lazy"
                                         ></iframe>
                                     </div>
                                 </div>
