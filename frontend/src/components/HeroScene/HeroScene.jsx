@@ -12,8 +12,14 @@ const HeroScene = () => {
     const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
     const [nextVideoIndex, setNextVideoIndex] = useState(1);
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
+        // Fallback timer: Show content after 5 seconds even if video events fail
+        const fallback = setTimeout(() => {
+            setIsLoaded(true);
+        }, 5000);
+
         const interval = setInterval(() => {
             setIsTransitioning(true);
             setTimeout(() => {
@@ -23,8 +29,15 @@ const HeroScene = () => {
             }, 1000); // Wait for fade out
         }, 8000); // Rotate every 8 seconds
 
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            clearTimeout(fallback);
+        };
     }, [videos.length]);
+
+    const handleVideoLoad = () => {
+        setIsLoaded(true);
+    };
 
     const handleContactClick = (e) => {
         e.preventDefault();
@@ -35,7 +48,15 @@ const HeroScene = () => {
     };
 
     return (
-        <section className="video-hero-container">
+        <section className={`video-hero-container ${isLoaded ? 'loaded' : 'loading'}`}>
+            {!isLoaded && (
+                <div className="hero-loader">
+                    <div className="loader-content">
+                        <div className="loader-spinner"></div>
+                        <p>Loading Experience...</p>
+                    </div>
+                </div>
+            )}
             <div className="video-hero">
                 <div className="video-overlay"></div>
 
@@ -72,6 +93,7 @@ const HeroScene = () => {
                     loop
                     muted
                     playsInline
+                    onCanPlayThrough={handleVideoLoad}
                 >
                     <source src={videos[currentVideoIndex].mp4} type="video/mp4" />
                     <source src={videos[currentVideoIndex].webm} type="video/webm" />
