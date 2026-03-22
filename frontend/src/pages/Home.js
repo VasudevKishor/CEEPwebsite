@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import LogoLoop from '../components/LogoLoop/LogoLoop';
 import { useTheme } from '../contexts/ThemeContext';
-import HeroScrollSequence from '../components/HeroScrollSequence/HeroScrollSequence';
+import HeroScene from '../components/HeroScene/HeroScene';
 
 import "./Home.css";
 
@@ -99,8 +100,28 @@ const Home = () => {
 
   return (
     <div className="home-page">
-      {/* CINEMATIC SCROLL HERO */}
-      <HeroScrollSequence />
+      {/* CINEMATIC VIDEO HERO */}
+      <HeroScene />
+
+      {/* ABOUT CEEP SECTION */}
+      <section className="home-about-section" data-scroll-reveal>
+        <div className="section-container">
+          <div className="home-about-content">
+            <h2 className="section-slogan" data-heading-animate>
+              Engineering Sustainability with Industry Precision
+            </h2>
+            <p className="section-content-center" data-heading-animate data-delay="1">
+              At the Centre for Energy, Environment and Productivity (CEEP) we collaborate and strive to assist organisations in improved use of resources be it energy, water, human resources, time and anything to do with productivity.
+            </p>
+            <p className="section-content-center" data-heading-animate data-delay="2">
+              Our consulting and training services leverage our deep industry expertise and use analytical rigor to help organisations unveil improvement opportunities, make informed decisions rapidly and solve their critical business problems.
+            </p>
+            <div className="section-cta-left" style={{ textAlign: 'center' }} data-heading-animate data-delay="3">
+              <Link to="/company" className="btn btn-primary">Meet the team</Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
 
 
@@ -108,7 +129,7 @@ const Home = () => {
       {/* WHY IT MATTERS SECTION */}
       <section className="why-matters-section" data-scroll-reveal>
         <div className="section-container">
-          <h2 className="section-slogan" data-heading-animate>The Industry is Changing. Are you ready?</h2>
+          <h2 className="section-slogan" data-heading-animate>Why it Matters</h2>
           <p className="section-content-center" data-heading-animate data-delay="1">
             Energy and resource performance now directly influence profitability, compliance, and long-term competitiveness. Organisations must manage cost pressures and sustainability expectations without disrupting operations or compromising user experience.
           </p>
