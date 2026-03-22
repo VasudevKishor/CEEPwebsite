@@ -210,7 +210,7 @@ const HeroScrollSequence = () => {
                             />
                         </div>
                         <span className="hero-scroll-loader-text">
-                            Loading experience... {progress}%
+                            Loading experience
                         </span>
                     </div>
                 </div>

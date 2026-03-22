@@ -53,7 +53,7 @@ const HeroScene = () => {
                 <div className="hero-loader">
                     <div className="loader-content">
                         <div className="loader-spinner"></div>
-                        <p>Loading Experience...</p>
+                        <p>Loading experience</p>
                     </div>
                 </div>
             )}
