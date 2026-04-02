@@ -400,8 +400,35 @@
 
     .svc-card-side {
         width: 100%;
-        max-width: 1000px;
-        min-height: 400px;
+        max-width: 850px;
+        min-height: auto;
+        height: auto;
+        padding: 2.22rem 1.5rem;
+    }
+
+    .svc-card-expanded-content {
+        max-height: 2000px;
+        opacity: 1;
+        visibility: visible;
+        padding-bottom: 1.5rem;
+    }
+
+    .svc-card-label-main {
+        font-size: 1.6rem;
+        color: var(--color-blue);
+        text-shadow: none;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        border-bottom: 1px solid var(--bg-placeholder);
+        display: inline-block;
+        min-width: 200px;
+        padding-bottom: 0.4rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .svc-card-side:hover {
+        flex: 1;
+        padding: 2.22rem 1.5rem;
     }
 
     .svc-training-grid {
@@ -416,11 +443,12 @@
 
 @media (max-width: 768px) {
     .services-page {
-        padding-top: 100px;
+        padding: 120px 1.5rem 4rem;
     }
 
     .svc-card-side {
-        min-height: 200px;
+        height: auto;
+        min-height: auto;
         flex: none !important;
         opacity: 1 !important;
         filter: none !important;
