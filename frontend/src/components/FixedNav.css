@@ -12,44 +12,57 @@
   top: 0;
   left: 0;
   right: 0;
-  padding: clamp(0, 1vw, 10px) clamp(0.5rem, 1vw, 10px);
-  /* Match .video-hero-container padding */
+  padding: clamp(0, 1vw, 10px) calc(var(--site-gutter) * 0.25);
+  /* Sync with .video-hero-container padding */
   display: flex;
   justify-content: center;
 }
 
 .logo-wrapper-inner {
   position: relative;
-  width: clamp(90%, 98%, 100%);
+  width: calc(100% - (var(--site-gutter) * 0.75));
   /* Sync with responsive video-hero */
-  max-width: 1900px;
+  max-width: 2560px;
   /* Sync with responsive video-hero */
 }
 
 .persistent-logo {
   position: absolute;
-  top: clamp(0.5rem, 1.5vw, 20px);
+  top: clamp(0.4rem, 1.2vw, 16px);
   /* Match .video-hero margin-top */
   left: 0;
   background: #ffffff !important;
 
   /* Match Video Hero Corner Radius */
-  border-radius: clamp(12px, 1.5vw, 24px) 0 clamp(12px, 1.5vw, 22px) 0;
+  border-radius: clamp(12px, 1.6vw, 24px) 0 clamp(12px, 1.6vw, 22px) 0;
 
-  padding: clamp(0.75rem, 1.5vw, 1.5rem) clamp(1rem, 2vw, 1.75rem);
+  padding: clamp(0.85rem, 1.6vw, 1.25rem) clamp(1.5rem, 3vw, 2.4rem);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 clamp(2px, 0.5vw, 4px) clamp(10px, 1.5vw, 16px) rgba(0, 0, 0, 0.15);
+  box-shadow: 0 clamp(4px, 0.6vw, 6px) clamp(12px, 2vw, 24px) rgba(0, 0, 0, 0.15);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: auto;
 }
 
 .persistent-logo img {
-  height: clamp(35px, 6vw, 45px);
-  /* Restored to user-preferred size */
+  height: clamp(65px, 10vw, 95px);
+  /* Increased size for better branding impact */
   width: auto;
   object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .persistent-logo {
+    padding: 0.7rem 1.15rem;
+    border-radius: 14px;
+    top: 12px;
+    left: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  }
+  .persistent-logo img {
+    height: 52px;
+  }
 }
 
 .nav-buttons-right {
@@ -63,9 +76,9 @@
 }
 
 .fixed-nav-btn {
-  width: clamp(40px, 8vw, 48px);
-  height: clamp(40px, 8vw, 48px);
-  border-radius: clamp(8px, 2vw, 12px);
+  width: clamp(50px, 10vw, 60px);
+  height: clamp(50px, 10vw, 60px);
+  border-radius: clamp(10px, 2.5vw, 16px);
   border: none;
   background: var(--nav-btn-bg, rgba(255, 255, 255, 0.95));
   color: var(--nav-btn-color, #0a0e27);
@@ -73,7 +86,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: clamp(14px, 2.5vw, 18px);
+  font-size: clamp(18px, 3.5vw, 24px);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(10px);

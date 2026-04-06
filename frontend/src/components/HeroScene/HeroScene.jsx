@@ -9,25 +9,36 @@ const HeroScene = () => {
         { mp4: '/videos/video3.mp4', webm: '/videos/video3.webm' }
     ];
 
-    const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [nextVideoIndex, setNextVideoIndex] = useState(1);
-    const [isTransitioning, setIsTransitioning] = useState(false);
+    const [activeLayer, setActiveLayer] = useState(0); 
+    const [indices, setIndices] = useState([0, 1]); 
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        // Fallback timer: Show content after 5 seconds even if video events fail
+        // Fallback timer: Show content after 5 seconds
         const fallback = setTimeout(() => {
             setIsLoaded(true);
         }, 5000);
 
         const interval = setInterval(() => {
-            setIsTransitioning(true);
-            setTimeout(() => {
-                setCurrentVideoIndex((prev) => (prev + 1) % videos.length);
-                setNextVideoIndex((prev) => (prev + 1) % videos.length);
-                setIsTransitioning(false);
-            }, 1000); // Wait for fade out
-        }, 8000); // Rotate every 8 seconds
+            // 1. Toggle the active layer to START the cross-fade transition
+            setActiveLayer((prevActive) => {
+                const nextActive = prevActive === 0 ? 1 : 0;
+                
+                // 2. WAIT for the current transition to finish (fadeOut)
+                // before updating the source of the layer that's now hidden
+                setTimeout(() => {
+                    setIndices((prevIndices) => {
+                        const newIndices = [...prevIndices];
+                        // The layer that just became hidden (prevActive)
+                        // should now preload the video that follows the one in the newly active layer (nextActive)
+                        newIndices[prevActive] = (prevIndices[nextActive] + 1) % videos.length;
+                        return newIndices;
+                    });
+                }, 2000); 
+
+                return nextActive;
+            });
+        }, 8500); 
 
         return () => {
             clearInterval(interval);
@@ -41,9 +52,15 @@ const HeroScene = () => {
 
     const handleContactClick = (e) => {
         e.preventDefault();
-        const footer = document.querySelector('.site-footer');
-        if (footer) {
-            footer.scrollIntoView({ behavior: 'smooth' });
+        // Priority: Use the Lenis smooth scroll instance if available
+        if (window.lenis) {
+            window.lenis.scrollTo('#contact');
+        } else {
+            // Fallback: Use corrected selector for standard scroll
+            const footer = document.querySelector('.footer');
+            if (footer) {
+                footer.scrollIntoView({ behavior: 'smooth' });
+            }
         }
     };
 
@@ -85,32 +102,30 @@ const HeroScene = () => {
                     </div>
                 </div>
 
-                {/* Current Video Layer */}
+                {/* Layer 0 (A) */}
                 <video
-                    key={`current-${currentVideoIndex}`}
-                    className={`video-bg layer ${!isTransitioning ? 'active' : ''}`}
+                    className={`video-bg layer ${activeLayer === 0 ? 'active' : ''}`}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    onCanPlayThrough={handleVideoLoad}
+                    onCanPlayThrough={activeLayer === 0 ? handleVideoLoad : undefined}
+                    preload="auto"
+                    src={videos[indices[0]].mp4}
                 >
-                    <source src={videos[currentVideoIndex].mp4} type="video/mp4" />
-                    <source src={videos[currentVideoIndex].webm} type="video/webm" />
                 </video>
-
-                {/* Next Video Layer (pre-loading or transitioning) */}
+                
+                {/* Layer 1 (B) */}
                 <video
-                    key={`next-${nextVideoIndex}`}
-                    className={`video-bg layer ${isTransitioning ? 'active' : ''}`}
+                    className={`video-bg layer ${activeLayer === 1 ? 'active' : ''}`}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    style={{ opacity: isTransitioning ? 1 : 0 }}
+                    onCanPlayThrough={activeLayer === 1 ? handleVideoLoad : undefined}
+                    preload="auto"
+                    src={videos[indices[1]].mp4}
                 >
-                    <source src={videos[nextVideoIndex].mp4} type="video/mp4" />
-                    <source src={videos[nextVideoIndex].webm} type="video/webm" />
                 </video>
             </div>
         </section>

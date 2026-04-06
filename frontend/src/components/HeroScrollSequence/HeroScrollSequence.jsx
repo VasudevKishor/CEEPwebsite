@@ -28,13 +28,19 @@ const HeroScrollSequence = () => {
     /* ─── Handle Contact Us button - scroll to footer ─── */
     const handleContactClick = useCallback((e) => {
         e.preventDefault();
-        const footer = document.querySelector('.footer');
-        if (footer) {
-            const footerTop = footer.getBoundingClientRect().top + window.pageYOffset;
-            window.scrollTo({
-                top: footerTop,
-                behavior: 'smooth'
-            });
+        // Priority: Use the Lenis smooth scroll instance if available
+        if (window.lenis) {
+            window.lenis.scrollTo('#contact');
+        } else {
+            // Fallback: Use corrected selector for standard scroll
+            const footer = document.querySelector('.footer');
+            if (footer) {
+                const footerTop = footer.getBoundingClientRect().top + window.pageYOffset;
+                window.scrollTo({
+                    top: footerTop,
+                    behavior: 'smooth'
+                });
+            }
         }
     }, []);
 

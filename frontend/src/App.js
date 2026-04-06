@@ -35,9 +35,13 @@ function AppContent() {
         });
         gsap.ticker.lagSmoothing(0);
 
+        // Expose lenis instance globally for smooth scrolling from other components
+        window.lenis = lenis;
+
         return () => {
             gsap.ticker.remove(lenis.raf);
             lenis.destroy();
+            window.lenis = null;
         };
     }, []);
 

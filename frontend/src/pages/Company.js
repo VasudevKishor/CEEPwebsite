@@ -22,7 +22,7 @@ const Company = () => {
                 name: 'Mr. Sakthi Aadharsh Azhagar',
                 position: 'Senior Energy Analyst',
                 bio: 'Specialized in resource optimization, process improvement, and organizational efficiency with extensive experience in industrial consulting.',
-                image: '/images/team/sakthi.jpg',
+                image: '/images/team/sakthi.jpeg',
                 email: 'sakthiadarsh@ceep.com'
             }
         ];
@@ -97,7 +97,14 @@ const Company = () => {
                         teamMembers.slice(0, 2).map((member, index) => (
                             <div key={member._id} className="team-card" data-scroll-reveal style={{ transitionDelay: `${index * 0.2}s` }}>
                                 <div className="team-card-inner">
-                                    <div className="team-image">
+                                    <div 
+                                        className="team-image" 
+                                        style={{ 
+                                            backgroundImage: member.image ? `url(${member.image})` : 'none',
+                                            backgroundSize: '100% 100%',
+                                            backgroundPosition: 'center'
+                                        }}
+                                    >
                                         {member.image ? (
                                             <img src={member.image} alt={member.name} loading="lazy" />
                                         ) : (

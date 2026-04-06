@@ -68,9 +68,9 @@ const Services = () => {
         <div
             className="services-page"
             data-scroll-reveal
-            style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/services-hero-bg.png)` }}
+            style={{ backgroundImage: `url(${process.env.PUBLIC_URL}/images/service2.jpg)` }}
         >
-            {/* Dark overlay */}
+            {/* Dark overlay with blur effect */}
             <div className="services-overlay" />
 
             <div className="container svc-main-container">
@@ -83,7 +83,12 @@ const Services = () => {
 
                 <div className="svc-cards-wrapper">
                     {/* Consulting Card — Responsive 3-Column Grid */}
-                    <div className="svc-card-side svc-card-left" data-heading-animate data-delay="2">
+                    <div
+                        className="svc-card-side svc-card-left"
+                        style={{ '--card-hover-bg': `url(${process.env.PUBLIC_URL}/images/service1.jpg)` }}
+                        data-heading-animate
+                        data-delay="2"
+                    >
                         <div className="svc-card-header-main">
                             <span className="svc-card-label-main">Consulting</span>
                         </div>
@@ -120,15 +125,19 @@ const Services = () => {
                         </div>
                     </div>
 
-                    {/* Training Card — Side-by-Side In-house (Links) vs Five Day */}
-                    <div className="svc-card-side svc-card-right" data-heading-animate data-delay="3">
+                    {/* Training Card — Side-by-Side In-house vs Five Day */}
+                    <div
+                        className="svc-card-side svc-card-right"
+                        style={{ '--card-hover-bg': `url(${process.env.PUBLIC_URL}/images/service3.jpg)` }}
+                        data-heading-animate
+                        data-delay="3"
+                    >
                         <div className="svc-card-header-main">
                             <span className="svc-card-label-main">Training</span>
                         </div>
 
                         <div className="svc-card-expanded-content">
                             <div className="svc-training-grid">
-                                {/* Two Day Programs List */}
                                 <div className="svc-training-col left">
                                     <h3 className="svc-training-subtitle">In-house Training Programs Offered</h3>
                                     <div className="svc-program-list">
@@ -149,11 +158,10 @@ const Services = () => {
                                     <p className="svc-training-note">All programs are of <strong>TWO DAY</strong> duration</p>
                                 </div>
 
-                                {/* Five Day Curriculum */}
                                 <div className="svc-training-col right">
                                     <h3 className="svc-training-subtitle">Five Day Course Curriculum</h3>
                                     <p className="svc-training-desc">
-                                        CEEP also offers custom based <strong>FIVE DAY</strong> course focusing on not only absorption of knowledge but also identification of implementable energy saving measures by participants through team work.
+                                        CEEP also offers custom based <strong>FIVE DAY</strong> course focusing on identification of implementable energy saving measures by participants through team work.
                                     </p>
                                     <div className="svc-curriculum-list">
                                         {curriculum.map((item, idx) => (

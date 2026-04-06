@@ -3,17 +3,14 @@ import { Link } from "react-router-dom";
 import LogoLoop from '../components/LogoLoop/LogoLoop';
 import { useTheme } from '../contexts/ThemeContext';
 import HeroScene from '../components/HeroScene/HeroScene';
+import FAQ from '../components/FAQ/FAQ';
 
 import "./Home.css";
 
 const Home = () => {
   useTheme();
   const [logoSpeed, setLogoSpeed] = useState(25);
-  const [openFaqIndex, setOpenFaqIndex] = useState(null);
 
-  const toggleFaq = (index) => {
-    setOpenFaqIndex(openFaqIndex === index ? null : index);
-  };
 
   // small hack: add `app-loaded` class to trigger gallery stagger after mount
   useEffect(() => {
@@ -162,94 +159,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="faq-section" data-scroll-reveal>
-        <div className="section-container">
-          <h2 className="section-title" data-heading-animate>Frequently Asked Questions</h2>
-          <div className="faq-list">
-            <div className={`faq-item ${openFaqIndex === 0 ? 'active' : ''}`} onClick={() => toggleFaq(0)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">What type of organizations do you work with?</h4>
-                <span className="faq-toggle">{openFaqIndex === 0 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">We support manufacturing facilities, commercial buildings, institutions, and infrastructure operators seeking structured improvements in operational performance and resource management.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 1 ? 'active' : ''}`} onClick={() => toggleFaq(1)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">How do your engagements typically begin?</h4>
-                <span className="faq-toggle">{openFaqIndex === 1 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">Engagements usually start with a diagnostic assessment to understand system performance, operational constraints, and financial priorities. From there, we define a structured improvement roadmap.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 2 ? 'active' : ''}`} onClick={() => toggleFaq(2)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">Do you focus only on energy reduction?</h4>
-                <span className="faq-toggle">{openFaqIndex === 2 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">No. Our work considers financial outcomes, operational reliability, regulatory alignment, and occupant or process requirements. Energy performance is evaluated within the broader business context.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 3 ? 'active' : ''}`} onClick={() => toggleFaq(3)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">Will recommended measures disrupt ongoing operations?</h4>
-                <span className="faq-toggle">{openFaqIndex === 3 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">Our approach prioritizes practical implementation. Recommendations are phased and aligned with operational continuity to minimize disruption.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 4 ? 'active' : ''}`} onClick={() => toggleFaq(4)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">How are results measured?</h4>
-                <span className="faq-toggle">{openFaqIndex === 4 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">Outcomes are tracked through defined performance indicators such as consumption patterns, operational metrics, financial impact, and system stability.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 5 ? 'active' : ''}`} onClick={() => toggleFaq(5)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">Do you provide implementation support?</h4>
-                <span className="faq-toggle">{openFaqIndex === 5 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">Yes. We support both advisory-level guidance and hands-on coordination during execution, depending on client requirements.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 6 ? 'active' : ''}`} onClick={() => toggleFaq(6)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">Can you assist with compliance and sustainability reporting?</h4>
-                <span className="faq-toggle">{openFaqIndex === 6 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">We help align technical improvements with relevant regulatory and reporting frameworks to support governance and disclosure requirements.</p>
-              </div>
-            </div>
-
-            <div className={`faq-item ${openFaqIndex === 7 ? 'active' : ''}`} onClick={() => toggleFaq(7)}>
-              <div className="faq-question-wrapper">
-                <h4 className="faq-question">What is the average period for the Return on Investment?</h4>
-                <span className="faq-toggle">{openFaqIndex === 7 ? '−' : '+'}</span>
-              </div>
-              <div className="faq-answer-wrapper">
-                <p className="faq-answer">Most measures have a ROI of 12-14 months. Some measures can be longer but provide huge savings in the long run.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CLIENTS SECTION */}
       <section className="clients-section" data-scroll-reveal>
         <div className="section-container">
@@ -342,6 +251,8 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <FAQ />
 
       {/* lightbox removed; clients carousel is used instead */}
     </div>

@@ -9,6 +9,13 @@ const CaseStudies = () => {
     useEffect(() => {
         const localStudies = [
             {
+                _id: 'cs13',
+                title: 'Energy Audit at Remote Industrial Accommodation Camp',
+                description: 'A comprehensive energy audit conducted at a remote industrial accommodation camp to identify energy-saving opportunities.',
+                videoUrl: '/videos/caseStudy.mp4',
+                category: 'Energy Audit'
+            },
+            {
                 _id: 'cs1',
                 title: 'Energy Audit at Processing Industry',
                 description: 'An in-depth energy audit conducted at a major processing industry to identify energy-saving opportunities.',
@@ -177,18 +184,33 @@ const CaseStudies = () => {
                             <>
                                 <div className="video-details">
                                     <span className="video-pill">{selectedCase.category}</span>
+                                    <h2 className="video-title">{selectedCase.title}</h2>
                                 </div>
                                 <div className="video-wrapper">
                                     <div className="video-container">
-                                        <iframe
-                                            key={selectedCase._id}
-                                            src={selectedCase.videoUrl}
-                                            title={selectedCase.title}
-                                            frameBorder="0"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                            loading="lazy"
-                                        ></iframe>
+                                        {selectedCase.videoUrl.includes('youtube.com') || selectedCase.videoUrl.includes('youtu.be') ? (
+                                            <iframe
+                                                key={selectedCase._id}
+                                                src={selectedCase.videoUrl}
+                                                title={selectedCase.title}
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                loading="lazy"
+                                            ></iframe>
+                                        ) : (
+                                            <video
+                                                key={selectedCase._id}
+                                                src={selectedCase.videoUrl}
+                                                controls
+                                                autoPlay
+                                                muted
+                                                playsInline
+                                                className="local-video"
+                                            >
+                                                Your browser does not support the video tag.
+                                            </video>
+                                        )}
                                     </div>
                                 </div>
                             </>
