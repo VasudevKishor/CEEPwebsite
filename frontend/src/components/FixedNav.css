@@ -21,21 +21,15 @@
 .logo-wrapper-inner {
   position: relative;
   width: calc(100% - (var(--site-gutter) * 0.75));
-  /* Sync with responsive video-hero */
   max-width: 2560px;
-  /* Sync with responsive video-hero */
 }
 
 .persistent-logo {
   position: absolute;
   top: clamp(0.4rem, 1.2vw, 16px);
-  /* Match .video-hero margin-top */
   left: 0;
   background: #ffffff !important;
-
-  /* Match Video Hero Corner Radius */
   border-radius: clamp(12px, 1.6vw, 24px) 0 clamp(12px, 1.6vw, 22px) 0;
-
   padding: clamp(0.85rem, 1.6vw, 1.25rem) clamp(1.5rem, 3vw, 2.4rem);
   display: flex;
   align-items: center;
@@ -47,7 +41,6 @@
 
 .persistent-logo img {
   height: clamp(65px, 10vw, 95px);
-  /* Increased size for better branding impact */
   width: auto;
   object-fit: contain;
 }

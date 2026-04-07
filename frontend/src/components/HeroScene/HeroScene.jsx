@@ -96,6 +96,7 @@ const HeroScene = () => {
                     </div>
                 </div>
 
+
                 <div className="hero-brand-area">
                     <div className="hero-logo-text">
                         <span className="company-name-sub">Centre for Energy, Environment and Productivity</span>
@@ -109,6 +110,9 @@ const HeroScene = () => {
                     loop
                     muted
                     playsInline
+                    webkit-playsinline="true"
+                    disablePictureInPicture
+                    controlsList="nodownload"
                     onCanPlayThrough={activeLayer === 0 ? handleVideoLoad : undefined}
                     preload="auto"
                     src={videos[indices[0]].mp4}
@@ -122,6 +126,9 @@ const HeroScene = () => {
                     loop
                     muted
                     playsInline
+                    webkit-playsinline="true"
+                    disablePictureInPicture
+                    controlsList="nodownload"
                     onCanPlayThrough={activeLayer === 1 ? handleVideoLoad : undefined}
                     preload="auto"
                     src={videos[indices[1]].mp4}

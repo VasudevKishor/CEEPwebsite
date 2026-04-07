@@ -88,6 +88,8 @@
     }
 }
 
+
+
 .video-bg {
     position: absolute;
     inset: 0;
@@ -99,6 +101,16 @@
     will-change: transform, opacity;
     filter: brightness(0.75);
     background: #0a0e27;
+    pointer-events: none; /* Prevent browser from showing controls on tap/long-press */
+}
+
+.video-bg::-webkit-media-controls {
+    display: none !important;
+}
+
+.video-bg::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
 }
 
 .video-bg.layer {

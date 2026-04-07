@@ -206,6 +206,7 @@ const CaseStudies = () => {
                                                 autoPlay
                                                 muted
                                                 playsInline
+                                                webkit-playsinline="true"
                                                 className="local-video"
                                             >
                                                 Your browser does not support the video tag.
