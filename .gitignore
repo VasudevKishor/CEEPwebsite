@@ -1,6 +1,5 @@
 # Dependencies
 node_modules/
-*/node_modules/
 
 # Environment variables
 .env
@@ -8,13 +7,10 @@ node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
-backend/.env
-frontend/.env
 
 # Build outputs
-frontend/build/
-frontend/dist/
-backend/dist/
+build/
+dist/
 
 # Logs
 *.log
@@ -32,9 +28,3 @@ Thumbs.db
 *.swp
 *.swo
 *~
-
-# MongoDB
-data/
-*.db
-
-

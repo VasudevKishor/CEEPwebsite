@@ -20,9 +20,9 @@ const Footer = () => {
                         <p>1039, 26th St, H Block,</p>
                         <p>Ponni Colony,Anna Nagar , Chennai 600040</p>
                         <p>Mobile: 9444882553, 8668115663</p>
-                        <p>Email: <a href="mailto:info@ceepenergy.com" className="footer-email-link">info@ceepenergy.com</a></p>
+                        <p>Email: <a href="mailto:admin@ceepenergy.in" className="footer-email-link">admin@ceepenergy.in</a></p>
                         <div className="footer-social" aria-label="Social media links">
-                            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/company/ceep-audit/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                                 <FaLinkedin />
                             </a>
                             <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
