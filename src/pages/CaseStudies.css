@@ -59,7 +59,7 @@
     padding-bottom: 2rem;
     /* Buffer for last card */
     scrollbar-width: thin;
-    scrollbar-color: var(--color-blue) var(--bg-secondary);
+    scrollbar-color: var(--color-red) var(--bg-secondary);
 }
 
 .case-studies-sidebar::-webkit-scrollbar {
@@ -72,85 +72,111 @@
 }
 
 .case-studies-sidebar::-webkit-scrollbar-thumb {
-    background: var(--color-blue);
+    background: var(--color-red);
     border-radius: 3px;
 }
 
 .case-studies-sidebar::-webkit-scrollbar-thumb:hover {
-    background: var(--color-blue-hover);
+    background: var(--color-red-hover);
 }
 
 .sidebar-item {
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: clamp(12px, 1.5vw, 16px);
     padding: clamp(0.85rem, 1.5vw, 1.15rem);
-    text-align: left;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-secondary);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     will-change: transform, opacity;
-    /* HARDWARE ACCELERATION */
     opacity: 1;
     transform: translateX(0);
+    height: auto;
+    min-height: min-content;
 }
 
 .sidebar-item:hover {
-    border-color: var(--color-blue);
+    border-color: var(--color-red);
     background: var(--bg-primary);
     transform: translateX(4px);
 }
 
 .sidebar-item.active {
-    border-color: var(--color-blue);
+    border-color: var(--color-red);
     background: var(--bg-primary);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+    transform: translateX(10px);
+    padding: clamp(1rem, 1.8vw, 1.3rem);
+    box-shadow: 
+        -15px 15px 45px var(--shadow-medium),
+        inset 0 0 0 1px rgba(244, 63, 94, 0.15);
+    position: relative;
+    overflow: visible; /* CRITICAL: Prevent clipping */
+    z-index: 10;
+    height: auto;
 }
+
+/* Removed left accent line as requested */
 
 .item-category {
     display: block;
     font-size: clamp(0.65rem, 1vw, 0.75rem);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--color-blue);
+    color: var(--color-green); /* Use Green secondary color */
     margin-bottom: clamp(0.3rem, 0.5vw, 0.4rem);
-    font-weight: 700; /* Increased from 600 */
-}
-
-[data-theme="light"] .item-category {
-    color: #1a49bc; /* Darker blue for better contrast in light mode */
-}
-
-.item-title {
-    display: block;
-    margin: clamp(0.2rem, 0.4vw, 0.3rem) 0; /* Reduced margin */
-    color: var(--text-primary);
-    font-size: clamp(0.9rem, 1.25vw, 1.0rem); /* Reduced slightly */
-    line-height: 1.25; /* Tighter */
     font-weight: 700;
 }
 
+.sidebar-item .item-category { color: var(--color-green); }
+.sidebar-item.active { border-color: var(--color-red); }
+.sidebar-item:hover { border-color: var(--color-red); }
+
+.item-title {
+    display: block;
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
 .item-description {
-    font-size: clamp(0.78rem, 1.1vw, 0.82rem); /* Reduced slightly */
+    display: block;
+    font-size: clamp(0.78rem, 1.1vw, 0.85rem);
     color: var(--text-secondary);
-    line-height: 1.45; /* Tighter */
-    margin: clamp(0.3rem, 0.5vw, 0.4rem) 0 0 0;
+    line-height: 1.45;
+    margin-top: 0.4rem;
+    overflow: visible;
+}
+
+.sidebar-item.active .item-title,
+.sidebar-item:hover .item-title {
+    color: var(--color-red) !important;
+}
+
+.sidebar-item.active .item-description,
+.sidebar-item:hover .item-description {
+    color: var(--text-primary);
 }
 
 /* Right video panel */
 .case-video-panel {
     position: sticky;
-    top: 100px; /* Align with sidebar sticky top */
+    top: 100px;
     background: var(--bg-secondary);
     border-radius: clamp(24px, 2.5vw, 32px);
-    padding: clamp(1rem, 2vw, 1.5rem);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.12);
+    padding: clamp(1.5rem, 3vw, 2.5rem); /* Increased padding for 'complete' feel */
+    border: 1px solid var(--bg-placeholder);
+    box-shadow: 
+        0 30px 70px var(--shadow-dark),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
     display: flex;
     flex-direction: column;
-    gap: clamp(0.5rem, 1vw, 0.75rem);
-    align-items: stretch;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    min-height: calc(100vh - 180px); /* Fill sidebar height */
     justify-content: flex-start;
-    align-self: start;
-    overflow: hidden;
 }
 
 .video-wrapper {
@@ -163,7 +189,10 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    border-radius: clamp(12px, 1.5vw, 16px);
+    border-radius: clamp(16px, 2vw, 24px); /* More pronounced */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.2),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .video-container iframe,
@@ -185,11 +214,12 @@
 }
 
 .video-title {
-    font-size: clamp(1.4rem, 2.5vw, 2rem); /* Slightly smaller to fit better */
-    line-height: 1.2;
-    margin: clamp(0.5rem, 1vw, 0.8rem) 0 0.3rem 0;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); /* Significantly larger */
+    line-height: 1.1;
+    margin: clamp(0.75rem, 1.5vw, 1rem) 0 0.5rem 0;
     color: var(--text-primary);
-    font-weight: 800;
+    font-weight: 850;
+    letter-spacing: -0.02em;
 }
 
 .video-pill {
@@ -200,13 +230,13 @@
     font-size: clamp(0.7rem, 1.2vw, 0.75rem);
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-blue);
+    color: var(--color-green);
     font-weight: 700; /* Increased */
 }
 
 [data-theme="light"] .video-pill {
-    background: rgba(37, 99, 235, 0.1); /* Subtle blue tint instead of plain grey */
-    color: #1a49bc;
+    background: rgba(16, 185, 129, 0.1); /* Subtle green tint */
+    color: #059669;
 }
 
 /* Removed video-description since it's no longer used in the right panel */
@@ -265,8 +295,8 @@
 }
 
 .deck-card.active {
-    border-color: var(--color-blue);
-    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.15);
+    border-color: var(--color-red);
+    box-shadow: 0 14px 30px rgba(244, 63, 94, 0.1), 0 0 20px rgba(16, 185, 129, 0.1); /* Dual color shadow */
 }
 
 .loading,
@@ -280,7 +310,7 @@
 
 @media (max-height: 700px) {
     .case-studies-page {
-        padding: clamp(0.75rem, 2vw, 1.5rem) 0;
+        padding: 1.5rem 0.5rem; /* Reduced from clamp */
     }
     
     .section-title {
@@ -321,6 +351,19 @@
 }
 
 @media (max-width: 768px) {
+    .case-studies-page {
+        padding-top: 5px;
+    }
+    
+    .section-title {
+        margin-bottom: 0.25rem !important;
+    }
+
+    .case-studies-layout {
+        gap: 0.75rem;
+        margin-top: 0.25rem;
+    }
+
     .case-studies-sidebar {
         max-height: 350px;
     }

@@ -14,6 +14,7 @@ const navLinks = [
 const Navbar = () => {
     const [isOverlayOpen, setIsOverlayOpen] = useState(false);
     const [hoveredLink, setHoveredLink] = useState(null);
+    const { theme, toggleTheme } = useTheme();
     const location = useLocation();
 
     const toggleOverlay = () => {
@@ -24,7 +25,6 @@ const Navbar = () => {
 
     const handleLinkClick = () => {
         closeOverlay();
-        // Scroll to top when navigating
         window.scrollTo(0, 0);
     };
 
@@ -33,15 +33,41 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="navbar-container">
-                {/* Small circular hamburger card (no logo or visible navbar strip) */}
-                <button className="hamburger-card" onClick={toggleOverlay} aria-label="Open menu">
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                </button>
+                <div className="nav-left">
+                    <Link to="/" onClick={handleLinkClick} className={`navbar-link ${isActive('/')}`}>
+                        Home
+                    </Link>
+                </div>
+
+                <div className="nav-right">
+                    <nav className="navbar-menu-desktop">
+                        <Link to="/company" onClick={handleLinkClick} className={`navbar-link ${isActive('/company')}`}>
+                            Company
+                        </Link>
+                        <Link to="/case-studies" onClick={handleLinkClick} className={`navbar-link ${isActive('/case-studies')}`}>
+                            Case Studies
+                        </Link>
+                        <Link to="/services" onClick={handleLinkClick} className={`navbar-link ${isActive('/services')}`}>
+                            Services
+                        </Link>
+                    </nav>
+
+                    <button 
+                        className="theme-toggle" 
+                        onClick={toggleTheme} 
+                        aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                    >
+                        {theme === 'light' ? <FaMoon /> : <FaSun />}
+                    </button>
+
+                    <button className="hamburger-card mobile-only" onClick={toggleOverlay} aria-label="Open menu">
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                    </button>
+                </div>
             </div>
 
-            {/* overlay menu remains accessible via the hamburger */}
             <div className={`nav-overlay ${isOverlayOpen ? 'open' : ''}`} role="dialog" aria-modal="true" aria-hidden={!isOverlayOpen}>
                 <div className="overlay-content">
                     <button className="overlay-close" onClick={closeOverlay} aria-label="Close menu">
@@ -60,6 +86,11 @@ const Navbar = () => {
                                 </Link>
                             </li>
                         ))}
+                        <li className="mobile-theme-toggle">
+                            <button onClick={toggleTheme} className="theme-toggle-btn-mobile">
+                                {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
+                            </button>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -68,5 +99,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

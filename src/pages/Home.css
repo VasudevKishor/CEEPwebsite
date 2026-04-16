@@ -7,6 +7,8 @@
   --muted: var(--text-secondary);
   --card: var(--bg-secondary);
   --accent: linear-gradient(135deg, var(--color-blue) 0%, var(--color-blue-hover) 100%);
+  --accent-red: linear-gradient(135deg, var(--color-red) 0%, var(--color-red-hover) 100%);
+  --accent-green: linear-gradient(135deg, var(--color-green) 0%, var(--color-green-hover) 100%);
   --accent-hover: linear-gradient(135deg, var(--color-blue-hover) 0%, var(--color-blue) 100%);
   --glass: rgba(255, 255, 255, 0.7);
   --shadow: 0 4px 20px var(--shadow-light);
@@ -23,7 +25,7 @@
 html,
 body,
 #root {
-  height: 100%
+  min-height: 100%
 }
 
 html {
@@ -286,17 +288,17 @@ body {
 
 /* Common Section Container */
 .case-studies-page .container {
-  max-width: 2200px;
-  width: 100%;
-  padding: 0 var(--site-gutter);
+  max-width: 95%;
+  width: 95%;
+  padding: 0;
   margin: 0 auto;
 }
 
 .section-container {
-  max-width: 100%;
-  width: 100%;
+  max-width: 95%;
+  width: 95%;
   margin: 0 auto;
-  padding: 0 var(--site-gutter);
+  padding: 0;
 }
 
 .testimonials-slider {
@@ -345,9 +347,18 @@ body {
   font-weight: 400;
   margin-bottom: 32px;
   text-align: center;
-  max-width: 1100px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.section-content-left {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: clamp(1rem, 1.1vw, 1.15rem);
+  font-weight: 400;
+  margin-bottom: 24px;
+  text-align: left;
 }
 
 .section-cta {
@@ -378,14 +389,15 @@ body {
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, var(--color-blue), transparent);
+  opacity: 0.15;
 }
 
 .section-container-full {
-  max-width: none;
-  width: 100%;
+  max-width: 95%;
+  width: 95%;
   margin: 0 auto;
-  padding: 0 var(--site-gutter);
+  padding: 0;
 }
 
 .who-we-are-wrapper {
@@ -401,7 +413,7 @@ body {
 
 .who-we-are-content {
   width: 100%;
-  max-width: 1100px;
+  max-width: 100%;
   /* Cap text width for readability while section is wide */
   margin: 0 auto;
 }
@@ -413,14 +425,14 @@ body {
   font-weight: 400;
   margin-bottom: 20px;
   text-align: center;
-  max-width: 1200px;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
 
 .section-cta-left {
   margin-top: 32px;
-  text-align: center;
+  text-align: left;
 }
 
 
@@ -457,14 +469,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;
-  max-width: none;
-  margin: 0 auto;
-}
-
-.about-intro {
-  text-align: center;
-  margin-bottom: 60px;
-  max-width: none;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -479,9 +484,8 @@ body {
   transform: translateY(30px);
   position: relative;
   overflow: hidden;
-  width: calc(33.333% - 22px);
-  min-width: 280px;
-  max-width: 350px;
+  width: calc(31% - 16px);
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -489,17 +493,16 @@ body {
   min-height: 180px;
 }
 
-.driver-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, var(--color-blue), var(--color-blue-hover));
-  transform: scaleX(0);
-  transition: transform 0.4s var(--easing);
-  transform-origin: left;
+.driver-item:nth-child(3n+1)::before {
+  background: var(--color-blue);
+}
+
+.driver-item:nth-child(3n+2)::before {
+  background: var(--color-red);
+}
+
+.driver-item:nth-child(3n+3)::before {
+  background: var(--color-green);
 }
 
 .driver-item:hover::before {
@@ -519,13 +522,32 @@ body {
 .driver-number {
   font-size: 3.2rem;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--color-blue), var(--color-blue-hover));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 16px;
-  display: block;
+  margin-bottom: 24px;
   line-height: 1;
+}
+
+.driver-item:nth-child(3n+1) .driver-number {
+  color: var(--color-blue);
+}
+
+.driver-item:nth-child(3n+2) .driver-number {
+  color: var(--color-red);
+}
+
+.driver-item:nth-child(3n+3) .driver-number {
+  color: var(--color-green);
+}
+
+.driver-item:nth-child(3n+1):hover h4 {
+  color: var(--color-blue);
+}
+
+.driver-item:nth-child(3n+2):hover h4 {
+  color: var(--color-red);
+}
+
+.driver-item:nth-child(3n+3):hover h4 {
+  color: var(--color-green);
 }
 
 .driver-item h4 {
@@ -551,7 +573,7 @@ body {
 }
 
 .clients-content {
-  max-width: 1400px;
+  max-width: 100%;
   margin: 40px auto 60px;
 }
 
@@ -654,11 +676,23 @@ body {
   text-align: center;
   box-shadow: 0 4px 15px var(--shadow-light);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--bg-placeholder);
   border-top: 4px solid var(--color-blue);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.sector-card:nth-child(2) {
+  border-top-color: var(--color-red);
+}
+
+.sector-card:nth-child(3) {
+  border-top-color: var(--color-green);
+}
+
+.sector-card:nth-child(4) {
+  border-top-color: var(--color-blue);
 }
 
 .sector-card:hover {
@@ -779,21 +813,46 @@ body {
 .home-about-section {
   position: relative;
   background: var(--bg-secondary);
-  padding: 100px 0;
+  padding: clamp(80px, 10vw, 140px) 0;
   overflow: hidden;
-  width: 100%;
-  text-align: center;
 }
 
 .home-about-content {
-  width: 100%;
-  max-width: none;
-  /* No restriction */
-  margin: 0 auto;
-  position: relative;
   z-index: 2;
-  padding: 0 var(--site-gutter);
-  /* Add padding for long lines */
+  width: 95%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-about-content .section-slogan {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.about-description-wrapper {
+  max-width: 100%;
+  margin: 0 auto 48px;
+}
+
+.section-content-center {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: clamp(1.1rem, 1.2vw, 1.25rem);
+  font-weight: 400;
+  margin-bottom: 32px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.section-cta-center {
+  text-align: center;
+  margin-top: 48px;
+}
+
+@media (max-width: 1024px) {
+  .home-about-section {
+    padding: 80px 0;
+  }
 }
 
 .home-about-title {

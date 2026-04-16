@@ -3,8 +3,20 @@
     color: var(--text-primary);
     padding: clamp(2.5rem, 4vw, 3.25rem) 0 clamp(1rem, 2vw, 1.5rem);
     margin-top: auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--bg-placeholder);
+    position: relative;
     transition: background-color 0.3s ease, color 0.3s ease, padding 0.3s ease;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: clamp(2rem, 5vw, 6rem);
+    right: clamp(2rem, 5vw, 6rem);
+    height: 1.5px;
+    background: var(--brand-gradient);
+    opacity: 0.4;
 }
 
 .footer-container {
@@ -84,13 +96,13 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid var(--bg-placeholder);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--text-primary);
     font-size: 1.05rem;
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-primary);
     transition: all 0.25s ease;
 }
 
@@ -98,7 +110,8 @@
     color: #fff;
     background: var(--color-blue);
     border-color: var(--color-blue);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px var(--shadow-light);
 }
 
 .footer-email-link {
@@ -132,7 +145,7 @@
     text-align: center;
     margin-top: 0.5rem;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid var(--bg-placeholder);
     color: var(--text-secondary);
     font-size: 0.85rem;
 }

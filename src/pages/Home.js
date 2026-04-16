@@ -4,7 +4,6 @@ import LogoLoop from '../components/LogoLoop/LogoLoop';
 import { useTheme } from '../contexts/ThemeContext';
 import HeroScene from '../components/HeroScene/HeroScene';
 import FAQ from '../components/FAQ/FAQ';
-
 import "./Home.css";
 
 const Home = () => {
@@ -104,16 +103,18 @@ const Home = () => {
       <section className="home-about-section" data-scroll-reveal>
         <div className="section-container">
           <div className="home-about-content">
-            <h2 className="section-slogan" data-heading-animate>
+            <h2 className="section-slogan text-center" data-heading-animate>
               Engineering Sustainability with Industry Precision
             </h2>
-            <p className="section-content-center" data-heading-animate data-delay="1">
-              At the Centre for Energy, Environment and Productivity (CEEP) we collaborate and strive to assist organisations in improved use of resources be it energy, water, human resources, time and anything to do with productivity.
-            </p>
-            <p className="section-content-center" data-heading-animate data-delay="2">
-              Our consulting and training services leverage our deep industry expertise and use analytical rigor to help organisations unveil improvement opportunities, make informed decisions rapidly and solve their critical business problems.
-            </p>
-            <div className="section-cta-left" style={{ textAlign: 'center' }} data-heading-animate data-delay="3">
+            <div className="about-description-wrapper">
+              <p className="section-content-center" data-heading-animate data-delay="1">
+                At the Centre for Energy, Environment and Productivity (CEEP) we collaborate and strive to assist organisations in improved use of resources be it energy, water, human resources, time and anything to do with productivity.
+              </p>
+              <p className="section-content-center" data-heading-animate data-delay="2">
+                Our consulting and training services leverage our deep industry expertise and use analytical rigor to help organisations unveil improvement opportunities, make informed decisions rapidly and solve their critical business problems.
+              </p>
+            </div>
+            <div className="section-cta-center" data-heading-animate data-delay="3">
               <Link to="/company" className="btn btn-primary">Meet the team</Link>
             </div>
           </div>
@@ -225,12 +226,10 @@ const Home = () => {
                 logos={clientNodes.slice(0, Math.ceil(clientNodes.length / 2))}
                 speed={logoSpeed}
                 direction="left"
-                logoHeight={90}
-                gap={50}
+                logoHeight={80}
+                gap={60}
                 hoverSpeed={0}
                 scaleOnHover
-                fadeOut
-                fadeOutColor="#ffffff"
                 ariaLabel="Clients carousel moving left"
               />
             </div>
@@ -239,12 +238,10 @@ const Home = () => {
                 logos={clientNodes.slice(Math.ceil(clientNodes.length / 2))}
                 speed={logoSpeed}
                 direction="right"
-                logoHeight={90}
-                gap={50}
+                logoHeight={80}
+                gap={60}
                 hoverSpeed={0}
                 scaleOnHover
-                fadeOut
-                fadeOutColor="#ffffff"
                 ariaLabel="Clients carousel moving right"
               />
             </div>

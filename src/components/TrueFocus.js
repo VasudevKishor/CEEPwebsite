@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'motion/react';
 import './TrueFocus.css';
 
 const TrueFocus = ({
@@ -7,8 +6,8 @@ const TrueFocus = ({
     separator = ' ',
     manualMode = false,
     blurAmount = 5,
-    borderColor = 'green',
-    glowColor = 'rgba(0, 255, 0, 0.6)',
+    borderColor = 'var(--color-blue)',
+    glowColor = 'rgba(59, 130, 246, 0.4)',
     animationDuration = 0.5,
     pauseBetweenAnimations = 1
 }) => {
@@ -75,7 +74,7 @@ const TrueFocus = ({
                             filter: isActive ? 'blur(0px)' : `blur(${blurAmount}px)`,
                             '--border-color': borderColor,
                             '--glow-color': glowColor,
-                            transition: `filter ${animationDuration}s ease`
+                            transition: `filter ${animationDuration}s cubic-bezier(0.4, 0, 0.2, 1)`
                         }}
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={handleMouseLeave}
@@ -85,28 +84,27 @@ const TrueFocus = ({
                 );
             })}
 
-            <motion.div
+            <div
                 className="focus-frame"
-                animate={{
-                    x: focusRect.x,
-                    y: focusRect.y,
-                    width: focusRect.width,
-                    height: focusRect.height,
-                    opacity: currentIndex >= 0 ? 1 : 0
-                }}
-                transition={{
-                    duration: animationDuration
-                }}
                 style={{
+                    transform: `translate3d(${focusRect.x}px, ${focusRect.y}px, 0)`,
+                    width: `${focusRect.width}px`,
+                    height: `${focusRect.height}px`,
+                    opacity: currentIndex >= 0 ? 1 : 0,
+                    transition: `all ${animationDuration}s cubic-bezier(0.4, 0, 0.2, 1)`,
                     '--border-color': borderColor,
-                    '--glow-color': glowColor
+                    '--glow-color': glowColor,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    pointerEvents: 'none'
                 }}
             >
                 <span className="corner top-left"></span>
                 <span className="corner top-right"></span>
                 <span className="corner bottom-left"></span>
                 <span className="corner bottom-right"></span>
-            </motion.div>
+            </div>
         </div>
     );
 };

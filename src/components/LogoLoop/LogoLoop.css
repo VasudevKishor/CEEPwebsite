@@ -4,17 +4,17 @@
   overflow: hidden;
   margin: 2rem 0;
   position: relative;
-  padding: 0;
+  padding: 1rem 0;
 }
 
 .logo-loop {
   display: flex;
   align-items: center;
-  gap: var(--logo-gap, 2rem);
+  gap: var(--logo-gap, 3rem);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  /* ensure the scrolling track is at least twice the container width so translateX(-50%) moves a full viewport */
   min-width: 200%;
+  white-space: nowrap;
 }
 
 .logo-loop.horizontal {
@@ -22,102 +22,47 @@
   animation-name: logo-scroll-x;
 }
 
-.logo-loop.vertical {
-  flex-direction: column;
-  animation-name: logo-scroll-y;
+.logo-item {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--bg-placeholder);
+  border-radius: 16px;
+  padding: 1.5rem 2.5rem;
+  transition: var(--transition-bounce);
+  box-shadow: var(--shadow-medium);
+}
+
+.logo-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-blue);
+    box-shadow: var(--shadow-dark);
 }
 
 .logo-item img {
   height: var(--logo-height, 64px);
   width: auto;
   object-fit: contain;
-  opacity: 0.95;
-  filter: grayscale(10%);
-  transition: transform 0.25s ease, filter 0.25s ease;
+  opacity: 1;
+  filter: none;
+  transition: var(--transition-smooth);
 }
 
-.logo-item a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.logo-item:hover img {
+    transform: scale(1.05);
 }
 
-.logo-item {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 12px;
-  padding: 20px 28px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s ease;
+[data-theme="dark"] .logo-item img {
+    filter: none;
 }
-
-.logo-item:hover {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-  border-color: #d0d0d0;
-}
-
-[data-theme="dark"] .logo-item {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  padding: 20px 28px;
-}
-
-[data-theme="dark"] .logo-item:hover {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-  transform: translateY(0);
-}
-
-/* Prevent wrapping and ensure each item keeps its width so translateX(-50%) is seamless */
-.logo-loop {
-  white-space: nowrap;
-}
-
-.logo-loop>.logo-item {
-  flex: 0 0 auto;
-}
-
-/* Pause-on-hover when configured */
-/* Handled via animationPlayState inline style in LogoLoop.js */
-
-/* Subtle hover scale handled by class */
-.scale-on-hover .logo-item:hover img,
-.scale-on-hover .logo-item:hover>* {
-  transform: scale(1.03);
-  filter: grayscale(0%);
-}
-
-.scale-on-hover.hovered .logo-item img,
-.scale-on-hover.hovered .logo-item>* {
-  transform: scale(1.03);
-  filter: grayscale(0%);
-}
-
-/* Fade overlays */
-/* Removed fade overlays to avoid visible edge artifacts */
 
 @keyframes logo-scroll-x {
   from {
     transform: translateX(0);
   }
-
   to {
-    transform: translateX(-25%);
-  }
-}
-
-@keyframes logo-scroll-y {
-  from {
-    transform: translateY(0);
-  }
-
-  to {
-    transform: translateY(-25%);
+    transform: translateX(-50%);
   }
 }

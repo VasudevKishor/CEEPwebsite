@@ -32,8 +32,14 @@ export const ThemeProvider = ({ children }) => {
     useEffect(() => {
         // Save theme to localStorage whenever it changes
         localStorage.setItem('theme', theme);
-        // Apply theme class to document root
+        // Apply theme data attribute
         document.documentElement.setAttribute('data-theme', theme);
+        // Sync with Tailwind CSS class-based dark mode
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
     }, [theme]);
 
     const toggleTheme = () => {

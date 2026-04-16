@@ -97,12 +97,6 @@ const HeroScene = () => {
                 </div>
 
 
-                <div className="hero-brand-area">
-                    <div className="hero-logo-text">
-                        <span className="company-name-sub">Centre for Energy, Environment and Productivity</span>
-                    </div>
-                </div>
-
                 {/* Layer 0 (A) */}
                 <video
                     className={`video-bg layer ${activeLayer === 0 ? 'active' : ''}`}

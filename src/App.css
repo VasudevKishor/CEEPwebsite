@@ -136,15 +136,21 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    .section {
+        padding: 15px 0; /* Aggressively reduced */
+    }
+
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem; /* Minimal gap */
     }
 
     .section-subtitle {
         font-size: 1rem;
+        margin-bottom: 1rem;
     }
 
     .main-content {
-        padding-top: 70px;
+        padding-top: 54px; /* Tight clearance */
     }
 }

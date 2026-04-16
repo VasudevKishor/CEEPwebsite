@@ -6,7 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 // Navbar removed — header is handled directly in pages where needed
 import Footer from './components/Footer';
-import FixedNav from './components/FixedNav';
+import { Header } from './components/ui/header-2';
 import Home from './pages/Home';
 import Company from './pages/Company';
 import Services from './pages/Services';
@@ -52,7 +52,7 @@ function AppContent() {
 
     return (
         <div className="App">
-            <FixedNav />
+            <Header />
             <main className={`main-content ${location.pathname === '/' ? 'home-main' : ''}`}>
                 <Routes>
                     <Route path="/" element={<Home />} />

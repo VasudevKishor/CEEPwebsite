@@ -11,7 +11,6 @@ export default function Windmill({ width = "350px", height = "600px" }) {
     const shape = useMemo(() => {
       const s = new THREE.Shape();
       s.moveTo(0, 0);
-      // Create a curved blade path using bezier curves for organic look
       s.bezierCurveTo(0.35, 0.5, 0.3, 2, 0.25, 4);
       s.bezierCurveTo(0.15, 6, 0.1, 8, 0.08, 9);
       s.lineTo(-0.08, 9);
@@ -22,11 +21,11 @@ export default function Windmill({ width = "350px", height = "600px" }) {
 
     const extrudeSettings = useMemo(
       () => ({
-        depth: 0.18,
+        depth: 0.2,
         bevelEnabled: true,
-        bevelThickness: 0.03,
-        bevelSize: 0.03,
-        bevelSegments: 4,
+        bevelThickness: 0.05,
+        bevelSize: 0.05,
+        bevelSegments: 5,
       }),
       []
     );
@@ -35,32 +34,31 @@ export default function Windmill({ width = "350px", height = "600px" }) {
       <mesh rotation={rotation} castShadow receiveShadow>
         <extrudeGeometry args={[shape, extrudeSettings]} />
         <meshPhysicalMaterial
-          color="#ffffff"
-          roughness={0.15}
-          metalness={0.15}
-          clearcoat={1.0}
-          clearcoatRoughness={0.08}
-          envMapIntensity={1.2}
+          color="#f8f9fa"
+          roughness={0.1}
+          metalness={0.05}
+          clearcoat={0.8}
+          clearcoatRoughness={0.1}
+          envMapIntensity={1.5}
         />
       </mesh>
     );
   };
 
-  // --- Rotor Component (Inside for better scoping) ---
   const Rotor = () => {
     const rotorRef = useRef();
 
-    useFrame((_, delta) => {
+    useFrame((state, delta) => {
       if (rotorRef.current) {
-        rotorRef.current.rotation.z -= 0.8 * delta;
+        rotorRef.current.rotation.z -= (0.5 + Math.sin(state.clock.elapsedTime * 0.5) * 0.1) * delta;
       }
     });
 
     return (
-      <group ref={rotorRef} position={[0, 15, 1.7]}>
+      <group ref={rotorRef} position={[0, 15, 1.8]}>
         <mesh castShadow rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[0.3, 1, 1.5, 32]} />
-          <meshPhysicalMaterial color="#eeeeee" roughness={0.5} metalness={0.2} />
+          <cylinderGeometry args={[0.5, 0.8, 1.2, 32]} />
+          <meshPhysicalMaterial color="#ffffff" roughness={0.3} metalness={0.1} />
         </mesh>
         <Blade rotation={[0, 0, 0]} />
         <Blade rotation={[0, 0, (Math.PI * 2) / 3]} />
@@ -69,24 +67,23 @@ export default function Windmill({ width = "350px", height = "600px" }) {
     );
   };
 
-  // --- Main Windmill Model (Inside for better scoping) ---
   const WindmillModel = () => {
-    const angle = -Math.PI / 9; // 20 degree angle (approximately -0.349 radians)
+    const angle = -Math.PI / 8;
 
     return (
       <group position={[0, -18, 0]} rotation={[0, angle, 0]}>
         <mesh position={[0, 7.5, 0]} castShadow receiveShadow>
-          <cylinderGeometry args={[0.5, 2.5, 16, 64]} />
+          <cylinderGeometry args={[0.4, 2.2, 16, 64]} />
           <meshPhysicalMaterial
-            color="#e0e0e0"
-            roughness={0.7}
+            color="#f1f5f9"
+            roughness={0.5}
             metalness={0.1}
           />
         </mesh>
 
-        <mesh position={[0, 15, -0.8]} castShadow>
-          <boxGeometry args={[2, 1.8, 4.5]} />
-          <meshPhysicalMaterial color="#ffffff" roughness={0.3} clearcoat={0.5} />
+        <mesh position={[0, 15, -0.6]} castShadow>
+          <boxGeometry args={[1.8, 1.8, 4]} />
+          <meshPhysicalMaterial color="#ffffff" roughness={0.2} metalness={0.1} clearcoat={0.5} />
         </mesh>
 
         <Rotor />
