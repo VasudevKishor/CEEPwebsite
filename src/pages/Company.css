@@ -1,7 +1,7 @@
 .company-page {
     background-color: var(--bg-primary);
     min-height: calc(100vh - 200px);
-    padding: clamp(1rem, 3vw, 2rem);
+    padding: clamp(140px, 15vh, 180px) clamp(1rem, 3vw, 2rem) clamp(2rem, 5vw, 4rem);
     transition: background-color 0.3s ease, padding 0.4s ease;
     animation: fadeIn 0.6s ease-out;
 }
@@ -48,6 +48,93 @@
     line-height: 1.6;
 }
 
+.philosophy-minimal {
+    margin: 0 auto clamp(1.5rem, 3vw, 2.5rem);
+    width: 100%;
+}
+
+.philosophy-split {
+    display: flex;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 6rem);
+    width: 100%;
+}
+
+.philosophy-portrait {
+    flex: 0 0 clamp(200px, 30vw, 450px);
+}
+
+.artistic-portrait-frame {
+    width: 100%;
+    aspect-ratio: 1;
+    border-left: 2px solid var(--color-blue);
+    border-bottom: 2px solid var(--color-red);
+    position: relative;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), transparent);
+}
+
+.artistic-portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.1);
+    opacity: 0.85;
+}
+
+.portrait-overlay-accent {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    border-bottom: 4px solid var(--color-blue);
+    border-right: 4px solid var(--color-red);
+}
+
+.philosophy-text {
+    flex: 1;
+}
+
+.philosophy-tag {
+    font-size: 1.25rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5em;
+    color: var(--color-blue);
+    margin-bottom: 2rem;
+    display: block;
+}
+
+.philosophy-quote-raw {
+    font-size: clamp(1.4rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-primary);
+    font-style: italic;
+    margin: 0 0 1.5rem;
+    border: none;
+    padding: 0;
+}
+
+.philosophy-author-raw {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--color-red);
+}
+
+@media (max-width: 800px) {
+    .philosophy-split {
+        flex-direction: column;
+        text-align: center;
+        gap: 2.5rem;
+    }
+    
+    .philosophy-portrait {
+        width: 180px;
+    }
+}
+
 .team-grid {
     display: flex;
     flex-direction: column;
@@ -55,7 +142,6 @@
     gap: clamp(1.5rem, 4vw, 2rem);
     margin-top: clamp(2rem, 5vw, 3rem);
     width: 100%;
-    transition: gap 0.4s ease, margin-top 0.4s ease;
 }
 
 .team-card {
@@ -172,6 +258,39 @@
     transition: color 0.3s ease, font-size 0.3s ease;
 }
 
+.team-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.team-email {
+    margin-bottom: 0 !important;
+}
+
+.team-linkedin-stylized {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0077b5;
+    /* LinkedIn signature blue */
+    color: white !important;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 12px rgba(0, 119, 181, 0.25);
+    text-decoration: none !important;
+}
+
+.team-linkedin-stylized:hover {
+    background: #0088d1;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 119, 181, 0.4);
+}
+
 .team-position {
     font-weight: 600;
     font-size: clamp(0.95rem, 2vw, 1.1rem);
@@ -194,8 +313,7 @@
     transition: color 0.3s ease, font-size 0.3s ease;
 }
 
-.team-email,
-.team-linkedin {
+.team-email {
     display: block;
     color: var(--text-primary);
     text-decoration: underline;
@@ -205,15 +323,22 @@
     font-weight: 500;
 }
 
-.team-email:hover,
-.team-linkedin:hover {
+.team-email:hover {
     color: var(--color-green);
     text-decoration: underline;
 }
 
-.team-image { border-color: var(--color-blue); }
-.team-position { color: var(--color-blue); }
-.team-card:hover .team-name { color: var(--color-blue); }
+.team-image {
+    border-color: var(--color-blue);
+}
+
+.team-position {
+    color: var(--color-blue);
+}
+
+.team-card:hover .team-name {
+    color: var(--color-blue);
+}
 
 .loading,
 .no-data {

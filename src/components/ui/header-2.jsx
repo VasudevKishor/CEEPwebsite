@@ -38,9 +38,8 @@ export function Header() {
   }, [location.pathname]);
 
   const navLinks = [
-    { name: 'Home', path: '/', color: 'var(--color-red)' },
-    { name: 'Company', path: '/company', color: 'var(--color-green)' },
-    { name: 'Case Studies', path: '/case-studies', color: 'var(--color-red)' },
+    { name: 'Our Company', path: '/company', color: 'var(--color-blue)' },
+    { name: 'Our Work', path: '/case-studies', color: 'var(--color-red)' },
     { name: 'Services', path: '/services', color: 'var(--color-green)' },
   ];
 
@@ -48,24 +47,48 @@ export function Header() {
     <>
       <header
         className={cn(
-          'fixed z-[9999] transition-all duration-300 ease-in-out px-2 md:px-6 left-0 right-0',
+          'fixed z-[9999] transition-all duration-500 ease-in-out px-4 md:px-12 left-0 right-0 border-none',
           scrolled 
-            ? 'top-0 w-full shadow-2xl backdrop-blur-xl bg-[var(--bg-primary)]/90 py-2 border-b border-[var(--bg-placeholder)]/10' 
-            : 'top-0 w-full bg-transparent py-2 md:py-4'
+            ? 'top-0 py-0.5 md:py-1' 
+            : 'top-0 py-1.5 md:py-2.5'
         )}
       >
-        <nav className="flex items-center justify-between w-[98%] mx-auto">
+        {/* Dynamic Background with fade effect */}
+        <div className={cn(
+          "absolute inset-0 transition-opacity duration-500 -z-10",
+          (scrolled || location.pathname !== '/') ? "opacity-100" : "opacity-0"
+        )}>
+          <div 
+            className="absolute inset-0 bg-[var(--bg-primary)]/80 backdrop-blur-2xl"
+            style={{ 
+              maskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, black 0%, black 85%, transparent 100%)'
+            }}
+          />
+        </div>
+
+        <nav className="flex items-center justify-between w-full mx-auto">
           {/* Logo Section */}
-          <Link to="/" className="relative flex items-center gap-1.5 group h-16 w-auto">
+          <Link 
+            to="/" 
+            className={cn(
+              "relative flex items-center gap-3 group transition-all duration-500",
+              scrolled ? "scale-90" : "scale-100"
+            )}
+          >
             <img 
               src={(theme === 'light' && (scrolled || location.pathname !== '/')) ? '/videos/ceep.png' : '/videos/logo.png'} 
               alt="CEEP" 
-              className="h-16 w-auto object-contain transition-all duration-300" 
+              className={cn(
+                "w-auto object-contain transition-all duration-500",
+                scrolled ? "h-12 md:h-14" : "h-20 md:h-24"
+              )} 
             />
             <div className="flex flex-col justify-center">
               <span className={cn(
-                "text-[0.7rem] md:text-[0.85rem] font-black tracking-tight uppercase leading-none transition-colors duration-300",
-                (scrolled || location.pathname !== '/') ? "text-[var(--text-primary)]" : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+                "font-black tracking-tight uppercase leading-[1.1] transition-all duration-500",
+                scrolled ? "text-[0.6rem] md:text-[0.75rem]" : "text-[0.9rem] md:text-[1.1rem]",
+                (scrolled || location.pathname !== '/') ? "text-[var(--text-primary)]" : "text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
               )}>
                 Centre for Energy,<br />Environment and Productivity
               </span>
@@ -73,7 +96,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1 lg:gap-1">
+          <div className="hidden md:flex items-center gap-2 lg:gap-4">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
@@ -82,12 +105,12 @@ export function Header() {
                   to={link.path}
                   style={{ '--active-color': link.color }}
                   className={cn(
-                    'relative px-4 py-2 text-[0.8rem] lg:text-[0.85rem] font-black tracking-widest transition-all duration-300 rounded-lg uppercase',
+                    'relative px-4 py-2 text-[0.8rem] lg:text-[0.9rem] font-black tracking-widest transition-all duration-300 rounded-lg uppercase',
                     isActive 
                       ? 'text-[var(--active-color)]' 
                       : (scrolled || location.pathname !== '/')
                         ? 'text-[var(--text-primary)] hover:text-[var(--active-color)]'
-                        : 'text-white hover:text-[var(--active-color)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]'
+                        : 'text-white hover:text-[var(--active-color)] drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]'
                   )}
                 >
                   {link.name}
@@ -99,24 +122,25 @@ export function Header() {
               );
             })}
             
-            
-            <Button 
-              variant="ghost" 
-              size="icon"
-              onClick={toggleTheme} 
-              className={cn(
-                "rounded-full transition-all duration-300",
-                (scrolled || location.pathname !== '/')
-                  ? "hover:bg-[var(--bg-placeholder)]/30 text-[var(--text-primary)]" 
-                  : "text-white hover:bg-white/10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
-              )}
-            >
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-            </Button>
+            <div className="ml-2 pl-2 border-l border-[var(--text-primary)]/10">
+              <Button 
+                variant="ghost" 
+                size="icon"
+                onClick={toggleTheme} 
+                className={cn(
+                  "rounded-full transition-all duration-300",
+                  (scrolled || location.pathname !== '/')
+                    ? "hover:bg-[var(--bg-placeholder)]/30 text-[var(--text-primary)]" 
+                    : "text-white hover:bg-white/10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]"
+                )}
+              >
+                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Actions */}
-          <div className="flex md:hidden items-center gap-4">
+          <div className="flex md:hidden items-center gap-2">
             <Button 
               variant="ghost" 
               size="icon"
@@ -124,11 +148,11 @@ export function Header() {
               className={cn(
                 "rounded-full transition-all duration-300",
                 scrolled 
-                  ? "text-slate-700 dark:text-slate-200" 
+                  ? "text-[var(--text-primary)]" 
                   : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               )}
             >
-              {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
+              {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </Button>
             <Button
               variant="ghost"
@@ -137,11 +161,11 @@ export function Header() {
               className={cn(
                 "transition-all duration-300",
                 scrolled 
-                  ? "text-slate-700 dark:text-slate-200" 
+                  ? "text-[var(--text-primary)]" 
                   : "text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
               )}
             >
-              {open ? <X size={24} /> : <Menu size={24} />}
+              {open ? <X size={20} /> : <Menu size={20} />}
             </Button>
           </div>
         </nav>

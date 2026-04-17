@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: clamp(2rem, 3vh, 3rem) var(--site-gutter);
+    padding: clamp(140px, 15vh, 180px) var(--site-gutter) clamp(2rem, 3vh, 3rem);
     background-color: var(--bg-primary);
     color: var(--text-primary) !important;
 }
@@ -48,8 +48,8 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-            rgba(0, 0, 0, 0.35) 0%,
-            rgba(0, 0, 0, 0.6) 100%);
+            rgba(0, 0, 0, 0.45) 0%,
+            rgba(0, 0, 0, 0.75) 100%);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     z-index: 1;
@@ -147,7 +147,7 @@
 .svc-card-side:hover {
     flex: 4;
     background-color: var(--bg-primary);
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.90)), var(--card-hover-bg);
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.9)), var(--card-hover-bg);
     background-size: cover;
     background-position: center;
     box-shadow: 0 40px 100px var(--shadow-dark);
@@ -564,11 +564,23 @@
     /* Bright blue for item titles */
 }
 
-/* Focal-point dimming */
+/* Focal-point dimming and typographical reduction */
 .services-page:has(.svc-card-side:hover) .svc-card-side:not(:hover) {
     opacity: 0.4;
     filter: blur(2px) grayscale(0.5);
     transform: scale(0.96);
+}
+
+/* Specific reduction for CONSULTING text when TRAINING is hovered */
+.svc-cards-wrapper:has(.svc-card-right:hover) .svc-card-left .svc-card-label-main {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    letter-spacing: 0.05em;
+}
+
+/* Symmetric reduction for TRAINING text when CONSULTING is hovered */
+.svc-cards-wrapper:has(.svc-card-left:hover) .svc-card-right .svc-card-label-main {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    letter-spacing: 0.05em;
 }
 
 /* --- Responsive (Static mode for non-laptop screens) --- */

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaLinkedin } from 'react-icons/fa';
 // Team data is stored in the frontend now
 import './Company.css';
 
@@ -15,7 +16,8 @@ const Company = () => {
                 position: 'Founder & Director',
                 bio: 'Expert in energy management, environmental consulting, and productivity improvement with decades of industry experience.',
                 image: '/images/team/nagesh.jpg',
-                email: 'ceepnagesh@gmail.com'
+                email: 'nageshkumar@ceepenergy.in',
+                linkedin: '#'
             },
             {
                 _id: 'team-2',
@@ -23,7 +25,8 @@ const Company = () => {
                 position: 'Senior Energy Analyst',
                 bio: 'Specialized in resource optimization, process improvement, and organizational efficiency with extensive experience in industrial consulting.',
                 image: '/images/team/sakthi.jpeg',
-                email: 'sakthiadarsh@ceep.com'
+                email: 'sakthiaadharshazhagar@ceepenergy.in',
+                linkedin: '#'
             }
         ];
         setTeamMembers(members);
@@ -87,7 +90,25 @@ const Company = () => {
     return (
         <div className="company-page section">
             <div className="container">
-                <h1 className="section-title" data-heading-animate>Company</h1>
+                <section className="philosophy-minimal" data-scroll-reveal>
+                    <div className="philosophy-split">
+                        <div className="philosophy-portrait">
+                            <div className="artistic-portrait-frame">
+                                <img src="/images/gandhi.png" alt="M.K. Gandhi" />
+                                <div className="portrait-overlay-accent"></div>
+                            </div>
+                        </div>
+                        <div className="philosophy-text">
+                            <span className="philosophy-tag">Our Philosophy</span>
+                            <blockquote className="philosophy-quote-raw">
+                                "The world has enough for everyone's need, but not enough for everyone's greed."
+                            </blockquote>
+                            <cite className="philosophy-author-raw">- M.K. Gandhi</cite>
+                        </div>
+                    </div>
+                </section>
+
+                <h1 className="section-title" data-heading-animate>Our Team</h1>
                 <p className="section-subtitle" data-heading-animate data-delay="1">
                     Meet the experts who drive our mission to improve energy, environment, and productivity
                 </p>
@@ -97,9 +118,9 @@ const Company = () => {
                         teamMembers.slice(0, 2).map((member, index) => (
                             <div key={member._id} className="team-card" data-scroll-reveal style={{ transitionDelay: `${index * 0.2}s` }}>
                                 <div className="team-card-inner">
-                                    <div 
-                                        className="team-image" 
-                                        style={{ 
+                                    <div
+                                        className="team-image"
+                                        style={{
                                             backgroundImage: member.image ? `url(${member.image})` : 'none',
                                             backgroundSize: '100% 100%',
                                             backgroundPosition: 'center'
@@ -120,16 +141,18 @@ const Company = () => {
                                             {member.bio && (
                                                 <p className="team-bio">{member.bio}</p>
                                             )}
-                                            {member.email && (
-                                                <a href={`mailto:${member.email}`} className="team-email">
-                                                    {member.email}
-                                                </a>
-                                            )}
-                                            {member.linkedin && (
-                                                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="team-linkedin">
-                                                    LinkedIn Profile
-                                                </a>
-                                            )}
+                                            <div className="team-contact-row">
+                                                {member.email && (
+                                                    <a href={`mailto:${member.email}`} className="team-email">
+                                                        {member.email}
+                                                    </a>
+                                                )}
+                                                {member.linkedin && (
+                                                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="team-linkedin-stylized" aria-label={`${member.name} LinkedIn`}>
+                                                        <FaLinkedin />
+                                                    </a>
+                                                )}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +160,7 @@ const Company = () => {
                         ))
                     ) : (
                         <div className="no-data">
-                            <p>No company members found. Please add members through the admin panel.</p>
+                            <p>No team members found.</p>
                         </div>
                     )}
                 </div>

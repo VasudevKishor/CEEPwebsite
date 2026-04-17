@@ -591,6 +591,25 @@ body {
   box-shadow: 0 4px 20px var(--shadow-light);
   transition: all 0.4s var(--easing);
   border-left: 4px solid var(--color-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card-muzn,
+.highlight-card-dell {
+  border-left-color: var(--color-blue);
+}
+
+.highlight-card-muzn .highlight-description,
+.highlight-card-muzn .highlight-label,
+.highlight-card-dell .highlight-description,
+.highlight-card-dell .highlight-label {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.highlight-card-muzn .highlight-description strong,
+.highlight-card-dell .highlight-description strong {
+  color: #ffffff !important;
 }
 
 .highlight-card:hover {
@@ -671,42 +690,47 @@ body {
 
 .sector-card {
   background: var(--bg-secondary);
-  padding: 32px 24px;
-  border-radius: 12px;
+  padding: 40px 24px;
+  border-radius: 16px;
   text-align: center;
   box-shadow: 0 4px 15px var(--shadow-light);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--bg-placeholder);
-  border-top: 4px solid var(--color-blue);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 200px;
+  /* Increased size */
+  position: relative;
+  overflow: hidden;
 }
 
-.sector-card:nth-child(2) {
-  border-top-color: var(--color-red);
-}
-
-.sector-card:nth-child(3) {
-  border-top-color: var(--color-green);
-}
-
-.sector-card:nth-child(4) {
-  border-top-color: var(--color-blue);
+.sector-card-bg {
+  background-size: cover;
+  background-position: center;
+  border: none !important;
+  /* Remove colored top border for cleaner look with images */
 }
 
 .sector-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 40px var(--shadow-medium);
-  background: var(--bg-primary);
 }
 
 .sector-card h4 {
-  font-size: clamp(1rem, 1.1vw, 1.1rem);
-  font-weight: 600;
-  color: var(--text);
+  font-size: clamp(1.1rem, 1.3vw, 1.25rem);
+  font-weight: 800;
+  /* Bolder text */
+  color: #ffffff !important;
+  /* Force white on image bg */
   margin: 0;
   line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }
 
 .logo-carousels {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './HeroScene.css';
 
@@ -6,12 +6,21 @@ const HeroScene = () => {
     const videos = [
         { mp4: '/videos/video1.mp4', webm: '/videos/video1.webm' },
         { mp4: '/videos/video2.mp4', webm: '/videos/video2.webm' },
-        { mp4: '/videos/video3.mp4', webm: '/videos/video3.webm' }
+        { mp4: '/videos/video3.mp4', webm: '/videos/video3.webm' },
+        { mp4: '/videos/video4.mp4', webm: '/videos/video4.webm' },
+        { mp4: '/videos/video5.mp4', webm: '/videos/video5.webm' },
+        { mp4: '/videos/video6.mp4', webm: '/videos/video6.webm' },
+        { mp4: '/videos/video7.mp4', webm: '/videos/video7.webm' },
+        { mp4: '/videos/video8.mp4', webm: '/videos/video8.webm' },
+        { mp4: '/videos/video9.mp4', webm: '/videos/video9.webm' }
     ];
 
     const [activeLayer, setActiveLayer] = useState(0); 
     const [indices, setIndices] = useState([0, 1]); 
     const [isLoaded, setIsLoaded] = useState(false);
+
+    const videoRef0 = useRef(null);
+    const videoRef1 = useRef(null);
 
     useEffect(() => {
         // Fallback timer: Show content after 5 seconds
@@ -38,13 +47,22 @@ const HeroScene = () => {
 
                 return nextActive;
             });
-        }, 8500); 
+        }, 5000); 
 
         return () => {
             clearInterval(interval);
             clearTimeout(fallback);
         };
     }, [videos.length]);
+
+    // Ensure the newly active video starts from the beginning
+    useEffect(() => {
+        const activeVideo = activeLayer === 0 ? videoRef0.current : videoRef1.current;
+        if (activeVideo) {
+            activeVideo.currentTime = 0;
+            activeVideo.play().catch(err => console.log("Auto-play blocked or error:", err));
+        }
+    }, [activeLayer]);
 
     const handleVideoLoad = () => {
         setIsLoaded(true);
@@ -56,7 +74,6 @@ const HeroScene = () => {
         if (window.lenis) {
             window.lenis.scrollTo('#contact');
         } else {
-            // Fallback: Use corrected selector for standard scroll
             const footer = document.querySelector('.footer');
             if (footer) {
                 footer.scrollIntoView({ behavior: 'smooth' });
@@ -99,6 +116,7 @@ const HeroScene = () => {
 
                 {/* Layer 0 (A) */}
                 <video
+                    ref={videoRef0}
                     className={`video-bg layer ${activeLayer === 0 ? 'active' : ''}`}
                     autoPlay
                     loop
@@ -115,6 +133,7 @@ const HeroScene = () => {
                 
                 {/* Layer 1 (B) */}
                 <video
+                    ref={videoRef1}
                     className={`video-bg layer ${activeLayer === 1 ? 'active' : ''}`}
                     autoPlay
                     loop

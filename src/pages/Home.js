@@ -167,7 +167,16 @@ const Home = () => {
 
           <div className="clients-content">
             <div className="client-highlights">
-              <div className="highlight-card" data-heading-animate data-delay="1">
+              <div
+                className="highlight-card highlight-card-muzn"
+                data-heading-animate
+                data-delay="1"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/muzn.jpg)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              >
                 <div className="highlight-header">
                   <span className="highlight-number">20%</span>
                   <span className="highlight-label">Reduction</span>
@@ -177,7 +186,16 @@ const Home = () => {
                 </p>
               </div>
 
-              <div className="highlight-card" data-heading-animate data-delay="2">
+              <div
+                className="highlight-card highlight-card-dell"
+                data-heading-animate
+                data-delay="2"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.7)), url(${process.env.PUBLIC_URL}/images/dell.jpg)`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center'
+                }}
+              >
                 <div className="highlight-header">
                   <span className="highlight-number">25%</span>
                   <span className="highlight-label">Efficiency</span>
@@ -195,20 +213,28 @@ const Home = () => {
             <div className="sectors-grid" data-heading-animate data-delay="4">
               <h3 className="sectors-title">Our experience spans diverse sectors:</h3>
               <div className="sectors-cards">
-                <div className="sector-card">
-                  <div className="sector-icon"></div>
+                <div
+                  className="sector-card sector-card-bg"
+                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url(${process.env.PUBLIC_URL}/images/power.jpg)` }}
+                >
                   <h4>Power and Utilities</h4>
                 </div>
-                <div className="sector-card">
-                  <div className="sector-icon"></div>
+                <div
+                  className="sector-card sector-card-bg"
+                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url(${process.env.PUBLIC_URL}/images/sector_civil.png)` }}
+                >
                   <h4>Civil and Commercial Infrastructures</h4>
                 </div>
-                <div className="sector-card">
-                  <div className="sector-icon"></div>
+                <div
+                  className="sector-card sector-card-bg"
+                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url(${process.env.PUBLIC_URL}/images/manufacturing.jpg)` }}
+                >
                   <h4>Manufacturing and Process Industries</h4>
                 </div>
-                <div className="sector-card">
-                  <div className="sector-icon"></div>
+                <div
+                  className="sector-card sector-card-bg"
+                  style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.75)), url(${process.env.PUBLIC_URL}/images/sector_oil_gas.png)` }}
+                >
                   <h4>Oil, Gas and Energy Sector</h4>
                 </div>
               </div>

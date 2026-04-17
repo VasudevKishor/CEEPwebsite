@@ -26,7 +26,7 @@
 }
 
 .section {
-    padding: clamp(40px, 6vw, 60px) 0;
+    padding: clamp(140px, 15vh, 180px) 0 clamp(40px, 6vw, 60px);
 }
 
 .section-title {

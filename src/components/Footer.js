@@ -1,18 +1,97 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaLinkedin, FaYoutube, FaTwitter, FaInstagram } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        mobile: '',
+        email: ''
+    });
+    const [status, setStatus] = useState(''); // 'sending', 'success', 'error'
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    // Helper to encode form data for Netlify
+    const encode = (data) => {
+        return Object.keys(data)
+            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+            .join("&");
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setStatus('sending');
+
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({ "form-name": "contact", ...formData })
+        })
+            .then(() => {
+                setStatus('success');
+                setFormData({ name: '', mobile: '', email: '' });
+                setTimeout(() => setStatus(''), 6000);
+            })
+            .catch((error) => {
+                console.error('Netlify Error:', error);
+                setStatus('error');
+            });
+    };
+
     return (
         <footer id="contact" className="footer">
             <div className="footer-container">
                 <div className="footer-content">
                     <div className="footer-section footer-section-left">
-                        <h3>Centre for Energy, Environment and Productivity</h3>
-                        <p className="footer-quote">
-                            "The world has enough for everyone's need, but not enough for everyone's greed."
-                        </p>
-                        <p className="footer-author">- M.K. Gandhi</p>
+                        <h3>Quick Inquiry</h3>
+                        <form
+                            className="footer-form-minimal"
+                            name="contact"
+                            method="POST"
+                            data-netlify="true"
+                            onSubmit={handleSubmit}
+                        >
+                            {/* Hidden field required for Netlify + React */}
+                            <input type="hidden" name="form-name" value="contact" />
+
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Name"
+                                value={formData.name}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <input
+                                type="tel"
+                                name="mobile"
+                                placeholder="Mobile Number"
+                                value={formData.mobile}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email Address"
+                                value={formData.email}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <button
+                                type="submit"
+                                className="footer-form-submit-minimal"
+                                disabled={status === 'sending'}
+                            >
+                                {status === 'sending' ? 'Sending...' : 'Send Request'}
+                            </button>
+                            {status === 'success' && <p className="form-status success">Sent successfully! We will contact you soon.</p>}
+                            {status === 'error' && <p className="form-status error">Something went wrong. Please try again.</p>}
+                        </form>
                     </div>
 
                     <div className="footer-section footer-section-right">
