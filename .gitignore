@@ -28,3 +28,6 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Local inquiry storage
+server/data/inquiries.json
