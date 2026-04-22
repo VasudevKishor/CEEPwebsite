@@ -123,15 +123,75 @@
     color: var(--color-red);
 }
 
+.who-we-are-block {
+    margin: 0 auto clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    border-radius: 20px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-placeholder);
+}
+
+.who-we-are-layout {
+    display: grid;
+    grid-template-columns: 1.35fr 1fr;
+    gap: clamp(1.25rem, 2.5vw, 2rem);
+    align-items: stretch;
+}
+
+.who-we-are-tag {
+    display: inline-block;
+    margin-bottom: 0.9rem;
+    color: var(--color-blue);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.who-we-are-text {
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: clamp(0.95rem, 1.2vw, 1.08rem);
+    margin: 0 0 0.85rem;
+}
+
+.who-we-are-text:last-child {
+    margin-bottom: 0;
+}
+
+.who-we-are-images {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.85rem;
+}
+
+.who-we-are-images img {
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    border: 1px solid var(--bg-placeholder);
+}
+
 @media (max-width: 800px) {
     .philosophy-split {
         flex-direction: column;
         text-align: center;
         gap: 2.5rem;
     }
-    
+
     .philosophy-portrait {
         width: 180px;
+    }
+
+    .who-we-are-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .who-we-are-images {
+        grid-template-rows: none;
+        grid-template-columns: 1fr 1fr;
     }
 }
 

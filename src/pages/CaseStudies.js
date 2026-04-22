@@ -62,6 +62,8 @@ const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
 };
 
 const CaseStudies = () => {
+    const cardScrollerRef = useRef(null);
+
     const allStudies = [
         {
             _id: 'cs13',
@@ -198,6 +200,19 @@ const CaseStudies = () => {
         : allStudies.filter(s => s.industry === activeFilter);
     const activeStudy = allStudies.find(s => s._id === viewedId) || allStudies[0];
 
+    useEffect(() => {
+        if (filteredStudies.length === 0) return;
+
+        // Reset to the top of the list and first case when switching tabs.
+        const firstCaseId = filteredStudies[0]._id;
+        setActiveId(firstCaseId);
+        setViewedId(firstCaseId);
+
+        if (cardScrollerRef.current) {
+            cardScrollerRef.current.scrollTop = 0;
+        }
+    }, [activeFilter, filteredStudies]);
+
     const patterns = [
         { id: 'p1', title: "Compressed Air Systems", val: "20-30%", desc: "Energy loss due to leaks and improper operation", img: "/images/pattern_compressed_air.png" },
         { id: 'p2', title: "HVAC Systems", val: "10-25%", desc: "Optimization potential through better load management", img: "/images/pattern_hvac.png" },
@@ -329,7 +344,7 @@ const CaseStudies = () => {
 
                     <div className="case-dashboard-layout">
                         <div className="case-list-column">
-                            <div className="card-scroller">
+                            <div className="card-scroller" ref={cardScrollerRef}>
                                 {filteredStudies.map((study) => (
                                     <div
                                         key={study._id}

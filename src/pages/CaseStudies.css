@@ -303,6 +303,13 @@
 
 .case-grid-header {
     margin-bottom: 3rem;
+    position: sticky;
+    top: 56px;
+    z-index: 30;
+    background: var(--bg-primary);
+    padding: 0 0 1rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+    backdrop-filter: blur(8px);
 }
 
 .grid-main-title {
@@ -497,7 +504,9 @@
 
 .case-viewscreen-column {
     position: sticky;
-    top: 100px;
+    top: 120px;
+    z-index: 20;
+    align-self: flex-start;
 }
 
 .viewscreen-housing {
@@ -910,9 +919,10 @@
     }
 
     .case-viewscreen-column {
-        position: relative;
-        top: 0;
+        position: sticky;
+        top: 120px;
         margin-top: 2rem;
+        z-index: 20;
     }
 
     .card-scroller {
@@ -921,6 +931,10 @@
 }
 
 @media (max-width: 768px) {
+    .case-grid-header {
+        top: 56px;
+    }
+
     .stats-inner-layout {
         grid-template-columns: 1fr 1fr;
     }
