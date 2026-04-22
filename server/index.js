@@ -6,28 +6,34 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 4000;
 const DATA_DIR = path.join(__dirname, "data");
-const DATA_FILE = path.join(DATA_DIR, "inquiries.json");
+const INQUIRIES_FILE = path.join(DATA_DIR, "inquiries.json");
+const REGISTRATIONS_FILE = path.join(DATA_DIR, "registrations.json");
 
 app.use(cors());
 app.use(express.json());
 
 const ensureDataStore = async () => {
   await fs.mkdir(DATA_DIR, { recursive: true });
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.writeFile(DATA_FILE, "[]", "utf8");
-  }
+  const files = [INQUIRIES_FILE, REGISTRATIONS_FILE];
+  await Promise.all(
+    files.map(async (file) => {
+      try {
+        await fs.access(file);
+      } catch {
+        await fs.writeFile(file, "[]", "utf8");
+      }
+    })
+  );
 };
 
-const readInquiries = async () => {
+const readItems = async (filePath) => {
   await ensureDataStore();
-  const raw = await fs.readFile(DATA_FILE, "utf8");
+  const raw = await fs.readFile(filePath, "utf8");
   return JSON.parse(raw);
 };
 
-const writeInquiries = async (items) => {
-  await fs.writeFile(DATA_FILE, JSON.stringify(items, null, 2), "utf8");
+const writeItems = async (filePath, items) => {
+  await fs.writeFile(filePath, JSON.stringify(items, null, 2), "utf8");
 };
 
 app.get("/api/health", (_req, res) => {
@@ -45,7 +51,7 @@ app.post("/api/inquiries", async (req, res) => {
   }
 
   try {
-    const inquiries = await readInquiries();
+    const inquiries = await readItems(INQUIRIES_FILE);
     const newInquiry = {
       id: Date.now().toString(),
       name: String(name).trim(),
@@ -55,7 +61,7 @@ app.post("/api/inquiries", async (req, res) => {
     };
 
     inquiries.push(newInquiry);
-    await writeInquiries(inquiries);
+    await writeItems(INQUIRIES_FILE, inquiries);
 
     return res.status(201).json({ ok: true, inquiry: newInquiry });
   } catch (error) {
@@ -66,11 +72,54 @@ app.post("/api/inquiries", async (req, res) => {
 
 app.get("/api/inquiries", async (_req, res) => {
   try {
-    const inquiries = await readInquiries();
+    const inquiries = await readItems(INQUIRIES_FILE);
     return res.json({ ok: true, inquiries });
   } catch (error) {
     console.error("Failed to read inquiries:", error);
     return res.status(500).json({ ok: false, message: "failed to read inquiries" });
+  }
+});
+
+app.post("/api/registrations", async (req, res) => {
+  const { name, email, mobile, organization, requestedFile, requestedName } = req.body || {};
+
+  if (!name || !email || !mobile || !organization || !requestedFile) {
+    return res.status(400).json({
+      ok: false,
+      message: "name, email, mobile, organization and requestedFile are required",
+    });
+  }
+
+  try {
+    const registrations = await readItems(REGISTRATIONS_FILE);
+    const newRegistration = {
+      id: Date.now().toString(),
+      name: String(name).trim(),
+      email: String(email).trim().toLowerCase(),
+      mobile: String(mobile).trim(),
+      organization: String(organization).trim(),
+      requestedFile: String(requestedFile).trim(),
+      requestedName: String(requestedName || requestedFile).trim(),
+      createdAt: new Date().toISOString(),
+    };
+
+    registrations.push(newRegistration);
+    await writeItems(REGISTRATIONS_FILE, registrations);
+
+    return res.status(201).json({ ok: true, registration: newRegistration });
+  } catch (error) {
+    console.error("Failed to save registration:", error);
+    return res.status(500).json({ ok: false, message: "failed to save registration" });
+  }
+});
+
+app.get("/api/registrations", async (_req, res) => {
+  try {
+    const registrations = await readItems(REGISTRATIONS_FILE);
+    return res.json({ ok: true, registrations });
+  } catch (error) {
+    console.error("Failed to read registrations:", error);
+    return res.status(500).json({ ok: false, message: "failed to read registrations" });
   }
 });
 

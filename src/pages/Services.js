@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Services.css';
 
 const Services = () => {
@@ -43,25 +44,17 @@ const Services = () => {
     }, []);
 
     const trainingPrograms = [
-        { name: "Energy management and audit", file: "EnergyManagementAudit.pdf" },
-        { name: "Boilers and efficient use of steam", file: "Boilers.pdf" },
-        { name: "Furnaces and heat recovery", file: "Furnace.pdf" },
-        { name: "Steam distribution and utilization", file: "steam.pdf" },
-        { name: "Energy conservation in electrical systems", file: "EnergyConservation.pdf" },
-        { name: "Energy efficiency in compressed air systems", file: "CompressedAirSystems.pdf" },
-        { name: "Energy efficiency in pumps and pumping systems", file: "PumpingSystem.pdf" },
-        { name: "Energy conservation in fans and blowers", file: "FansBlowers.pdf" },
-        { name: "Energy conservation in refrigeration and air conditioning systems", file: "ACFridge.pdf" },
-        { name: "Energy efficiency practices for buildings", file: "EnergyEfficiencyPractices.pdf" },
-        { name: "ISO 50001: Energy Management Systems", file: "ISO50001.pdf" }
-    ];
-
-    const curriculum = [
-        { day: "DAY 1", task: "Walk through of the plant by CEEP experts" },
-        { day: "DAY 2", task: "Conduct of training program" },
-        { day: "DAY 3", task: "Conduct of training program" },
-        { day: "DAY 4", task: "Discussions, brain storming and site visit to identify energy saving measures" },
-        { day: "DAY 5", task: "Finalizing methodology and approach to implementation" }
+        { name: 'Energy management and audit', file: 'EnergyManagementAudit.pdf' },
+        { name: 'Boilers and efficient use of steam', file: 'Boilers.pdf' },
+        { name: 'Furnaces and heat recovery', file: 'Furnace.pdf' },
+        { name: 'Steam distribution and utilization', file: 'steam.pdf' },
+        { name: 'Energy conservation in electrical systems', file: 'EnergyConservation.pdf' },
+        { name: 'Energy efficiency in compressed air systems', file: 'CompressedAirSystems.pdf' },
+        { name: 'Energy efficiency in pumps and pumping systems', file: 'PumpingSystem.pdf' },
+        { name: 'Energy conservation in fans and blowers', file: 'FansBlowers.pdf' },
+        { name: 'Energy conservation in refrigeration and air conditioning systems', file: 'ACFridge.pdf' },
+        { name: 'Energy efficiency practices for buildings', file: 'EnergyEfficiencyPractices.pdf' },
+        { name: 'ISO 50001: Energy Management Systems', file: 'ISO50001.pdf' }
     ];
 
     return (
@@ -74,106 +67,61 @@ const Services = () => {
             <div className="services-overlay" />
 
             <div className="container svc-main-container">
-                <div className="svc-header-section">
-                    <h1 className="section-title svc-page-title" data-heading-animate>Services</h1>
+                <div className="svc-header-section services-hero-block">
+                    <h1 className="section-title svc-page-title" data-heading-animate>Our Services</h1>
                     <p className="section-subtitle svc-page-subtitle" data-heading-animate data-delay="1">
-                        Comprehensive solutions for optimizing Energy, Environment, and Productivity across industrial sectors.
+                        Precision in Energy. Excellence in Productivity.
+                    </p>
+                    <p className="services-hero-support" data-heading-animate data-delay="2">
+                        Engineering-led consultancy for industrial efficiency and regulatory mastery.
                     </p>
                 </div>
 
-                <div className="svc-cards-wrapper">
-                    {/* Consulting Card — Responsive 3-Column Grid */}
-                    <div
-                        className="svc-card-side svc-card-left"
-                        style={{ '--card-hover-bg': `url(${process.env.PUBLIC_URL}/images/service1.jpg)` }}
-                        data-heading-animate
-                        data-delay="2"
-                    >
-                        <div className="svc-card-header-main">
-                            <span className="svc-card-label-main">Consulting</span>
-                        </div>
+                <div className="services-pillars-grid">
+                    <article className="service-pillar-card" data-heading-animate data-delay="2">
+                        <div className="pillar-icon">EA</div>
+                        <h2>Energy Auditing &amp; Diagnostics</h2>
+                        <p>
+                            Comprehensive thermal and electrical utility mapping. We identify invisible inefficiencies
+                            across boiler systems, HVAC, and process equipment.
+                        </p>
+                    </article>
 
-                        <div className="svc-card-expanded-content">
-                            <div className="svc-content-stack consulting-grid">
-                                <div className="svc-item-row no-icon">
-                                    <div className="svc-item-text">
-                                        <h4 className="svc-item-title">Energy Audit</h4>
-                                        <p className="svc-item-desc">
-                                            Comprehensive energy audits to identify savings opportunities and improve efficiency.
-                                        </p>
-                                    </div>
-                                </div>
+                    <article className="service-pillar-card" data-heading-animate data-delay="3">
+                        <div className="pillar-icon">TI</div>
+                        <h2>Training &amp; Institutional Excellence</h2>
+                        <p>
+                            Specialized capacity-building programs for Energy Managers and Auditors. Bridging the gap
+                            between theory and industrial application.
+                        </p>
+                    </article>
 
-                                <div className="svc-item-row no-icon">
-                                    <div className="svc-item-text">
-                                        <h4 className="svc-item-title">Water Audit</h4>
-                                        <p className="svc-item-desc">
-                                            Detailed water usage analysis and conservation strategies.
-                                        </p>
-                                    </div>
-                                </div>
+                    <article className="service-pillar-card" data-heading-animate data-delay="4">
+                        <div className="pillar-icon">SC</div>
+                        <h2>Strategic Compliance &amp; Advisory</h2>
+                        <p>
+                            Navigating PAT (Perform, Achieve, Trade) frameworks, ISO 50001 implementation, and
+                            national BEE certification standards.
+                        </p>
+                    </article>
+                </div>
 
-                                <div className="svc-item-row no-icon">
-                                    <div className="svc-item-text">
-                                        <h4 className="svc-item-title">Productivity Consulting</h4>
-                                        <p className="svc-item-desc">
-                                            Motion and time studies, process optimization, and productivity improvement.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Training Card — Side-by-Side In-house vs Five Day */}
-                    <div
-                        className="svc-card-side svc-card-right"
-                        style={{ '--card-hover-bg': `url(${process.env.PUBLIC_URL}/images/service3.jpg)` }}
-                        data-heading-animate
-                        data-delay="3"
-                    >
-                        <div className="svc-card-header-main">
-                            <span className="svc-card-label-main">Training</span>
-                        </div>
-
-                        <div className="svc-card-expanded-content">
-                            <div className="svc-training-grid">
-                                <div className="svc-training-col left">
-                                    <h3 className="svc-training-subtitle">In-house Training Programs Offered</h3>
-                                    <div className="svc-program-list">
-                                        {trainingPrograms.map((prog, idx) => (
-                                            <div key={idx} className="svc-program-item">
-                                                <span className="svc-program-num">{idx + 1}.</span>
-                                                <a
-                                                    href={`${process.env.PUBLIC_URL}/pdfs/${prog.file}`}
-                                                    className="svc-program-link"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    {prog.name}
-                                                </a>
-                                            </div>
-                                        ))}
-                                    </div>
-                                    <p className="svc-training-note">All programs are of <strong>TWO DAY</strong> duration</p>
-                                </div>
-
-                                <div className="svc-training-col right">
-                                    <h3 className="svc-training-subtitle">Five Day Course Curriculum</h3>
-                                    <p className="svc-training-desc">
-                                        CEEP also offers custom based <strong>FIVE DAY</strong> course focusing on identification of implementable energy saving measures by participants through team work.
-                                    </p>
-                                    <div className="svc-curriculum-list">
-                                        {curriculum.map((item, idx) => (
-                                            <div key={idx} className="svc-curriculum-item">
-                                                <span className="svc-day-label">{item.day}:</span>
-                                                <span className="svc-day-task">{item.task}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div className="services-download-gate" data-heading-animate data-delay="5">
+                    <h3>Download Training Modules</h3>
+                    <p>
+                        To access any program PDF, please register first. This helps us share relevant content and stay in touch.
+                    </p>
+                    <div className="services-download-list">
+                        {trainingPrograms.map((prog, idx) => (
+                            <Link
+                                key={prog.file}
+                                to={`/register?file=${encodeURIComponent(prog.file)}&name=${encodeURIComponent(prog.name)}`}
+                                className="services-download-link"
+                            >
+                                <span>{idx + 1}. {prog.name}</span>
+                                <span>Register to Download</span>
+                            </Link>
+                        ))}
                     </div>
                 </div>
             </div>
