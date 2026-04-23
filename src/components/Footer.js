@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaLinkedin, FaYoutube, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin, FaYoutube, FaInstagram } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = () => {
@@ -15,31 +15,29 @@ const Footer = () => {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // Helper to encode form data for Netlify
-    const encode = (data) => {
-        return Object.keys(data)
-            .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-            .join("&");
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
+        const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
 
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: encode({ "form-name": "contact", ...formData })
-        })
-            .then(() => {
-                setStatus('success');
-                setFormData({ name: '', mobile: '', email: '' });
-                setTimeout(() => setStatus(''), 6000);
-            })
-            .catch((error) => {
-                console.error('Netlify Error:', error);
-                setStatus('error');
+        try {
+            const response = await fetch(`${apiBaseUrl}/api/inquiries`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData)
             });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit inquiry');
+            }
+
+            setStatus('success');
+            setFormData({ name: '', mobile: '', email: '' });
+            setTimeout(() => setStatus(''), 6000);
+        } catch (error) {
+            console.error('Inquiry submit error:', error);
+            setStatus('error');
+        }
     };
 
     return (
@@ -50,14 +48,8 @@ const Footer = () => {
                         <h3>Quick Inquiry</h3>
                         <form
                             className="footer-form-minimal"
-                            name="contact"
-                            method="POST"
-                            data-netlify="true"
                             onSubmit={handleSubmit}
                         >
-                            {/* Hidden field required for Netlify + React */}
-                            <input type="hidden" name="form-name" value="contact" />
-
                             <input
                                 type="text"
                                 name="name"
@@ -97,7 +89,7 @@ const Footer = () => {
                     <div className="footer-section footer-section-right">
                         <h4>Contact Information</h4>
                         <p>1039, 26th St, H Block,</p>
-                        <p>Ponni Colony,Anna Nagar , Chennai 600040</p>
+                        <p>Ponni Colony, Anna Nagar, Chennai 600040</p>
                         <p>Mobile: 9444882553, 8668115663</p>
                         <p>Email: <a href="mailto:admin@ceepenergy.in" className="footer-email-link">admin@ceepenergy.in</a></p>
                         <div className="footer-social" aria-label="Social media links">
@@ -109,9 +101,6 @@ const Footer = () => {
                             </a>
                             <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
                                 <FaInstagram />
-                            </a>
-                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                                <FaTwitter />
                             </a>
                         </div>
                     </div>

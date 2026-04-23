@@ -303,6 +303,13 @@
 
 .case-grid-header {
     margin-bottom: 3rem;
+    position: sticky;
+    top: 56px;
+    z-index: 30;
+    background: var(--bg-primary);
+    padding: 0 0 1rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+    backdrop-filter: blur(8px);
 }
 
 .grid-main-title {
@@ -497,7 +504,9 @@
 
 .case-viewscreen-column {
     position: sticky;
-    top: 100px;
+    top: 120px;
+    z-index: 20;
+    align-self: flex-start;
 }
 
 .viewscreen-housing {
@@ -680,24 +689,25 @@
 }
 
 .analysis-tile-new {
-    background: var(--bg-secondary);
-    border-radius: 24px;
+    background: #05070c;
+    border-radius: 22px;
     overflow: hidden;
-    border: 1px solid rgba(128, 128, 128, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
 }
 
 .analysis-tile-new:hover {
-    transform: translateY(-10px);
-    border-color: var(--color-red);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    border-color: rgba(244, 63, 94, 0.45);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.45);
 }
 
 .tile-media-wrapper {
-    height: 220px;
+    height: 210px;
     position: relative;
     overflow: hidden;
 }
@@ -715,26 +725,26 @@
 
 .tile-stat-hud {
     position: absolute;
-    top: 1.25rem;
-    right: 1.25rem;
+    top: 0.95rem;
+    right: 0.95rem;
     background: var(--color-red);
     color: white;
-    padding: 0.4rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
     font-weight: 950;
     z-index: 5;
-    box-shadow: 0 4px 15px rgba(244, 63, 82, 0.4);
+    box-shadow: 0 8px 18px rgba(244, 63, 82, 0.45);
 }
 
 .tile-gradient-shroud {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, var(--bg-secondary), transparent 60%);
+    background: linear-gradient(to top, #05070c 18%, rgba(5, 7, 12, 0.45) 46%, transparent 76%);
 }
 
 .tile-info-block {
-    padding: 1.5rem 1.75rem 2rem;
+    padding: 1.4rem 1.6rem 1.6rem;
     position: relative;
     flex-grow: 1;
     display: flex;
@@ -742,18 +752,18 @@
 }
 
 .tile-name {
-    font-size: 1.15rem;
+    font-size: 1.32rem;
     font-weight: 900;
-    color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    color: #f8fafc;
+    margin-bottom: 0.65rem;
     line-height: 1.2;
 }
 
 .tile-summary {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    color: var(--text-secondary);
-    opacity: 0.75;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #94a3b8;
+    opacity: 1;
     margin: 0;
 }
 
@@ -910,9 +920,10 @@
     }
 
     .case-viewscreen-column {
-        position: relative;
-        top: 0;
+        position: sticky;
+        top: 120px;
         margin-top: 2rem;
+        z-index: 20;
     }
 
     .card-scroller {
@@ -921,6 +932,10 @@
 }
 
 @media (max-width: 768px) {
+    .case-grid-header {
+        top: 56px;
+    }
+
     .stats-inner-layout {
         grid-template-columns: 1fr 1fr;
     }

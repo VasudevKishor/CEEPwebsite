@@ -1,0 +1,81 @@
+.register-page {
+    min-height: calc(100vh - 180px);
+    padding: clamp(120px, 14vh, 160px) clamp(1rem, 3vw, 2rem) 3rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: var(--bg-primary);
+}
+
+.register-card {
+    width: min(680px, 100%);
+    background: var(--bg-secondary);
+    border: 1px solid var(--bg-placeholder);
+    border-radius: 18px;
+    padding: clamp(1.2rem, 2.5vw, 2rem);
+    box-shadow: 0 20px 40px var(--shadow-light);
+}
+
+.register-card h1 {
+    margin: 0 0 0.6rem;
+    color: var(--text-primary);
+    font-size: clamp(1.5rem, 2.8vw, 2rem);
+}
+
+.register-subtitle {
+    margin: 0 0 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.register-form {
+    display: grid;
+    gap: 0.8rem;
+}
+
+.register-form input {
+    width: 100%;
+    padding: 0.8rem 0.95rem;
+    border-radius: 10px;
+    border: 1px solid var(--bg-placeholder);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.register-form button {
+    margin-top: 0.3rem;
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-weight: 700;
+    background: var(--color-blue);
+    color: #fff;
+    cursor: pointer;
+}
+
+.register-form button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.register-success,
+.register-error {
+    margin: 0.85rem 0 0;
+    font-size: 0.95rem;
+}
+
+.register-success {
+    color: var(--color-green);
+}
+
+.register-error {
+    color: var(--color-red);
+}
+
+.register-back-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--color-blue);
+    text-decoration: none;
+    font-weight: 700;
+}

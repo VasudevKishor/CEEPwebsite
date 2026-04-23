@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import Company from './pages/Company';
 import Services from './pages/Services';
 import CaseStudies from './pages/CaseStudies';
+import Register from './pages/Register';
 import './App.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -58,6 +59,7 @@ function AppContent() {
                     <Route path="/" element={<Home />} />
                     <Route path="/company" element={<Company />} />
                     <Route path="/services" element={<Services />} />
+                    <Route path="/register" element={<Register />} />
                     <Route path="/case-studies" element={<CaseStudies />} />
                 </Routes>
             </main>

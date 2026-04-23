@@ -679,3 +679,195 @@
         font-size: 2.2rem !important;
     }
 }
+
+/* New services section structure (slide-driven) */
+.services-hero-block {
+    margin-bottom: 1.8rem;
+}
+
+.services-hero-support {
+    color: var(--text-primary);
+    font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+    opacity: 0.9;
+    text-align: center;
+}
+
+.services-pillars-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: clamp(1rem, 2vw, 1.4rem);
+    margin-top: 1rem;
+}
+
+.service-pillar-card {
+    background: rgba(15, 23, 42, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    padding: clamp(1rem, 2vw, 1.25rem);
+    backdrop-filter: blur(8px);
+    text-align: left;
+    min-height: 260px;
+}
+
+[data-theme="light"] .service-pillar-card {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.pillar-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #fff;
+    background: var(--color-blue);
+    margin-bottom: 0.8rem;
+}
+
+.service-pillar-card h2 {
+    margin: 0 0 0.55rem;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    color: var(--text-primary);
+    line-height: 1.35;
+}
+
+.service-pillar-card p {
+    margin: 0;
+    font-size: clamp(0.9rem, 1.05vw, 0.97rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.services-download-gate {
+    width: 100%;
+    margin-top: 1.5rem;
+    background: rgba(2, 6, 23, 0.62);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    padding: clamp(1rem, 2vw, 1.2rem);
+}
+
+[data-theme="light"] .services-download-gate {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.services-download-gate h3 {
+    margin: 0 0 0.5rem;
+    color: var(--text-primary);
+    font-size: clamp(1rem, 1.35vw, 1.2rem);
+}
+
+.services-download-gate p {
+    margin: 0 0 1rem;
+    color: var(--text-secondary);
+}
+
+.services-download-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+}
+
+.services-download-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
+}
+
+[data-theme="light"] .services-download-link {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.services-download-link:hover {
+    border-color: var(--color-blue);
+}
+
+@media (max-width: 1100px) {
+    .services-pillars-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.services-engagement-section {
+    width: 100%;
+    margin-top: 1.6rem;
+    background: rgba(2, 6, 23, 0.58);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    padding: clamp(1rem, 2.2vw, 1.4rem);
+}
+
+[data-theme="light"] .services-engagement-section {
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.services-engagement-section h3 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    color: var(--text-primary);
+}
+
+.engagement-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.85rem;
+}
+
+.engagement-phase-card,
+.engagement-outcomes-card {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 0.85rem 0.95rem;
+    background: rgba(15, 23, 42, 0.58);
+}
+
+[data-theme="light"] .engagement-phase-card,
+[data-theme="light"] .engagement-outcomes-card {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.engagement-phase-card h4,
+.engagement-outcomes-card h4 {
+    margin: 0 0 0.4rem;
+    font-size: clamp(0.95rem, 1.15vw, 1.02rem);
+    color: var(--text-primary);
+}
+
+.engagement-phase-card p {
+    margin: 0 0 0.45rem;
+    color: var(--text-secondary);
+    font-size: clamp(0.84rem, 0.98vw, 0.9rem);
+    line-height: 1.45;
+}
+
+.engagement-phase-card ul,
+.engagement-outcomes-card ul {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--text-secondary);
+    display: grid;
+    gap: 0.2rem;
+    font-size: clamp(0.82rem, 0.94vw, 0.88rem);
+}
+
+@media (max-width: 980px) {
+    .engagement-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -108,6 +108,30 @@ const Company = () => {
                     </div>
                 </section>
 
+                <section className="who-we-are-block" data-scroll-reveal>
+                    <div className="who-we-are-layout">
+                        <div className="who-we-are-content">
+                            <span className="who-we-are-tag" data-heading-animate>Who We Are</span>
+                            <p className="who-we-are-text" data-heading-animate data-delay="1">
+                                We are engineers and problem-solvers dedicated to uncovering inefficiencies that directly impact industrial performance.
+                            </p>
+                            <p className="who-we-are-text" data-heading-animate data-delay="2">
+                                At CEEP, we help organizations reduce energy consumption, optimize resource utilization, and improve productivity through structured audits and actionable insights. Our work is rooted in real-world plant experience-focusing not just on identifying issues, but delivering solutions that create measurable financial impact.
+                            </p>
+                            <p className="who-we-are-text" data-heading-animate data-delay="3">
+                                Beyond audits, we work closely with on-ground teams-equipping employees with the knowledge and practical skills required to sustain improvements. By building internal capability alongside technical solutions, we ensure that the impact of our work is not short-lived, but embedded into everyday operations.
+                            </p>
+                            <p className="who-we-are-text" data-heading-animate data-delay="4">
+                                We partner with industries to turn operational challenges into opportunities for efficiency and long-term growth.
+                            </p>
+                        </div>
+                        <div className="who-we-are-images" data-heading-animate data-delay="2">
+                            <img src="/images/manufacturing.jpg" alt="Industrial operations team" loading="lazy" />
+                            <img src="/images/power.jpg" alt="Plant engineering systems" loading="lazy" />
+                        </div>
+                    </div>
+                </section>
+
                 <h1 className="section-title" data-heading-animate>Our Team</h1>
                 <p className="section-subtitle" data-heading-animate data-delay="1">
                     Meet the experts who drive our mission to improve energy, environment, and productivity

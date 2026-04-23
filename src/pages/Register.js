@@ -1,0 +1,124 @@
+import React, { useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import './Register.css';
+
+const Register = () => {
+    const [searchParams] = useSearchParams();
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        mobile: '',
+        organization: ''
+    });
+    const [status, setStatus] = useState('');
+
+    const requestedFile = searchParams.get('file') || '';
+    const requestedName = searchParams.get('name') || 'selected document';
+    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
+
+    const downloadUrl = useMemo(() => {
+        if (!requestedFile) return '';
+        return `${process.env.PUBLIC_URL}/pdfs/${requestedFile}`;
+    }, [requestedFile]);
+
+    const handleChange = (event) => {
+        const { name, value } = event.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (!requestedFile) {
+            setStatus('error');
+            return;
+        }
+
+        setStatus('sending');
+        try {
+            const response = await fetch(`${apiBaseUrl}/api/registrations`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ...formData,
+                    requestedFile,
+                    requestedName
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed registration');
+            }
+
+            setStatus('success');
+            window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+        } catch (error) {
+            console.error('Registration error:', error);
+            setStatus('error');
+        }
+    };
+
+    return (
+        <div className="register-page">
+            <div className="register-card" data-scroll-reveal>
+                <h1>Register to Download</h1>
+                <p className="register-subtitle">
+                    You are requesting: <strong>{requestedName}</strong>
+                </p>
+
+                {!requestedFile && (
+                    <p className="register-error">No document selected. Please return to Services and choose a PDF.</p>
+                )}
+
+                <form onSubmit={handleSubmit} className="register-form">
+                    <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Full Name"
+                        required
+                    />
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="Email Address"
+                        required
+                    />
+                    <input
+                        type="tel"
+                        name="mobile"
+                        value={formData.mobile}
+                        onChange={handleChange}
+                        placeholder="Mobile Number"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="organization"
+                        value={formData.organization}
+                        onChange={handleChange}
+                        placeholder="Organization"
+                        required
+                    />
+
+                    <button type="submit" disabled={status === 'sending' || !requestedFile}>
+                        {status === 'sending' ? 'Submitting...' : 'Register & Download'}
+                    </button>
+                </form>
+
+                {status === 'success' && (
+                    <p className="register-success">Registration saved. Your download has started.</p>
+                )}
+                {status === 'error' && (
+                    <p className="register-error">Could not complete registration. Please try again.</p>
+                )}
+
+                <Link to="/services" className="register-back-link">Back to Services</Link>
+            </div>
+        </div>
+    );
+};
+
+export default Register;
