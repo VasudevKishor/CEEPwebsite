@@ -4,6 +4,7 @@ import { ThemeProvider } from './contexts/ThemeContext';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
+import { Analytics } from '@vercel/analytics/react';
 // Navbar removed — header is handled directly in pages where needed
 import Footer from './components/Footer';
 import { Header } from './components/ui/header-2';
@@ -74,6 +75,7 @@ function App() {
             <Router>
                 <AppContent />
             </Router>
+            <Analytics />
         </ThemeProvider>
     );
 }
