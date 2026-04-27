@@ -127,7 +127,6 @@ const Company = () => {
                         </div>
                         <div className="who-we-are-images" data-heading-animate data-delay="2">
                             <img src="/images/manufacturing.jpg" alt="Industrial operations team" loading="lazy" />
-                            <img src="/images/power.jpg" alt="Plant engineering systems" loading="lazy" />
                         </div>
                     </div>
                 </section>

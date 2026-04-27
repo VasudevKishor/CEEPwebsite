@@ -9,6 +9,32 @@ import "./Home.css";
 const Home = () => {
   useTheme();
   const [logoSpeed, setLogoSpeed] = useState(25);
+  const keyDrivers = [
+    {
+      id: "01",
+      heading: "Cost is No Longer Predictable",
+      detail:
+        "Energy and resource costs are increasingly volatile, directly impacting operating margins. Organizations must actively manage consumption to maintain financial stability and competitiveness.",
+    },
+    {
+      id: "02",
+      heading: "Hidden Inefficiencies Limit Performance",
+      detail:
+        "Most facilities operate with unnoticed losses across systems-whether in utilities, processes, or workflows. Identifying and addressing these inefficiencies unlocks significant improvement potential.",
+    },
+    {
+      id: "03",
+      heading: "Reliability is Business-Critical",
+      detail:
+        "Operations today cannot afford disruptions. Systems must deliver consistent performance while meeting productivity demands and operational continuity requirements.",
+    },
+    {
+      id: "04",
+      heading: "Sustainability is Now a Requirement",
+      detail:
+        "Carbon reduction targets, ESG expectations, and regulatory frameworks are becoming central to business strategy. Organizations must align operational performance with measurable sustainability outcomes.",
+    },
+  ];
 
 
   // small hack: add `app-loaded` class to trigger gallery stagger after mount
@@ -135,26 +161,16 @@ const Home = () => {
           <div className="key-drivers">
             <h3 className="key-drivers-title" data-heading-animate data-delay="2">Key Drivers:</h3>
             <div className="drivers-grid">
-              <div className="driver-item" data-scroll-reveal>
-                <div className="driver-number">01</div>
-                <h4>Volatile and rising energy costs</h4>
-              </div>
-              <div className="driver-item" data-scroll-reveal>
-                <div className="driver-number">02</div>
-                <h4>Carbon reduction and ESG mandates</h4>
-              </div>
-              <div className="driver-item" data-scroll-reveal>
-                <div className="driver-number">03</div>
-                <h4>Aging infrastructure and inefficiencies</h4>
-              </div>
-              <div className="driver-item" data-scroll-reveal>
-                <div className="driver-number">04</div>
-                <h4>Increasing demand for operational resilience</h4>
-              </div>
-              <div className="driver-item" data-scroll-reveal>
-                <div className="driver-number">05</div>
-                <h4>Expectations of uninterrupted comfort and productivity</h4>
-              </div>
+              {keyDrivers.map((driver) => (
+                <div key={driver.id} className="driver-item" data-scroll-reveal>
+                  <div className="driver-number">{driver.id}</div>
+                  <h4>{driver.heading}</h4>
+                  <p className="driver-hover-content">
+                    <strong>{driver.id} — {driver.heading}</strong>
+                    <span>{driver.detail}</span>
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>

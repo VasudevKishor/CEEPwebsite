@@ -491,6 +491,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 180px;
+  cursor: pointer;
 }
 
 .driver-item:nth-child(3n+1)::before {
@@ -556,6 +557,52 @@ body {
   color: var(--text);
   margin: 0;
   line-height: 1.5;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.driver-hover-content {
+  position: absolute;
+  inset: 0;
+  padding: 18px;
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.driver-hover-content strong {
+  color: var(--text);
+  font-size: clamp(0.95rem, 1.05vw, 1.05rem);
+  line-height: 1.3;
+}
+
+.driver-hover-content span {
+  color: var(--text-secondary);
+  font-size: clamp(0.82rem, 0.95vw, 0.92rem);
+  line-height: 1.45;
+}
+
+.driver-item:hover h4 {
+  opacity: 0;
+  transform: translateY(-6px);
+  visibility: hidden;
+}
+
+.driver-item:hover .driver-number {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.driver-item:hover .driver-hover-content {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Clients Section */
@@ -808,8 +855,35 @@ body {
   }
 
   .drivers-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
     gap: 24px;
+  }
+
+  .driver-item {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .driver-hover-content {
+    position: static;
+    inset: auto;
+    margin-top: 0.65rem;
+    padding: 0;
+    background: transparent;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+
+  .driver-item:hover h4 {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+  }
+
+  .driver-item:hover .driver-number {
+    opacity: 1;
+    visibility: visible;
   }
 
   .client-highlights {

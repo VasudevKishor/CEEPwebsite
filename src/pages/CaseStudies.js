@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { FiArrowDown, FiArrowRight, FiCheckCircle, FiPlay, FiX, FiLayers } from 'react-icons/fi';
 import './CaseStudies.css';
 
@@ -195,15 +195,17 @@ const CaseStudies = () => {
         return () => observer.disconnect();
     }, [activeFilter]);
 
-    const filteredStudies = activeFilter === 'All'
-        ? allStudies
-        : allStudies.filter(s => s.industry === activeFilter);
+    const filteredStudies = useMemo(() => (
+        activeFilter === 'All'
+            ? allStudies
+            : allStudies.filter((s) => s.industry === activeFilter)
+    ), [activeFilter, allStudies]);
     const activeStudy = allStudies.find(s => s._id === viewedId) || allStudies[0];
 
     useEffect(() => {
         if (filteredStudies.length === 0) return;
 
-        // Reset to the top of the list and first case when switching tabs.
+        // Reset to the top of the list and first case only when filter changes.
         const firstCaseId = filteredStudies[0]._id;
         setActiveId(firstCaseId);
         setViewedId(firstCaseId);
@@ -211,11 +213,11 @@ const CaseStudies = () => {
         if (cardScrollerRef.current) {
             cardScrollerRef.current.scrollTop = 0;
         }
-    }, [activeFilter, filteredStudies]);
+    }, [activeFilter]);
 
     const patterns = [
-        { id: 'p1', title: "Compressed Air Systems", val: "20-30%", desc: "Energy loss due to leaks and improper operation", img: "/images/pattern_compressed_air.png" },
-        { id: 'p2', title: "HVAC Systems", val: "10-25%", desc: "Optimization potential through better load management", img: "/images/pattern_hvac.png" },
+        { id: 'p1', title: "Compressed Air Systems", val: "20-30%", desc: "Energy loss due to leaks and improper operation", img: "/images/pattern_hvac.png" },
+        { id: 'p2', title: "HVAC Systems", val: "10-25%", desc: "Optimization potential through better load management", img: "/images/pattern_compressed_air.png" },
         { id: 'p3', title: "Pumps & Motors", val: "8-15%", desc: "Efficiency gains from system tuning and control", img: "/images/pattern_pumps_motors.png" },
         { id: 'p4', title: "Steam Systems", val: "Critical", desc: "Significant losses from insulation gaps and condensate mismanagement", img: "/images/pattern_steam.png" }
     ];
