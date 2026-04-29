@@ -40,7 +40,7 @@ export function Header() {
   const navLinks = [
     { name: 'Our Company', path: '/company', color: 'var(--color-blue)' },
     { name: 'Our Work', path: '/case-studies', color: 'var(--color-red)' },
-    { name: 'Services', path: '/services', color: 'var(--color-green)' },
+    { name: 'Our Services', path: '/services', color: 'var(--color-green)' },
   ];
 
   return (
@@ -90,7 +90,7 @@ export function Header() {
                 scrolled ? "text-[0.6rem] md:text-[0.75rem]" : "text-[0.9rem] md:text-[1.1rem]",
                 (scrolled || location.pathname !== '/') ? "text-[var(--text-primary)]" : "text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
               )}>
-                Centre for Energy,<br />Environment and Productivity
+                Centre for Energy<br />Environment and Productivity
               </span>
             </div>
           </Link>

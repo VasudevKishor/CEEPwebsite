@@ -82,7 +82,25 @@
     transition: all 0.3s ease;
 }
 
+.footer-form-minimal textarea {
+    background: transparent;
+    border: 1px solid var(--bg-placeholder);
+    padding: 0.55rem 0.65rem;
+    border-radius: 6px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    resize: vertical;
+    min-height: 88px;
+    transition: all 0.3s ease;
+}
+
 .footer-form-minimal input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.footer-form-minimal textarea::placeholder {
     color: var(--text-secondary);
     opacity: 0.6;
 }
@@ -90,6 +108,11 @@
 .footer-form-minimal input:focus {
     outline: none;
     border-bottom-color: var(--color-blue);
+}
+
+.footer-form-minimal textarea:focus {
+    outline: none;
+    border-color: var(--color-blue);
 }
 
 .footer-form-submit-minimal {

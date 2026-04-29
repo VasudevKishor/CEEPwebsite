@@ -50,7 +50,7 @@ const Register = () => {
             }
 
             setStatus('success');
-            window.open(downloadUrl, '_blank', 'noopener,noreferrer');
+            window.location.assign(downloadUrl);
         } catch (error) {
             console.error('Registration error:', error);
             setStatus('error');
@@ -59,7 +59,7 @@ const Register = () => {
 
     return (
         <div className="register-page">
-            <div className="register-card" data-scroll-reveal>
+            <div className="register-card">
                 <h1>Register to Download</h1>
                 <p className="register-subtitle">
                     You are requesting: <strong>{requestedName}</strong>

@@ -6,7 +6,8 @@ const Footer = () => {
     const [formData, setFormData] = useState({
         name: '',
         mobile: '',
-        email: ''
+        email: '',
+        message: ''
     });
     const [status, setStatus] = useState(''); // 'sending', 'success', 'error'
 
@@ -32,7 +33,7 @@ const Footer = () => {
             }
 
             setStatus('success');
-            setFormData({ name: '', mobile: '', email: '' });
+            setFormData({ name: '', mobile: '', email: '', message: '' });
             setTimeout(() => setStatus(''), 6000);
         } catch (error) {
             console.error('Inquiry submit error:', error);
@@ -72,6 +73,14 @@ const Footer = () => {
                                 placeholder="Email Address"
                                 value={formData.email}
                                 onChange={handleInputChange}
+                                required
+                            />
+                            <textarea
+                                name="message"
+                                placeholder="Inquiry Message"
+                                value={formData.message}
+                                onChange={handleInputChange}
+                                rows={3}
                                 required
                             />
                             <button
