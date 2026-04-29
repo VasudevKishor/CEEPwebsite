@@ -63,7 +63,7 @@ function AppContent() {
                     <Route path="/case-studies" element={<CaseStudies />} />
                 </Routes>
             </main>
-            <Footer />
+            {location.pathname !== '/register' && <Footer />}
         </div>
     );
 }

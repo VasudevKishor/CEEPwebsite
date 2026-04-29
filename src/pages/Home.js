@@ -9,28 +9,33 @@ import "./Home.css";
 const Home = () => {
   useTheme();
   const [logoSpeed, setLogoSpeed] = useState(25);
+  const [activeDriverId, setActiveDriverId] = useState(null);
   const keyDrivers = [
     {
       id: "01",
       heading: "Cost is No Longer Predictable",
+      image: "/images/pattern_compressed_air.png",
       detail:
         "Energy and resource costs are increasingly volatile, directly impacting operating margins. Organizations must actively manage consumption to maintain financial stability and competitiveness.",
     },
     {
       id: "02",
       heading: "Hidden Inefficiencies Limit Performance",
+      image: "/images/pattern_hvac.png",
       detail:
         "Most facilities operate with unnoticed losses across systems-whether in utilities, processes, or workflows. Identifying and addressing these inefficiencies unlocks significant improvement potential.",
     },
     {
       id: "03",
       heading: "Reliability is Business-Critical",
+      image: "/images/pattern_pumps_motors.png",
       detail:
         "Operations today cannot afford disruptions. Systems must deliver consistent performance while meeting productivity demands and operational continuity requirements.",
     },
     {
       id: "04",
       heading: "Sustainability is Now a Requirement",
+      image: "/images/pattern_steam.png",
       detail:
         "Carbon reduction targets, ESG expectations, and regulatory frameworks are becoming central to business strategy. Organizations must align operational performance with measurable sustainability outcomes.",
     },
@@ -119,6 +124,7 @@ const Home = () => {
     src,
     alt: `Client ${i + 1}`
   }));
+  const activeDriver = keyDrivers.find((driver) => driver.id === activeDriverId);
 
   return (
     <div className="home-page">
@@ -160,17 +166,32 @@ const Home = () => {
 
           <div className="key-drivers">
             <h3 className="key-drivers-title" data-heading-animate data-delay="2">Key Drivers:</h3>
-            <div className="drivers-grid">
+            <div
+              className={`drivers-grid ${activeDriver ? "overlay-active" : ""}`}
+              onMouseLeave={() => setActiveDriverId(null)}
+            >
               {keyDrivers.map((driver) => (
-                <div key={driver.id} className="driver-item" data-scroll-reveal>
-                  <div className="driver-number">{driver.id}</div>
-                  <h4>{driver.heading}</h4>
-                  <p className="driver-hover-content">
-                    <strong>{driver.id} — {driver.heading}</strong>
-                    <span>{driver.detail}</span>
-                  </p>
+                <div
+                  key={driver.id}
+                  className="driver-item"
+                  data-scroll-reveal
+                  onMouseEnter={() => setActiveDriverId(driver.id)}
+                >
+                  <h4 className="driver-heading">{driver.heading}</h4>
                 </div>
               ))}
+              {activeDriver && (
+                <article className="drivers-grid-overlay">
+                  <div className="driver-expanded-copy">
+                    <span className="driver-id-badge">{activeDriver.id}</span>
+                    <h5>{activeDriver.heading}</h5>
+                    <p>{activeDriver.detail}</p>
+                  </div>
+                  <div className="driver-expanded-image">
+                    <img src={activeDriver.image} alt={activeDriver.heading} loading="lazy" />
+                  </div>
+                </article>
+              )}
             </div>
           </div>
         </div>

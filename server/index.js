@@ -41,12 +41,12 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.post("/api/inquiries", async (req, res) => {
-  const { name, mobile, email } = req.body || {};
+  const { name, mobile, email, message } = req.body || {};
 
-  if (!name || !mobile || !email) {
+  if (!name || !mobile || !email || !message) {
     return res.status(400).json({
       ok: false,
-      message: "name, mobile and email are required",
+      message: "name, mobile, email and message are required",
     });
   }
 
@@ -57,6 +57,7 @@ app.post("/api/inquiries", async (req, res) => {
       name: String(name).trim(),
       mobile: String(mobile).trim(),
       email: String(email).trim().toLowerCase(),
+      message: String(message).trim(),
       createdAt: new Date().toISOString(),
     };
 

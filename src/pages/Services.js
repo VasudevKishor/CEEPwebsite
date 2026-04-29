@@ -107,7 +107,7 @@ const Services = () => {
                 </div>
 
                 <div className="services-download-gate" data-heading-animate data-delay="5">
-                    <h3>Download Training Modules</h3>
+                    <h3>Registration Page - Register to Download</h3>
                     <p>
                         To access any program PDF, please register first. This helps us share relevant content and stay in touch.
                     </p>
@@ -117,6 +117,8 @@ const Services = () => {
                                 key={prog.file}
                                 to={`/register?file=${encodeURIComponent(prog.file)}&name=${encodeURIComponent(prog.name)}`}
                                 className="services-download-link"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 <span>{idx + 1}. {prog.name}</span>
                                 <span>Register to Download</span>
