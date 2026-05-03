@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { FiArrowDown, FiArrowRight, FiCheckCircle, FiPlay, FiX, FiLayers } from 'react-icons/fi';
+import { FiArrowDown, FiArrowRight, FiCheckCircle, FiPlay } from 'react-icons/fi';
 import './CaseStudies.css';
 
 // Animated Counter Component (Preserved)
@@ -13,8 +13,11 @@ const Counter = ({ end, duration = 2000, prefix = "", suffix = "" }) => {
         const observer = new IntersectionObserver(([entry]) => {
             if (entry.isIntersecting) setIsVisible(true);
         }, { threshold: 0.1 });
-        if (countRef.current) observer.observe(countRef.current);
-        return () => countRef.current && observer.unobserve(countRef.current);
+        const observedNode = countRef.current;
+        if (observedNode) observer.observe(observedNode);
+        return () => {
+            if (observedNode) observer.unobserve(observedNode);
+        };
     }, []);
 
     useEffect(() => {
@@ -32,39 +35,10 @@ const Counter = ({ end, duration = 2000, prefix = "", suffix = "" }) => {
     return <span ref={countRef}>{prefix}{count}{suffix}</span>;
 };
 
-// Video Modal component (Preserved for internal depth if needed, but unused in primary dashboard)
-const VideoModal = ({ isOpen, onClose, videoUrl, title }) => {
-    if (!isOpen) return null;
-    const isYouTube = videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be');
-    const isVimeo = videoUrl.includes('vimeo.com');
-    let embedSrc = videoUrl;
-    if (isYouTube) {
-        embedSrc = videoUrl.replace('watch?v=', 'embed/').split('&')[0] + "?autoplay=1";
-    } else if (isVimeo) {
-        const vimeoId = videoUrl.split('/').pop();
-        embedSrc = `https://player.vimeo.com/video/${vimeoId}?autoplay=1`;
-    }
-    return (
-        <div className="video-modal-overlay" onClick={onClose}>
-            <div className="video-modal-container" onClick={e => e.stopPropagation()}>
-                <button className="modal-close-btn" onClick={onClose} aria-label="Close modal"><FiX /></button>
-                <div className="modal-header"><h3>{title}</h3></div>
-                <div className="modal-video-wrapper">
-                    {isYouTube || isVimeo ? (
-                        <iframe src={embedSrc} title={title} frameBorder="0" allowFullScreen></iframe>
-                    ) : (
-                        <video src={videoUrl} controls autoPlay className="modal-local-video"></video>
-                    )}
-                </div>
-            </div>
-        </div>
-    );
-};
-
 const CaseStudies = () => {
     const cardScrollerRef = useRef(null);
 
-    const allStudies = [
+    const allStudies = useMemo(() => [
         {
             _id: 'cs13',
             title: 'Energy Audit at Remote Industrial Accommodation Camp',
@@ -169,7 +143,7 @@ const CaseStudies = () => {
             category: 'Energy Audit',
             industry: 'Infrastructure'
         }
-    ];
+    ], []);
 
     const filterOptions = ['All', 'Manufacturing', 'Textile', 'Automotive', 'Civil & Commercial', 'Infrastructure'];
 
@@ -213,7 +187,7 @@ const CaseStudies = () => {
         if (cardScrollerRef.current) {
             cardScrollerRef.current.scrollTop = 0;
         }
-    }, [activeFilter]);
+    }, [filteredStudies]);
 
     const patterns = [
         { id: 'p1', title: "Compressed Air Systems", val: "20-30%", desc: "Energy loss due to leaks and improper operation", img: "/images/pattern_hvac.png" },

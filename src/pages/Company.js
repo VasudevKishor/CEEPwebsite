@@ -12,9 +12,9 @@ const Company = () => {
         const members = [
             {
                 _id: 'team-1',
-                name: 'Dr. Nagesh Kumar',
+                name: 'J. Nagesh Kumar',
                 position: 'Founder & Director',
-                bio: 'Expert in energy management, environmental consulting, and productivity improvement with decades of industry experience.',
+                bio: 'A Mechanical Engineer with a postgraduate specialization in Energy Management, bringing over three decades of experience in energy auditing, conservation, and industrial performance optimization. As an Accredited Energy Auditor certified by the Bureau of Energy Efficiency (BEE), he has led and executed more than 100 detailed audits, delivering measurable improvements in energy efficiency and operations. He is also a Lead Auditor for ISO 50001 Energy Management Systems (EnMS) and an accomplished trainer who contributes to capacity-building and compliance-focused programs through CEEP and related initiatives.',
                 image: '/images/team/nagesh.jpg',
                 email: 'nageshkumar@ceepenergy.in',
                 linkedin: '#'
@@ -22,8 +22,8 @@ const Company = () => {
             {
                 _id: 'team-2',
                 name: 'Mr. Sakthi Aadharsh Azhagar',
-                position: 'Senior Energy Analyst',
-                bio: 'Specialized in resource optimization, process improvement, and organizational efficiency with extensive experience in industrial consulting.',
+                position: 'Energy Analyst',
+                bio: 'A Chemical Engineer specializing in process engineering and industrial energy optimization, with evolving expertise in energy audits, utility systems, and ISO 50001 Energy Management Systems (EnMS). At an intermediate stage of professional practice, he combines a strong academic foundation with hands-on industrial exposure in energy assessment and performance improvement initiatives. He also applies computational methods, including process simulation, data-driven modeling, and analytical techniques, to evaluate system performance, estimate savings potential, and support practical decision-making for technically robust efficiency measures.',
                 image: '/images/team/sakthi.jpeg',
                 email: 'sakthiaadharshazhagar@ceepenergy.in',
                 linkedin: '#'

@@ -136,6 +136,19 @@ code {
     }
 }
 
+/* Tighter gutters on small viewports to avoid large side margins */
+@media (max-width: 768px) {
+    :root {
+        --site-gutter: clamp(0.5rem, 3.5vw, 1.5rem);
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --site-gutter: clamp(0.5rem, 4vw, 1rem);
+    }
+}
+
 /* Flat Heading Animations - Smooth scroll-triggered animations */
 @media (prefers-reduced-motion: no-preference) {
     [data-heading-animate] {

@@ -150,7 +150,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} by CEEP Creative team: Vasudev Kishor, Thilagan Iniyavan, Sanyam Bharadwaj. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} by CEEP Creative team: Vasudev Kishor, Thilagan Iniyavan, Sanyam Bhardwaj. All rights reserved.</p>
                 </div>
             </div>
         </footer>
