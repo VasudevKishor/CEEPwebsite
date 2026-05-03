@@ -2,6 +2,22 @@ import React, { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import './Register.css';
 
+const resolveApiBaseUrl = () => {
+    if (process.env.REACT_APP_API_BASE_URL) {
+        return process.env.REACT_APP_API_BASE_URL;
+    }
+
+    if (typeof window !== 'undefined') {
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            return 'http://localhost:4000';
+        }
+
+        return window.location.origin;
+    }
+
+    return 'http://localhost:4000';
+};
+
 const Register = () => {
     const [searchParams] = useSearchParams();
     const [formData, setFormData] = useState({
@@ -14,7 +30,7 @@ const Register = () => {
 
     const requestedFile = searchParams.get('file') || '';
     const requestedName = searchParams.get('name') || 'selected document';
-    const apiBaseUrl = process.env.REACT_APP_API_BASE_URL || 'http://localhost:4000';
+    const apiBaseUrl = resolveApiBaseUrl();
 
     const downloadUrl = useMemo(() => {
         if (!requestedFile) return '';
@@ -53,7 +69,25 @@ const Register = () => {
             window.location.assign(downloadUrl);
         } catch (error) {
             console.error('Registration error:', error);
-            setStatus('error');
+
+            try {
+                const localItem = {
+                    id: Date.now().toString(),
+                    ...formData,
+                    requestedFile,
+                    requestedName,
+                    createdAt: new Date().toISOString(),
+                    source: 'local-fallback'
+                };
+                const existing = JSON.parse(localStorage.getItem('ceep-registrations') || '[]');
+                localStorage.setItem('ceep-registrations', JSON.stringify([...existing, localItem]));
+
+                setStatus('saved-local');
+                window.location.assign(downloadUrl);
+            } catch (storageError) {
+                console.error('Local fallback failed:', storageError);
+                setStatus('error');
+            }
         }
     };
 
@@ -110,6 +144,9 @@ const Register = () => {
 
                 {status === 'success' && (
                     <p className="register-success">Registration saved. Your download has started.</p>
+                )}
+                {status === 'saved-local' && (
+                    <p className="register-success">Server is unavailable, so your registration was saved locally in this browser and the download has started.</p>
                 )}
                 {status === 'error' && (
                     <p className="register-error">Could not complete registration. Please try again.</p>

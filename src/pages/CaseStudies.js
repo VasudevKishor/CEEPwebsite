@@ -275,7 +275,10 @@ const CaseStudies = () => {
                             <p className="hero-eyebrow-text">Real-world projects. Measurable results. Practical implementation.</p>
                             <p className="hero-lead-text">From manufacturing plants to commercial facilities, our work consistently delivers cost reduction, efficiency gains, and improved operational performance.</p>
                             <div className="hero-bottom-info">
-                                <button className="hero-cta-btn" onClick={scrollToContent}>FIND A CASE <FiArrowDown className="ml-2" /></button>
+                                <div className="hero-cta-group">
+                                    <button className="hero-cta-btn" onClick={scrollToContent}>FIND A CASE <FiArrowDown className="ml-2" /></button>
+                                    <a href="#contact" onClick={scrollToFooter} className="hero-cta-btn hero-secondary-cta">BOOK AN AUDIT <FiArrowRight className="btn-icon" /></a>
+                                </div>
                                 <div className="hero-features">
                                     <div className="h-feature"><FiCheckCircle className="f-icon" /> ROI Focus</div>
                                     <div className="h-feature"><FiCheckCircle className="f-icon" /> Certified Audits</div>
@@ -324,11 +327,10 @@ const CaseStudies = () => {
                     </div>
                 </div>
             </section>
-
             <section id="find-case-anchor" className="case-dashboard-section">
                 <div className="container">
-                    <div data-scroll-reveal data-id="grid-header" className={`case-grid-header ${revealedIds.has('grid-header') ? 'revealed' : ''}`}>
-                        <h2 className="grid-main-title">Case Study Center</h2>
+                    <h2 data-scroll-reveal data-id="grid-header" className={`grid-main-title ${revealedIds.has('grid-header') ? 'revealed' : ''}`}>Case Study Center</h2>
+                    <div className="case-grid-header">
                         <div className="industry-filter-bar">
                             <div className="filter-buttons">
                                 {filterOptions.map(opt => (
@@ -446,20 +448,6 @@ const CaseStudies = () => {
                 </div>
             </section>
 
-            {/* SPLIT LAYOUT CTA */}
-            <section className="work-cta-split">
-                <div className="container">
-                    <div data-scroll-reveal data-id="cta-split" className={`cta-split-wrapper ${revealedIds.has('cta-split') ? 'revealed' : ''}`}>
-                        <div className="cta-left-content">
-                            <h3>Achieve Similar Results.</h3>
-                            <p>Expert audits designed to optimize your industrial operations and maximize ROI.</p>
-                        </div>
-                        <div className="cta-right-action">
-                            <a href="#contact" onClick={scrollToFooter} className="cta-split-btn"><span>Book an Audit</span><FiArrowRight className="btn-icon" /></a>
-                        </div>
-                    </div>
-                </div>
-            </section>
         </div>
     );
 };

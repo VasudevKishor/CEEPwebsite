@@ -60,6 +60,10 @@
         justify-content: center;
     }
 
+    .hero-cta-group {
+        align-items: center;
+    }
+
     .hero-mask-image {
         display: none;
     }
@@ -113,6 +117,13 @@
     gap: 3rem;
 }
 
+.hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+}
+
 .hero-cta-btn {
     background: var(--color-red);
     color: white;
@@ -131,6 +142,10 @@
 .hero-cta-btn:hover {
     transform: translateY(-5px) scale(1.05);
     box-shadow: 0 20px 50px rgba(244, 63, 94, 0.5);
+}
+
+.hero-secondary-cta {
+    text-decoration: none;
 }
 
 .hero-features {
@@ -296,34 +311,34 @@
 
 /* CASE DASHBOARD COMMAND CENTER (NEW SPLIT LAYOUT) */
 .case-dashboard-section {
-    padding-top: 2rem;
+    padding-top: 1.25rem;
     padding-bottom: 4rem;
     background: var(--bg-primary);
-}
-
-.case-grid-header {
-    margin-bottom: 3rem;
-    position: sticky;
-    top: 56px;
-    z-index: 30;
-    background: var(--bg-primary);
-    padding: 0 0 1rem;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
-    backdrop-filter: blur(8px);
 }
 
 .grid-main-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 950;
     color: var(--text-primary);
-    margin-bottom: 2rem;
+    margin: 0 0 1rem;
     letter-spacing: -0.02em;
+}
+
+.case-grid-header {
+    margin-bottom: 1rem;
+    position: sticky;
+    top: 56px;
+    z-index: 25;
+    background: var(--bg-primary);
+    padding: 0.85rem 0 0.8rem;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+    backdrop-filter: blur(8px);
 }
 
 .industry-filter-bar {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
 }
 
 .filter-buttons {
@@ -359,7 +374,7 @@
 .case-dashboard-layout {
     display: grid;
     grid-template-columns: 0.7fr 1.3fr;
-    gap: 2.5rem;
+    gap: 1.5rem;
     min-height: 800px;
     align-items: flex-start;
 }
@@ -368,7 +383,7 @@
     height: 100%;
     overflow: hidden;
     position: relative;
-    padding-bottom: 2rem;
+    padding-bottom: 0;
 }
 
 .card-scroller {
@@ -504,7 +519,7 @@
 
 .case-viewscreen-column {
     position: sticky;
-    top: 120px;
+    top: 140px;
     z-index: 20;
     align-self: flex-start;
 }
@@ -679,6 +694,14 @@
 @media (max-width: 1280px) {
     .pattern-tile-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .case-dashboard-layout {
+        min-height: auto;
+    }
+
+    .case-viewscreen-column {
+        top: 126px;
     }
 }
 
@@ -920,20 +943,102 @@
     }
 
     .case-viewscreen-column {
-        position: sticky;
-        top: 120px;
+        position: relative;
+        top: auto;
         margin-top: 2rem;
         z-index: 20;
     }
 
     .card-scroller {
-        height: 400px;
+        height: auto;
+        max-height: none;
+        overflow: visible;
     }
 }
 
 @media (max-width: 768px) {
     .case-grid-header {
-        top: 56px;
+        position: relative;
+        top: auto;
+        margin-bottom: 0.85rem;
+        padding: 0.5rem 0 0.75rem;
+    }
+
+    .grid-main-title {
+        font-size: clamp(1.9rem, 8vw, 2.7rem);
+        margin-bottom: 1rem;
+    }
+
+    .industry-filter-bar {
+        margin-bottom: 0;
+    }
+
+    .filter-buttons {
+        gap: 0.65rem;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+        scrollbar-width: none;
+    }
+
+    .filter-buttons::-webkit-scrollbar {
+        display: none;
+    }
+
+    .industry-btn {
+        flex: 0 0 auto;
+        padding: 0.7rem 1.1rem;
+        border-radius: 12px;
+        white-space: nowrap;
+    }
+
+    .case-dashboard-layout {
+        gap: 1rem;
+        min-height: auto;
+    }
+
+    .case-list-column {
+        overflow: visible;
+    }
+
+    .card-scroller {
+        padding: 0;
+        gap: 0.85rem;
+    }
+
+    .list-card-perspective {
+        height: auto;
+        min-height: 138px;
+    }
+
+    .list-card-front,
+    .list-card-back {
+        padding: 0.85rem 1rem;
+    }
+
+    .list-card-title {
+        font-size: 0.95rem;
+    }
+
+    .case-viewscreen-column {
+        margin-top: 0.25rem;
+    }
+
+    .viewscreen-housing {
+        border-radius: 18px;
+    }
+
+    .viewscreen-bottom-hud {
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .hud-study-info h3 {
+        font-size: 1rem;
+    }
+
+    .hud-study-info p {
+        font-size: 0.72rem;
     }
 
     .stats-inner-layout {
@@ -953,6 +1058,27 @@
 }
 
 @media (max-width: 480px) {
+
+    .case-dashboard-section {
+        padding-top: 1rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .case-grid-header {
+        margin-bottom: 0.75rem;
+    }
+
+    .grid-main-title {
+        font-size: clamp(1.7rem, 9vw, 2.2rem);
+    }
+
+    .case-dashboard-layout {
+        gap: 0.85rem;
+    }
+
+    .card-scroller {
+        gap: 0.7rem;
+    }
 
     .stats-inner-layout,
     .pattern-tile-grid {

@@ -9,7 +9,6 @@ import "./Home.css";
 const Home = () => {
   useTheme();
   const [logoSpeed, setLogoSpeed] = useState(25);
-  const [activeDriverId, setActiveDriverId] = useState(null);
   const keyDrivers = [
     {
       id: "01",
@@ -124,7 +123,6 @@ const Home = () => {
     src,
     alt: `Client ${i + 1}`
   }));
-  const activeDriver = keyDrivers.find((driver) => driver.id === activeDriverId);
 
   return (
     <div className="home-page">
@@ -165,33 +163,15 @@ const Home = () => {
           </p>
 
           <div className="key-drivers">
-            <h3 className="key-drivers-title" data-heading-animate data-delay="2">Key Drivers:</h3>
-            <div
-              className={`drivers-grid ${activeDriver ? "overlay-active" : ""}`}
-              onMouseLeave={() => setActiveDriverId(null)}
-            >
+            <h3 className="key-drivers-title" data-heading-animate data-delay="2">Key Drivers</h3>
+            <div className="drivers-simple-grid" data-scroll-reveal>
               {keyDrivers.map((driver) => (
-                <div
-                  key={driver.id}
-                  className="driver-item"
-                  data-scroll-reveal
-                  onMouseEnter={() => setActiveDriverId(driver.id)}
-                >
-                  <h4 className="driver-heading">{driver.heading}</h4>
-                </div>
-              ))}
-              {activeDriver && (
-                <article className="drivers-grid-overlay">
-                  <div className="driver-expanded-copy">
-                    <span className="driver-id-badge">{activeDriver.id}</span>
-                    <h5>{activeDriver.heading}</h5>
-                    <p>{activeDriver.detail}</p>
-                  </div>
-                  <div className="driver-expanded-image">
-                    <img src={activeDriver.image} alt={activeDriver.heading} loading="lazy" />
-                  </div>
+                <article key={driver.id} className="driver-simple-card">
+                  <span className="driver-simple-id">{driver.id}</span>
+                  <h4>{driver.heading}</h4>
+                  <p>{driver.detail}</p>
                 </article>
-              )}
+              ))}
             </div>
           </div>
         </div>

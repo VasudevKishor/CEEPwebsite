@@ -3,12 +3,14 @@
 .services-page {
     position: relative;
     width: 100%;
-    min-height: 100vh;
+    /* Allow natural height so page doesn't force empty viewport space */
+    min-height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: clamp(140px, 15vh, 180px) var(--site-gutter) clamp(2rem, 3vh, 3rem);
+    justify-content: flex-start;
+    /* Compact top padding for a tighter layout */
+    padding: clamp(20px, 4vh, 40px) var(--site-gutter) clamp(0.8rem, 1.6vh, 1.2rem);
     background-color: var(--bg-primary);
     color: var(--text-primary) !important;
 }
@@ -77,45 +79,13 @@
 
 .svc-header-section {
     text-align: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.1rem;
     /* Further reduced from 2.5rem to bring cards up more */
     width: 100%;
     max-width: 750px;
 }
 
 /* Hero Title Overrides — Match Site Standards */
-.svc-page-title {
-    color: var(--text-primary) !important;
-    font-size: clamp(2rem, 5vw, 3.2rem) !important;
-    /* Slightly reduced */
-    font-weight: 800 !important;
-    margin-bottom: 0.6rem !important;
-    text-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    letter-spacing: -0.02em !important;
-}
-
-.svc-page-subtitle {
-    color: var(--text-secondary) !important;
-    font-size: clamp(1rem, 1.8vw, 1.2rem) !important;
-    /* Slightly reduced */
-    line-height: 1.5 !important;
-    margin-bottom: 0 !important;
-    max-width: 650px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-}
-
-.svc-cards-wrapper {
-    display: flex;
-    width: 100%;
-    gap: 2rem;
-    /* Standardized narrower gap for better reach */
-    align-items: stretch;
-    justify-content: center;
-}
-
-/* --- Interactive Tiles --- */
 .svc-card-side {
     position: relative;
     flex: 1;
@@ -124,8 +94,9 @@
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 32px;
-    padding: 2rem 1.5rem;
-    min-height: 600px;
+    padding: 1.5rem 1.25rem;
+    /* Allow cards to size to content instead of forcing huge blocks */
+    min-height: 320px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,6 +106,18 @@
     transition: flex 0.8s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s ease;
     z-index: 2;
 }
+
+
+.svc-cards-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    /* Narrower gap for compact layout */
+    align-items: stretch;
+    justify-content: center;
+}
+
+/* --- Interactive Tiles --- */
 
 .svc-card-left {
     border-top: 3px solid var(--color-blue) !important;
@@ -804,7 +787,7 @@
 
 .services-engagement-section {
     width: 100%;
-    margin-top: 1.6rem;
+    margin-top: 1.1rem;
     background: rgba(2, 6, 23, 0.58);
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 16px;
@@ -817,93 +800,227 @@
 }
 
 .services-engagement-section h3 {
-    margin: 0 0 1rem;
-    font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+    margin: 0;
+    font-size: clamp(1.15rem, 1.55vw, 1.45rem);
     color: var(--text-primary);
+}
+
+.engagement-overview {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.9fr);
+    gap: 1rem;
+    align-items: stretch;
+    margin-bottom: 1rem;
+    padding: 1rem 1.1rem;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.72), rgba(2, 6, 23, 0.88));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .engagement-overview {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(248, 250, 252, 0.96));
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.engagement-overview-kicker {
+    margin: 0 0 0.35rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.74rem;
+    font-weight: 800;
+    color: var(--color-blue);
+}
+
+.engagement-overview-copy {
+    margin: 0.65rem 0 0;
+    max-width: 62ch;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    font-size: 0.95rem;
+}
+
+.engagement-overview-meta {
+    display: grid;
+    gap: 0.55rem;
+    align-content: center;
+}
+
+.engagement-overview-meta span {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.7rem 0.9rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    font-size: 0.88rem;
+    font-weight: 700;
+}
+
+[data-theme="light"] .engagement-overview-meta span {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.08);
 }
 
 .engagement-rows {
     display: grid;
-    gap: 0.85rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
 }
 
-.engagement-row {
-    display: grid;
-    grid-template-columns: 0.3fr 0.7fr;
-    gap: 0.85rem;
-    align-items: stretch;
-    min-height: 260px;
-}
-
-.engagement-row.reverse {
-    grid-template-columns: 0.7fr 0.3fr;
-}
-
-.engagement-row-image {
-    border-radius: 12px;
+.engagement-card {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    height: 100%;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(15, 23, 42, 0.56);
+    box-shadow: 0 16px 34px rgba(2, 6, 23, 0.18);
 }
 
-[data-theme="light"] .engagement-row-image {
-    border-color: rgba(0, 0, 0, 0.1);
+[data-theme="light"] .engagement-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
 }
 
-.engagement-row-image img {
+.engagement-card .engagement-row-image {
+    height: 166px;
+    min-height: 166px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.engagement-card .engagement-row-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.engagement-phase-card,
-.engagement-outcomes-card {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 12px;
-    padding: 0.85rem 0.95rem;
-    background: rgba(15, 23, 42, 0.58);
+.engagement-card-featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(0, 1.05fr);
+}
+
+.engagement-card-featured .engagement-row-image {
     height: 100%;
-    overflow-y: auto;
+    min-height: 300px;
+    border-bottom: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-[data-theme="light"] .engagement-phase-card,
-[data-theme="light"] .engagement-outcomes-card {
-    background: rgba(255, 255, 255, 0.78);
-    border-color: rgba(0, 0, 0, 0.1);
+[data-theme="light"] .engagement-card-featured .engagement-row-image {
+    border-right-color: rgba(0, 0, 0, 0.08);
 }
 
-.engagement-phase-card h4,
-.engagement-outcomes-card h4 {
-    margin: 0 0 0.4rem;
-    font-size: clamp(0.95rem, 1.15vw, 1.02rem);
+.engagement-card-featured .engagement-card-body {
+    justify-content: center;
+    padding: 1.15rem 1.2rem;
+}
+
+.engagement-card-step {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(96, 165, 250, 0.14);
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    color: #bfdbfe;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.engagement-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    padding: 1rem 1.05rem 1.05rem;
+}
+
+.engagement-card-body h4 {
+    margin: 0;
     color: var(--text-primary);
+    font-size: clamp(1rem, 1.08vw, 1.12rem);
 }
 
-.engagement-phase-card p {
-    margin: 0 0 0.45rem;
+.engagement-card-body p {
+    margin: 0;
     color: var(--text-secondary);
-    font-size: clamp(0.84rem, 0.98vw, 0.9rem);
+    font-size: clamp(0.82rem, 0.95vw, 0.92rem);
     line-height: 1.45;
 }
 
-.engagement-phase-card ul,
-.engagement-outcomes-card ul {
+.engagement-card-body ul {
     margin: 0;
-    padding-left: 1rem;
+    padding-left: 0.95rem;
     color: var(--text-secondary);
     display: grid;
-    gap: 0.2rem;
-    font-size: clamp(0.82rem, 0.94vw, 0.88rem);
+    gap: 0.16rem;
+    font-size: clamp(0.79rem, 0.9vw, 0.86rem);
+}
+
+.engagement-outcomes-standalone {
+    margin-top: 0.9rem;
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    background: linear-gradient(135deg, rgba(9, 17, 36, 0.9), rgba(15, 23, 42, 0.76));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1rem 1.1rem;
+}
+
+[data-theme="light"] .engagement-outcomes-standalone {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.engagement-outcomes-standalone p {
+    margin: 0 0 0.55rem;
+    color: var(--text-secondary);
+    font-size: clamp(0.84rem, 0.98vw, 0.9rem);
+    line-height: 1.4;
 }
 
 @media (max-width: 980px) {
-    .engagement-row,
-    .engagement-row.reverse {
+    .engagement-overview {
+        grid-template-columns: 1fr;
+        padding: 0.95rem;
+    }
+
+    .engagement-rows {
         grid-template-columns: 1fr;
     }
 
-    .engagement-row-image {
+    .engagement-card-featured {
+        grid-template-columns: 1fr;
+    }
+
+    .engagement-card {
+        border-radius: 14px;
+    }
+
+    .engagement-card .engagement-row-image {
+        height: 160px;
+        min-height: 160px;
+    }
+
+    .engagement-card-featured .engagement-row-image {
         min-height: 180px;
+        height: 180px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .engagement-card-body {
+        padding: 0.85rem 0.9rem 0.9rem;
+    }
+
+    .engagement-outcomes-standalone {
+        padding: 0.9rem;
     }
 }

@@ -4,15 +4,13 @@ import './HeroScene.css';
 
 const HeroScene = () => {
     const videos = [
-        { mp4: '/videos/video1.mp4', webm: '/videos/video1.webm' },
-        { mp4: '/videos/video2.mp4', webm: '/videos/video2.webm' },
-        { mp4: '/videos/video3.mp4', webm: '/videos/video3.webm' },
-        { mp4: '/videos/video4.mp4', webm: '/videos/video4.webm' },
-        { mp4: '/videos/video5.mp4', webm: '/videos/video5.webm' },
-        { mp4: '/videos/video6.mp4', webm: '/videos/video6.webm' },
-        { mp4: '/videos/video7.mp4', webm: '/videos/video7.webm' },
-        { mp4: '/videos/video8.mp4', webm: '/videos/video8.webm' },
-        { mp4: '/videos/video9.mp4', webm: '/videos/video9.webm' }
+        { mp4: '/videos/video1.mp4' },
+        { mp4: '/videos/video2.mp4' },
+        { mp4: '/videos/video3.mp4' },
+        { mp4: '/videos/video4.mp4' },
+        { mp4: '/videos/video5.mp4' },
+        { mp4: '/videos/video7.mp4' },
+        { mp4: '/videos/video9.mp4' }
     ];
 
     const [activeLayer, setActiveLayer] = useState(0); 
@@ -66,6 +64,21 @@ const HeroScene = () => {
 
     const handleVideoLoad = () => {
         setIsLoaded(true);
+    };
+
+    const handleVideoError = (layer) => {
+        setIndices((prevIndices) => {
+            const failedIndex = prevIndices[layer];
+            let replacementIndex = (failedIndex + 1) % videos.length;
+
+            if (replacementIndex === prevIndices[layer === 0 ? 1 : 0]) {
+                replacementIndex = (replacementIndex + 1) % videos.length;
+            }
+
+            const nextIndices = [...prevIndices];
+            nextIndices[layer] = replacementIndex;
+            return nextIndices;
+        });
     };
 
     const handleContactClick = (e) => {
@@ -126,6 +139,7 @@ const HeroScene = () => {
                     disablePictureInPicture
                     controlsList="nodownload"
                     onCanPlayThrough={activeLayer === 0 ? handleVideoLoad : undefined}
+                    onError={() => handleVideoError(0)}
                     preload="auto"
                     src={videos[indices[0]].mp4}
                 >
@@ -143,6 +157,7 @@ const HeroScene = () => {
                     disablePictureInPicture
                     controlsList="nodownload"
                     onCanPlayThrough={activeLayer === 1 ? handleVideoLoad : undefined}
+                    onError={() => handleVideoError(1)}
                     preload="auto"
                     src={videos[indices[1]].mp4}
                 >

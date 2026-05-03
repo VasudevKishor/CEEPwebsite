@@ -27,9 +27,9 @@
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    gap: clamp(2rem, 5vw, 4rem);
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
     align-items: start;
     margin-bottom: clamp(1.25rem, 2vw, 1.75rem);
 }
@@ -45,7 +45,7 @@
 
 .footer-section-right {
     text-align: right;
-    margin-left: auto;
+    justify-self: end;
 }
 
 .footer-section h3 {
@@ -63,11 +63,25 @@
 }
 
 .footer-form-minimal {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.85rem;
-    max-width: 350px;
+    width: min(100%, 760px);
     margin-top: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: left;
+}
+
+.footer-form-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.footer-form-minimal > input[name="name"] {
+    grid-column: 1 / -1;
 }
 
 .footer-form-minimal input {
@@ -93,6 +107,17 @@
     resize: vertical;
     min-height: 88px;
     transition: all 0.3s ease;
+}
+
+.footer-form-minimal input,
+.footer-form-minimal textarea {
+    width: 100%;
+}
+
+.footer-form-minimal textarea,
+.footer-form-submit-minimal,
+.form-status {
+    grid-column: 1 / -1;
 }
 
 .footer-form-minimal input::placeholder {
@@ -128,6 +153,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 0.85rem;
+    justify-self: center;
+    width: min(220px, 100%);
 }
 
 .footer-form-submit-minimal:hover {
@@ -231,7 +258,49 @@
 }
 
 .footer-bottom p {
-    margin: 0;
+    margin: 0.9rem 0 0;
+}
+
+.footer-team {
+    margin-top: 0;
+}
+
+.footer-team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.65rem;
+    justify-content: center;
+}
+
+.footer-team-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--bg-placeholder);
+    background: var(--bg-primary);
+}
+
+.footer-team-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-blue);
+    color: #fff;
+    font-weight: 800;
+    font-size: 0.8rem;
+    flex: 0 0 auto;
+}
+
+.footer-team-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 @media (max-width: 768px) {
@@ -240,17 +309,28 @@
     }
 
     .footer-content {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 1.5rem;
     }
 
     .footer-section-right {
         text-align: left;
-        margin-left: 0;
+        justify-self: stretch;
     }
 
     .footer-section-right .footer-social {
         justify-content: flex-start;
+    }
+
+    .footer-form-minimal {
+        grid-template-columns: 1fr;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-form-row {
+        display: grid;
+        grid-template-columns: 1fr;
     }
 
 }
