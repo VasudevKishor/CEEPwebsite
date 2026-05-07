@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 4000;
 const DATA_DIR = path.join(__dirname, "data");
 const INQUIRIES_FILE = path.join(DATA_DIR, "inquiries.json");
 const REGISTRATIONS_FILE = path.join(DATA_DIR, "registrations.json");
+const REGISTRATIONS_CSV_FILE = path.join(DATA_DIR, "registrations.csv");
 
 app.use(cors());
 app.use(express.json());
@@ -24,6 +25,23 @@ const ensureDataStore = async () => {
       }
     })
   );
+
+  // ensure CSV exists with header
+  try {
+    await fs.access(REGISTRATIONS_CSV_FILE);
+  } catch {
+    const header = [
+      'id',
+      'name',
+      'email',
+      'mobile',
+      'organization',
+      'requestedFile',
+      'requestedName',
+      'createdAt'
+    ].join(',') + '\n';
+    await fs.writeFile(REGISTRATIONS_CSV_FILE, header, 'utf8');
+  }
 };
 
 const readItems = async (filePath) => {
@@ -84,6 +102,8 @@ app.get("/api/inquiries", async (_req, res) => {
 app.post("/api/registrations", async (req, res) => {
   const { name, email, mobile, organization, requestedFile, requestedName } = req.body || {};
 
+  console.log('Received /api/registrations from', req.ip, 'origin:', req.headers.origin || '-', 'body keys:', Object.keys(req.body || {}));
+
   if (!name || !email || !mobile || !organization || !requestedFile) {
     return res.status(400).json({
       ok: false,
@@ -107,12 +127,39 @@ app.post("/api/registrations", async (req, res) => {
     registrations.push(newRegistration);
     await writeItems(REGISTRATIONS_FILE, registrations);
 
+    // append to CSV for easy Excel import
+    try {
+      const csvLine = [
+        newRegistration.id,
+        escapeCsv(newRegistration.name),
+        escapeCsv(newRegistration.email),
+        escapeCsv(newRegistration.mobile),
+        escapeCsv(newRegistration.organization),
+        escapeCsv(newRegistration.requestedFile),
+        escapeCsv(newRegistration.requestedName),
+        newRegistration.createdAt
+      ].join(',') + '\n';
+      await fs.appendFile(REGISTRATIONS_CSV_FILE, csvLine, 'utf8');
+    } catch (csvErr) {
+      console.error('Failed to append CSV registration:', csvErr);
+    }
+
     return res.status(201).json({ ok: true, registration: newRegistration });
   } catch (error) {
     console.error("Failed to save registration:", error);
     return res.status(500).json({ ok: false, message: "failed to save registration" });
   }
 });
+
+// helper to escape CSV fields (wrap in quotes if needed)
+function escapeCsv(value) {
+  if (value == null) return '';
+  const str = String(value);
+  if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+    return '"' + str.replace(/"/g, '""') + '"';
+  }
+  return str;
+}
 
 app.get("/api/registrations", async (_req, res) => {
   try {

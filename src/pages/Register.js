@@ -27,6 +27,7 @@ const Register = () => {
         organization: ''
     });
     const [status, setStatus] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const requestedFile = searchParams.get('file') || '';
     const requestedName = searchParams.get('name') || 'selected document';
@@ -61,15 +62,21 @@ const Register = () => {
                 })
             });
 
+            let body = null;
+            try { body = await response.json(); } catch (e) { /* ignore */ }
+
             if (!response.ok) {
-                throw new Error('Failed registration');
+                const msg = (body && body.message) || `status ${response.status}`;
+                console.error('Registration failed:', msg, body);
+                setErrorMessage(String(msg));
+                setStatus('error');
+                return;
             }
 
             setStatus('success');
             window.location.assign(downloadUrl);
         } catch (error) {
             console.error('Registration error:', error);
-
             try {
                 const localItem = {
                     id: Date.now().toString(),
@@ -86,6 +93,7 @@ const Register = () => {
                 window.location.assign(downloadUrl);
             } catch (storageError) {
                 console.error('Local fallback failed:', storageError);
+                setErrorMessage(storageError.message || String(storageError));
                 setStatus('error');
             }
         }
@@ -149,7 +157,7 @@ const Register = () => {
                     <p className="register-success">Server is unavailable, so your registration was saved locally in this browser and the download has started.</p>
                 )}
                 {status === 'error' && (
-                    <p className="register-error">Could not complete registration. Please try again.</p>
+                    <p className="register-error">Could not complete registration. {errorMessage ? errorMessage : 'Please try again.'}</p>
                 )}
 
                 <Link to="/services" className="register-back-link">Back to Services</Link>
